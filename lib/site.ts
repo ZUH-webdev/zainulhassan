@@ -1,52 +1,44 @@
 /**
- * Everything you still need to fill in lives here.
- * Bracketed values are placeholders and render as-is on the page.
- * Once `email` / `upworkUrl` hold real values, the CTA buttons switch
- * to a mailto: link and an external Upwork link automatically.
+ * Single source of truth for contact details and links.
+ * Never hardcode a URL or the email inside a component; import from here.
  */
-export const site = {
+export const SITE = {
   name: "Zain Ul Hassan",
   url: "https://zainulhassan.site",
+  email: "zainulhassan5857@gmail.com",
+  upwork: "https://www.upwork.com/freelancers/~01143c0f702d75da0d",
+  github: "https://github.com/ZUH-webdev/",
+  linkedin: "https://www.linkedin.com/in/zain-ul-hassan-dev/",
+  youtube: "", // not provided yet: YouTube links render only when this is set
+  mailSubject: "Project inquiry from your portfolio",
+} as const;
 
-  email: "[YOUR EMAIL]",
-  upworkUrl: "[YOUR UPWORK URL]",
+export const mailto = `mailto:${SITE.email}?subject=${encodeURIComponent(SITE.mailSubject)}`;
 
-  // Footer links (currently point to the contact section)
-  social: {
-    linkedin: "#contact",
-    youtube: "#contact",
-    upwork: "#contact",
+/** Spread on every external link: opens in a new tab safely. */
+export const external = { target: "_blank", rel: "noopener noreferrer" } as const;
+
+/** Profiles for JSON-LD sameAs (YouTube only once it is set). */
+export const sameAs: string[] = [SITE.upwork, SITE.github, SITE.linkedin, ...(SITE.youtube ? [SITE.youtube] : [])];
+
+/* ---------- content placeholders still to fill in ---------- */
+
+export const photoNote = "[Replace with your photo]";
+
+export const testimonials = [
+  {
+    quote: "[Paste your 5-star Upwork review for LeadsMind here]",
+    author: "[Client name], [Role]",
+    source: "Upwork contract",
   },
-
-  photoNote: "[Replace with your photo]",
-
-  testimonials: [
-    {
-      quote: "[Paste your 5-star Upwork review for LeadsMind here]",
-      author: "[Client name], [Role]",
-      source: "Upwork contract",
-    },
-    {
-      quote: "[Paste a second client review here]",
-      author: "[Client name], [Role]",
-      source: "Upwork contract",
-    },
-    {
-      quote: "[Paste a third client review here]",
-      author: "[Client name], [Role]",
-      source: "Upwork contract",
-    },
-  ],
-};
-
-export const isPlaceholder = (value: string) => value.startsWith("[");
-
-export const isExternal = (href: string) => /^https?:\/\//.test(href);
-
-export const emailHref = isPlaceholder(site.email) ? "#contact" : `mailto:${site.email}`;
-
-export const upworkHref = isPlaceholder(site.upworkUrl) ? "#contact" : site.upworkUrl;
-
-/** Props for an <a> that opens external URLs in a new tab. */
-export const linkProps = (href: string) =>
-  isExternal(href) ? { href, target: "_blank", rel: "noopener noreferrer" } : { href };
+  {
+    quote: "[Paste a second client review here]",
+    author: "[Client name], [Role]",
+    source: "Upwork contract",
+  },
+  {
+    quote: "[Paste a third client review here]",
+    author: "[Client name], [Role]",
+    source: "Upwork contract",
+  },
+];

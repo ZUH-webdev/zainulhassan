@@ -1,27 +1,55 @@
 const steps = [
   {
-    d: "",
-    pd: "0s",
     title: "Discovery call",
     body: "We talk goals, users and constraints. You leave with a clear scope and honest timeline.",
+    // chat bubble
+    icon: (
+      <>
+        <path pathLength={1} d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-8l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+        <path pathLength={1} d="M8 9h8" />
+        <path pathLength={1} d="M8 12.5h5" />
+      </>
+    ),
   },
   {
-    d: " d1",
-    pd: ".5s",
     title: "Plan and architecture",
     body: "Data model, security rules and milestones agreed before a line of code is written.",
+    // blueprint grid
+    icon: (
+      <>
+        <rect pathLength={1} x="3" y="3" width="18" height="18" rx="2" />
+        <path pathLength={1} d="M3 9h18" />
+        <path pathLength={1} d="M3 15h18" />
+        <path pathLength={1} d="M9 3v18" />
+        <path pathLength={1} d="M15 9v12" />
+      </>
+    ),
   },
   {
-    d: " d2",
-    pd: "1s",
     title: "Build in milestones",
     body: "Working software at every milestone, with written progress reports so you always know where things stand.",
+    // code brackets </>
+    icon: (
+      <>
+        <path pathLength={1} d="M8 7l-5 5 5 5" />
+        <path pathLength={1} d="M16 7l5 5-5 5" />
+        <path pathLength={1} d="M14 4l-4 16" />
+      </>
+    ),
   },
   {
-    d: " d3",
-    pd: "1.5s",
     title: "Launch and support",
     body: "Deployment, handover and ongoing improvements after you go live.",
+    // rocket
+    icon: (
+      <>
+        <path pathLength={1} d="M12 2.5c3 2 4.8 5.5 4.8 9.5v4.5H7.2V12c0-4 1.8-7.5 4.8-9.5z" />
+        <circle pathLength={1} cx="12" cy="10" r="1.8" />
+        <path pathLength={1} d="M7.2 13.5L4.5 16.5v3l2.7-1.5" />
+        <path pathLength={1} d="M16.8 13.5l2.7 3v3l-2.7-1.5" />
+        <path pathLength={1} d="M10 19.5l2 2.5 2-2.5" />
+      </>
+    ),
   },
 ];
 
@@ -30,21 +58,31 @@ export default function Process() {
     <section id="process" className="wrap" style={{ paddingTop: 96, paddingBottom: 40 }}>
       <div className="eyebrow rv">03 / Process</div>
       <h2 className="h2 rv d1">Clear steps, no surprises</h2>
-      <div style={{ position: "relative", marginTop: 56 }}>
-        <div className="pline">
-          <i className="draw"></i>
+      <div className="ptrack">
+        <div className="pline" aria-hidden="true">
+          <i className="pfill"></i>
+          <i className="prun">
+            <b></b>
+          </i>
         </div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "28px 24px", paddingTop: 0 }}>
+        <div className="psteps">
           {steps.map((s, i) => (
-            <div key={s.title} className={`step rv${s.d}`} style={{ flex: "1 1 240px", minWidth: 0 }}>
-              <div className="dot" style={{ "--pd": s.pd } as React.CSSProperties}></div>
-              <div className="mono" style={{ fontSize: 13, color: "#9A9DA6", marginTop: 26 }}>
-                STEP {i + 1}
+            <div key={s.title} className="pstep">
+              <div className="pdot"></div>
+              <div className="pcard">
+                <div className="pnum" aria-hidden="true"></div>
+                <div className="prow">
+                  <svg className="pic" viewBox="0 0 24 24" aria-hidden="true">
+                    {s.icon}
+                  </svg>
+                  <div className="plab mono">
+                    STEP {i + 1}
+                    <span aria-hidden="true">STEP {i + 1}</span>
+                  </div>
+                </div>
+                <h3 className="ptit disp">{s.title}</h3>
+                <p className="pdesc">{s.body}</p>
               </div>
-              <h3 className="disp" style={{ fontWeight: 700, fontSize: 24, letterSpacing: "-.02em", margin: "10px 0 8px" }}>
-                {s.title}
-              </h3>
-              <p style={{ margin: 0, color: "#9A9DA6", fontSize: 16 }}>{s.body}</p>
             </div>
           ))}
         </div>

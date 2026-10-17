@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, DM_Sans, JetBrains_Mono } from "next/font/google";
-import { site } from "@/lib/site";
+import { SITE, sameAs } from "@/lib/site";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -29,16 +29,16 @@ const description =
   "Top-rated Full Stack Developer on Upwork with 4+ years of experience building AI-powered SaaS applications using React, Next.js, TypeScript, and Supabase. Scalable, production-ready solutions from database architecture to deployment.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(SITE.url),
   title,
   description,
   alternates: { canonical: "/" },
-  authors: [{ name: site.name, url: site.url }],
-  creator: site.name,
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
   openGraph: {
     type: "website",
-    url: site.url,
-    siteName: site.name,
+    url: SITE.url,
+    siteName: SITE.name,
     locale: "en_US",
     title,
     description,
@@ -64,9 +64,11 @@ export const viewport: Viewport = {
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: site.name,
+  name: SITE.name,
   jobTitle: "Full Stack Developer",
-  url: site.url,
+  url: SITE.url,
+  email: `mailto:${SITE.email}`,
+  sameAs,
   knowsAbout: ["Next.js", "React", "TypeScript", "Supabase", "OpenAI API", "Claude API", "Stripe", "Paystack"],
 };
 
@@ -77,6 +79,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       data-scroll-behavior="smooth"
       className={`${bricolage.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
     >
+      <head>
+        <link rel="me" href={SITE.linkedin} />
+        <link rel="me" href={SITE.github} />
+      </head>
       <body>
         {children}
         <script

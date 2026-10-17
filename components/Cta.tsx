@@ -1,10 +1,13 @@
-import { emailHref, linkProps, site, upworkHref } from "@/lib/site";
+import CopyEmail from "@/components/CopyEmail";
+import { external, mailto, SITE } from "@/lib/site";
 
 const words = [
   { label: "Let's build", outline: true },
   { label: "Let's ship", outline: false },
   { label: "Let's scale", outline: true },
 ];
+
+const [emailUser, emailDomain] = SITE.email.split("@");
 
 const starPath = "M24 2 C25 15 33 23 46 24 C33 25 25 33 24 46 C23 33 15 25 2 24 C15 23 23 15 24 2 Z";
 
@@ -23,7 +26,7 @@ export default function Cta() {
       </div>
       <div className="wrap">
         <div
-          className="rvp"
+          className="rvp ctap"
           style={{
             position: "relative",
             overflow: "hidden",
@@ -69,17 +72,29 @@ export default function Cta() {
           >
             <a
               className="shine"
-              {...linkProps(emailHref)}
-              style={{ background: "#0A0B0D", color: "#ECEAE4", fontWeight: 600, padding: "16px 28px", borderRadius: 999 }}
+              href={mailto}
+              style={{
+                background: "#0A0B0D",
+                color: "#ECEAE4",
+                fontWeight: 600,
+                padding: "16px 28px",
+                borderRadius: 999,
+                overflowWrap: "anywhere",
+              }}
             >
-              Email me: {site.email}
+              {/* <wbr> lets the address break before "@" on narrow screens */}
+              Email me: {emailUser}
+              <wbr />@{emailDomain}
             </a>
+            <CopyEmail />
             <a
               className="ghost-btn"
-              {...linkProps(upworkHref)}
+              href={SITE.upwork}
+              {...external}
+              aria-label="Hire me on Upwork (opens in a new tab)"
               style={{ border: "1.5px solid #0A0B0D", fontWeight: 600, padding: "16px 28px", borderRadius: 999 }}
             >
-              Hire on Upwork: {site.upworkUrl}
+              Hire me on Upwork
             </a>
           </div>
         </div>
