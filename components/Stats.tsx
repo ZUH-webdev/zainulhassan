@@ -7,14 +7,11 @@ const stats = [
 
 export default function Stats() {
   return (
-    <div className="wrap" style={{ paddingTop: 72, paddingBottom: 24, display: "flex", flexWrap: "wrap", gap: "32px 28px" }}>
+    <div className="wrap stats">
       {stats.map((s) => (
-        <div key={s.cls} className="stat" style={{ flex: "1 1 200px" }}>
+        <div key={s.cls} className="stat">
           <div className="draw"></div>
-          <div
-            className={`disp cnt ${s.cls}`}
-            style={{ fontWeight: 800, fontSize: 64, letterSpacing: "-.03em", lineHeight: 1 }}
-          ></div>
+          <div className={`disp cnt statn ${s.cls}`}></div>
           <div style={{ color: "#9A9DA6", fontSize: 15, marginTop: 10 }}>{s.label}</div>
         </div>
       ))}

@@ -4,7 +4,7 @@ import { TRUST, external, mailto, SITE } from "@/lib/site";
 export default function CtaButtons({ location }: { location: string }) {
   return (
     <>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 36 }}>
+      <div className="btnrow" style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 36 }}>
         <a
           className="shine"
           href={SITE.upwork}

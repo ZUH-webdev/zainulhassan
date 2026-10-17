@@ -9,19 +9,8 @@ export default function Hero() {
   return (
     <header id="top" style={{ position: "relative" }}>
       <div className="grid"></div>
-      <div
-        className="wrap"
-        style={{
-          position: "relative",
-          paddingTop: 88,
-          paddingBottom: 84,
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          gap: 56,
-        }}
-      >
-        <div style={{ flex: "1 1 520px", minWidth: 0 }}>
+      <div className="wrap herowrap">
+        <div className="herotext">
           <div
             className="badge-live mono"
             style={{
@@ -119,10 +108,7 @@ export default function Hero() {
                 policies/tenant_isolation.sql
               </span>
             </div>
-            <div
-              className="mono"
-              style={{ padding: "22px 22px 18px", fontSize: 12.5, lineHeight: 1.85, overflowX: "auto", minHeight: 132 }}
-            >
+            <div className="mono cbody" tabIndex={0} aria-label="SQL policy example">
               <span className="ty" style={{ "--ch": 41, "--d": ".9s", color: "#6B707B" } as React.CSSProperties}>
                 -- every tenant sees only their own rows
               </span>

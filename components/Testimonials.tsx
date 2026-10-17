@@ -12,11 +12,11 @@ export default function Testimonials() {
     <section className="wrap" style={{ paddingTop: 96, paddingBottom: 40 }}>
       <div className="eyebrow rv">05 / Kind words</div>
       <h2 className="h2 rv d1">What clients say</h2>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 20, marginTop: 48 }}>
+      <div className="tgrid" role="region" aria-label="Client reviews" tabIndex={0}>
         {testimonials.map((t, i) => {
           const c = cards[i];
           return (
-            <div key={i} className={`rvp${c.d}`} style={{ flex: "1 1 340px", minWidth: 0, display: "flex" }}>
+            <div key={i} className={`titem rvp${c.d}`}>
               <div className={`tcard bob${c.bob}`} style={{ flex: 1 }}>
                 <div className="qmark">&quot;</div>
                 <div>

@@ -79,14 +79,13 @@ export default async function PostPage({ params }: Props) {
         <CtaButtons location="blog-post" />
       </PageHeader>
 
-      <article className="wrap" style={{ paddingTop: 24 }}>
+      <article className="wrap postgrid" style={{ paddingTop: 24 }}>
         <div className="prose">
           <p className="answer">{p.intro}</p>
 
-          <nav className="toc" aria-labelledby="toc-h">
-            <p id="toc-h" className="mono">
-              On this page
-            </p>
+          {/* <1024px: collapsible table of contents */}
+          <details className="toc tocm">
+            <summary className="mono">On this page</summary>
             <ol>
               {p.sections.map((s) => (
                 <li key={s.id}>
@@ -94,7 +93,7 @@ export default async function PostPage({ params }: Props) {
                 </li>
               ))}
             </ol>
-          </nav>
+          </details>
 
           {p.sections.map((s) => (
             <section key={s.id} id={s.id} aria-labelledby={`${s.id}-h`}>
@@ -122,6 +121,22 @@ export default async function PostPage({ params }: Props) {
             </section>
           )}
         </div>
+
+        {/* >=1024px: sticky sidebar table of contents */}
+        <aside className="toca">
+          <nav className="toc" aria-labelledby="toc-h">
+            <p id="toc-h" className="mono">
+              On this page
+            </p>
+            <ol>
+              {p.sections.map((s) => (
+                <li key={s.id}>
+                  <a href={`#${s.id}`}>{s.title}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
       </article>
 
       <Related

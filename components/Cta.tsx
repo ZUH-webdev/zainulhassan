@@ -26,14 +26,13 @@ export default function Cta() {
       </div>
       <div className="wrap">
         <div
-          className="rvp ctap"
+          className="rvp ctap ctapad"
           style={{
             position: "relative",
             overflow: "hidden",
             background: "var(--ac)",
             color: "#0A0B0D",
             borderRadius: 32,
-            padding: "80px 40px",
             textAlign: "center",
           }}
         >
@@ -44,11 +43,10 @@ export default function Cta() {
             <path d={starPath} fill="#0A0B0D" opacity=".14" />
           </svg>
           <h2
-            className="disp"
+            className="disp ctah"
             style={{
               position: "relative",
               fontWeight: 800,
-              fontSize: "clamp(36px,5.4vw,72px)",
               lineHeight: 1,
               letterSpacing: "-.035em",
               margin: "0 auto",
@@ -61,6 +59,7 @@ export default function Cta() {
             Tell me what you&apos;re building. I reply within one working day with next steps and an honest estimate.
           </p>
           <div
+            className="ctabtns"
             style={{
               position: "relative",
               display: "flex",

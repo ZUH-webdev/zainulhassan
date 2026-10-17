@@ -37,7 +37,7 @@ export default function ContactPage() {
         title="Hire Zain Ul Hassan for Your SaaS or AI Product"
         lead="The fastest way to start is an email describing what you're building, or an offer on Upwork. I reply within one working day with next steps and an honest estimate."
       >
-        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14, marginTop: 36 }}>
+        <div className="btnrow" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14, marginTop: 36 }}>
           <a
             className="shine"
             href={mailto}

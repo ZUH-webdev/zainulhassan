@@ -14,14 +14,13 @@ export default function PageCta({
   return (
     <section className="wrap" style={{ paddingTop: 96, paddingBottom: 96 }} aria-labelledby="cta-title">
       <div
-        className="rvp ctap"
+        className="rvp ctap pcta ctapad"
         style={{
           position: "relative",
           overflow: "hidden",
           background: "var(--ac)",
           color: "#0A0B0D",
           borderRadius: 32,
-          padding: "72px 40px",
           textAlign: "center",
         }}
       >
@@ -33,11 +32,10 @@ export default function PageCta({
         </svg>
         <h2
           id="cta-title"
-          className="disp"
+          className="disp pctah"
           style={{
             position: "relative",
             fontWeight: 800,
-            fontSize: "clamp(32px,4.6vw,60px)",
             lineHeight: 1.02,
             letterSpacing: "-.035em",
             margin: "0 auto",
@@ -50,6 +48,7 @@ export default function PageCta({
           Tell me what you&apos;re building. I reply within one working day with next steps and an honest estimate.
         </p>
         <div
+          className="ctabtns"
           style={{ position: "relative", display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 14, marginTop: 34 }}
         >
           <a

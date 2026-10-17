@@ -77,9 +77,9 @@ export default function Services() {
     <section id="services" className="wrap" style={{ paddingTop: 112, paddingBottom: 40 }}>
       <div className="eyebrow rv">01 / Services</div>
       <h2 className="h2 rv d1">What I can build for you</h2>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 20, marginTop: 48 }}>
+      <div className="sgrid">
         {services.map((s, i) => (
-          <div key={s.title} className={`card rv${s.d}`} style={{ flex: "1 1 340px", minWidth: 0 }}>
+          <div key={s.title} className={`card rv${s.d}`}>
             <div className="big-n">{String(i + 1).padStart(2, "0")}</div>
             <svg className="ic" viewBox="0 0 48 48" aria-hidden="true">
               {s.icon}

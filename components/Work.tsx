@@ -143,14 +143,11 @@ export default function Work() {
       <div style={{ display: "flex", flexDirection: "column", gap: 28, marginTop: 48 }}>
         {projects.map((p) => (
           <div key={p.title} className={`work ${p.reveal}`} style={{ display: "flex", flexWrap: "wrap", gap: 36 }}>
-            <div style={{ flex: "1 1 360px", minWidth: 0 }}>
+            <div className="wcol">
               <div className="mono" style={{ fontSize: 13, color: "#9A9DA6" }}>
                 {p.kicker}
               </div>
-              <h3
-                className="disp"
-                style={{ fontWeight: 800, fontSize: 40, letterSpacing: "-.03em", margin: "12px 0 14px", lineHeight: 1.05 }}
-              >
+              <h3 className="disp wtitle">
                 <a className="tlink" href={`/case-studies/${p.slug}`}>
                   {p.title}
                 </a>
@@ -164,16 +161,7 @@ export default function Work() {
                 ))}
               </div>
             </div>
-            <div
-              style={{
-                flex: "1 1 360px",
-                minWidth: 0,
-                display: "flex",
-                flexDirection: "column",
-                gap: 14,
-                justifyContent: "center",
-              }}
-            >
+            <div className="wcol wviz">
               {p.viz}
               {p.bullets.map((b) => (
                 <div key={b} className="bl">

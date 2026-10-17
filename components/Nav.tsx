@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MobileNav from "@/components/MobileNav";
 
 const links = [
   { href: "/#services", label: "Services" },
@@ -11,27 +12,12 @@ const links = [
 export default function Nav() {
   return (
     <nav className="nav" aria-label="Main">
-      <div
-        className="wrap"
-        style={{
-          paddingTop: 16,
-          paddingBottom: 16,
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 16,
-        }}
-      >
-        <Link
-          href="/#top"
-          className="disp"
-          aria-label="Zain Ul Hassan, home"
-          style={{ fontWeight: 800, fontSize: 24, letterSpacing: "-.02em" }}
-        >
+      <div className="wrap navbar">
+        <Link href="/#top" className="disp navlogo" aria-label="Zain Ul Hassan, home">
           zain<span className="logo-dot">.</span>
         </Link>
-        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 28, fontSize: 15, color: "#9A9DA6" }}>
+        {/* >=1024px: inline links (unchanged desktop nav) */}
+        <div className="navlinks">
           {links.map((l) => (
             <a key={l.href} className="lnk" href={l.href}>
               {l.label}
@@ -46,6 +32,13 @@ export default function Nav() {
           >
             Hire me
           </Link>
+        </div>
+        {/* <1024px: compact pill + hamburger */}
+        <div className="navm">
+          <Link className="shine navpill" href="/#contact" data-track="cta_click" data-track-location="nav-mobile">
+            Hire me
+          </Link>
+          <MobileNav />
         </div>
       </div>
       <div className="prog"></div>

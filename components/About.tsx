@@ -12,7 +12,7 @@ export default function About() {
       className="wrap"
       style={{ paddingTop: 96, paddingBottom: 40, display: "flex", flexWrap: "wrap", gap: 64, alignItems: "center" }}
     >
-      <div className="awrap" style={{ flex: "1 1 320px", minWidth: 0, maxWidth: 440 }}>
+      <div className="awrap">
         <div className="ab1">
           <div className="badge abf">
             <span className="astar">★</span> Top Rated
@@ -42,7 +42,7 @@ export default function About() {
           {photoNote}
         </div>
       </div>
-      <div style={{ flex: "1 1 440px", minWidth: 0 }}>
+      <div className="atext">
         <div className="eyebrow rv">06 / About</div>
         <h2 className="h2 ahead" style={{ marginBottom: 14 }}>
           {words.map((w, i) => (
