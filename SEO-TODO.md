@@ -42,8 +42,6 @@ Use this exact bio everywhere:
 
 | Placeholder | Where | File |
 |---|---|---|
-| `[Paste your 5-star Upwork review for LeadsMind here]`, `[Paste a second client review here]`, `[Paste a third client review here]`, `[Client name], [Role]` | Home testimonials | `lib/site.ts` → `testimonials` |
-| `[Replace with your photo]` | Home About section | `lib/site.ts` → `photoNote` (and add the image) |
 | `[CLIENT TESTIMONIAL]`, `[Client name], [Role]` | Each case study | `app/case-studies/[slug]/page.tsx` |
 | `[PLACEHOLDER: the client's main problem/goal ...]` | LeadsMind, World Teachers Academy | `content/case-studies.ts` |
 | `[PLACEHOLDER: any measurable outcome ...]` | All 3 case studies | `content/case-studies.ts` |
@@ -52,7 +50,7 @@ Use this exact bio everywhere:
 | `[PLACEHOLDER: your typical MVP budget range and what it includes]` | Blog: SaaS MVP cost | `content/blog/saas-mvp-cost.ts` |
 | `[PLACEHOLDER: scheduling link, e.g. Calendly or Cal.com]` | Contact page | `app/contact/page.tsx` |
 
-When you add a real photo: add it to `public/`, render it with `next/image` (with `alt`), and add `image` to the Person node in `lib/schema.ts`. Do not add a placeholder image to the schema.
+Your photo (`public/ZUH.png`) is shown in the About section and used as the Person schema `image`. If you replace it, keep the same path or update `PHOTO` in `lib/site.ts`.
 
 Never add `aggregateRating` or `review` structured data for reviews of yourself on your own site.
 

@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { serviceBySlug } from "@/content/services";
+
 const services = [
   {
     d: "",
@@ -78,21 +81,56 @@ export default function Services() {
       <div className="eyebrow rv">01 / Services</div>
       <h2 className="h2 rv d1">What I can build for you</h2>
       <div className="sgrid">
-        {services.map((s, i) => (
-          <div key={s.title} className={`card rv${s.d}`}>
-            <div className="big-n">{String(i + 1).padStart(2, "0")}</div>
-            <svg className="ic" viewBox="0 0 48 48" aria-hidden="true">
-              {s.icon}
-            </svg>
-            <h3 className="disp" style={{ fontWeight: 700, fontSize: 26, letterSpacing: "-.02em", margin: "0 0 10px" }}>
-              <a className="stretch" href={s.href}>
+        {services.map((s, i) => {
+          const target = serviceBySlug(s.href.replace("/services/", ""));
+          const id = `svc-${i + 1}`;
+          const body = (
+            <>
+              <div className="big-n" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <svg className="ic" viewBox="0 0 48 48" aria-hidden="true">
+                {s.icon}
+              </svg>
+              <h3 id={`${id}-t`} className="disp" style={{ fontWeight: 700, fontSize: 26, letterSpacing: "-.02em", margin: "0 0 10px" }}>
                 {s.title}
-              </a>
-            </h3>
-            <p style={{ margin: 0, color: "#9A9DA6", fontSize: 16 }}>{s.body}</p>
-            <div className="sweep"></div>
-          </div>
-        ))}
+              </h3>
+              <p id={`${id}-d`} style={{ margin: 0, color: "#9A9DA6", fontSize: 16 }}>
+                {s.body}
+              </p>
+              {target && (
+                <span id={`${id}-c`} className="scta">
+                  <span className="scta-l">
+                    Explore service<span className="sr-only"> : {target.name}</span>
+                  </span>
+                  <span className="scta-i" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14" />
+                      <path d="M13 6l6 6-6 6" />
+                    </svg>
+                  </span>
+                </span>
+              )}
+              <div className="sweep"></div>
+            </>
+          );
+          // TODO: if a card's service page does not exist yet, it renders as a plain card without the CTA.
+          return target ? (
+            <Link
+              key={s.title}
+              href={s.href}
+              className={`card scard rv${s.d}`}
+              aria-labelledby={`${id}-t ${id}-c`}
+              aria-describedby={`${id}-d`}
+            >
+              {body}
+            </Link>
+          ) : (
+            <div key={s.title} className={`card scard rv${s.d}`}>
+              {body}
+            </div>
+          );
+        })}
       </div>
     </section>
   );

@@ -46,22 +46,29 @@ export const sameAs: string[] = [SITE.upwork, SITE.github, SITE.linkedin, ...(SI
 
 /* ---------- content placeholders still to fill in ---------- */
 
-export const photoNote = "[Replace with your photo]";
+/** Portrait used in the About section and as the Person schema image. */
+export const PHOTO = { src: "/ZUH.png", width: 1254, height: 1254 } as const;
 
+/**
+ * Real client reviews from Upwork, quoted as written
+ * (only change: "Greate" corrected to "Great"; the third review is quoted up to where the screenshot ends).
+ * Add the client's name/role only with their permission.
+ */
 export const testimonials = [
   {
-    quote: "[Paste your 5-star Upwork review for LeadsMind here]",
-    author: "[Client name], [Role]",
-    source: "Upwork contract",
+    quote:
+      "It was a real pleasure working with Zain. Not only is he knowledgeable, but he is also proactive in suggesting ideas based on his expertise. He is professional, committed, and has a really fast turnaround. I will definitely work with him again!",
+    author: "Upwork client",
+    source: "Review on Upwork",
   },
   {
-    quote: "[Paste a second client review here]",
-    author: "[Client name], [Role]",
-    source: "Upwork contract",
+    quote: "Great guy to work with and I really can vouch for Zain 100%.",
+    author: "Upwork client",
+    source: "Review on Upwork",
   },
   {
-    quote: "[Paste a third client review here]",
-    author: "[Client name], [Role]",
-    source: "Upwork contract",
+    quote: "Amazing work, reliable, cooperative, will work together again.",
+    author: "Upwork client",
+    source: "Review on Upwork",
   },
 ];

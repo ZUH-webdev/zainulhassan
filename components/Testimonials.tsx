@@ -26,7 +26,9 @@ export default function Testimonials() {
                     </span>
                   ))}
                 </div>
-                <p style={{ margin: 0, fontSize: 19, lineHeight: 1.5 }}>{t.quote}</p>
+                <blockquote style={{ margin: 0 }}>
+                  <p style={{ margin: 0, fontSize: 19, lineHeight: 1.5 }}>{t.quote}</p>
+                </blockquote>
                 <div style={{ color: "#9A9DA6", fontSize: 15, marginTop: "auto" }}>
                   {t.author}
                   <br />

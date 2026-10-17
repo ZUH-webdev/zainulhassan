@@ -1,5 +1,5 @@
 import { absoluteUrl } from "@/lib/seo";
-import { BIO, SITE, sameAs } from "@/lib/site";
+import { BIO, PHOTO, SITE, sameAs } from "@/lib/site";
 
 /* Stable @ids so every page's @graph points at the same entities. */
 export const ids = {
@@ -35,7 +35,13 @@ export const personNode = (): Node => ({
     "Paystack",
   ],
   address: { "@type": "PostalAddress", addressLocality: "Bahawalpur", addressCountry: "PK" },
-  // `image` is intentionally omitted until a real photo is supplied.
+  image: {
+    "@type": "ImageObject",
+    url: absoluteUrl(PHOTO.src),
+    width: PHOTO.width,
+    height: PHOTO.height,
+    caption: "Zain Ul Hassan, Senior Full Stack Developer",
+  },
 });
 
 export const websiteNode = (): Node => ({

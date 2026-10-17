@@ -1,5 +1,6 @@
 import { Fragment } from "react";
-import { external, photoNote, SITE } from "@/lib/site";
+import Image from "next/image";
+import { PHOTO, external, SITE } from "@/lib/site";
 
 const words = ["Hi,", "I'm", "Zain."];
 const role = "Senior Full Stack Developer · AI SaaS";
@@ -29,7 +30,15 @@ export default function About() {
           <span className="tz tz3" aria-hidden="true"></span>
           <span className="tz tz4" aria-hidden="true"></span>
           <div className="ptilt">
-            <div className="photo">ZH</div>
+            <div className="photo">
+              <Image
+                src={PHOTO.src}
+                alt="Zain Ul Hassan, Senior Full Stack Developer"
+                fill
+                sizes="(max-width: 899px) 320px, 440px"
+                className="photo-img"
+              />
+            </div>
             <div className="aring" aria-hidden="true">
               <i></i>
             </div>
@@ -37,9 +46,6 @@ export default function About() {
               <i></i>
             </div>
           </div>
-        </div>
-        <div className="mono" style={{ fontSize: 12, color: "#9A9DA6", marginTop: 12 }}>
-          {photoNote}
         </div>
       </div>
       <div className="atext">
