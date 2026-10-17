@@ -73,6 +73,8 @@ export default function Cta() {
             <a
               className="shine"
               href={mailto}
+              data-track="email_click"
+              data-track-location="home-cta"
               style={{
                 background: "#0A0B0D",
                 color: "#ECEAE4",
@@ -91,6 +93,8 @@ export default function Cta() {
               className="ghost-btn"
               href={SITE.upwork}
               {...external}
+              data-track="upwork_click"
+              data-track-location="home-cta"
               aria-label="Hire me on Upwork (opens in a new tab)"
               style={{ border: "1.5px solid #0A0B0D", fontWeight: 600, padding: "16px 28px", borderRadius: 999 }}
             >

@@ -2,6 +2,7 @@ const services = [
   {
     d: "",
     title: "SaaS MVPs, fast",
+    href: "/services/saas-mvp-development",
     body: "Auth, multi-tenant data, billing and a dashboard people actually want to use. A production-ready first version, not a demo.",
     icon: (
       <>
@@ -14,12 +15,14 @@ const services = [
   {
     d: " d1",
     title: "AI features that work",
+    href: "/services/ai-developer",
     body: "OpenAI and Claude integrations, RAG over your own content with pgvector, content generation and recommendation tools wired into your product.",
     icon: <path pathLength={1} d="M24 5 C25 17 31 23 43 24 C31 25 25 31 24 43 C23 31 17 25 5 24 C17 23 23 17 24 5 Z" />,
   },
   {
     d: " d2",
     title: "Payments and billing",
+    href: "/services/payments-integration",
     body: "Stripe and Paystack subscriptions, webhooks and plan gating, including billing migrations on live products.",
     icon: (
       <>
@@ -32,6 +35,7 @@ const services = [
   {
     d: "",
     title: "Security audits",
+    href: "/services/supabase-developer",
     body: "Row Level Security reviews, API route audits and remediation, so your customers' data stays theirs.",
     icon: (
       <>
@@ -43,6 +47,7 @@ const services = [
   {
     d: " d1",
     title: "Polished front ends",
+    href: "/services/nextjs-developer",
     body: "Figma to code with React, Tailwind and shadcn/ui. Fast, accessible and consistent from the landing page to the dashboard.",
     icon: (
       <>
@@ -56,6 +61,7 @@ const services = [
   {
     d: " d2",
     title: "Technical co-founder",
+    href: "/services/full-stack-developer",
     body: "Architecture decisions, roadmap, hiring input and hands-on building for founders who need a senior technical partner.",
     icon: (
       <>
@@ -79,7 +85,9 @@ export default function Services() {
               {s.icon}
             </svg>
             <h3 className="disp" style={{ fontWeight: 700, fontSize: 26, letterSpacing: "-.02em", margin: "0 0 10px" }}>
-              {s.title}
+              <a className="stretch" href={s.href}>
+                {s.title}
+              </a>
             </h3>
             <p style={{ margin: 0, color: "#9A9DA6", fontSize: 16 }}>{s.body}</p>
             <div className="sweep"></div>

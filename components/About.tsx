@@ -76,7 +76,14 @@ export default function About() {
         </p>
         <p className="rv d3" style={{ margin: 0, color: "#9A9DA6" }}>
           Alongside client work I build my own products and share the process on{" "}
-          <a className="alnk" href={SITE.linkedin} {...external} aria-label="LinkedIn (opens in a new tab)">
+          <a
+            className="alnk"
+            href={SITE.linkedin}
+            {...external}
+            data-track="linkedin_click"
+            data-track-location="about"
+            aria-label="LinkedIn (opens in a new tab)"
+          >
             LinkedIn
           </a>{" "}
           and{" "}

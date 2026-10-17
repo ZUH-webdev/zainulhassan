@@ -5,8 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/seo-check.mts",
+    "seo:check": "node scripts/seo-check.mts",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lighthouse": "lhci autorun"
   },
   "dependencies": {
     "next": "^16.4.2",
@@ -14,11 +17,16 @@
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.2",
+    "node-html-parser": "^9.0.4",
     "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22.18"
   }
 }

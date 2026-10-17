@@ -53,11 +53,19 @@ const steps = [
   },
 ];
 
-export default function Process() {
+export default function Process({
+  id = "process",
+  eyebrow = "03 / Process",
+  title = "Clear steps, no surprises",
+}: {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+}) {
   return (
-    <section id="process" className="wrap" style={{ paddingTop: 96, paddingBottom: 40 }}>
-      <div className="eyebrow rv">03 / Process</div>
-      <h2 className="h2 rv d1">Clear steps, no surprises</h2>
+    <section id={id} className="wrap" style={{ paddingTop: 96, paddingBottom: 40 }}>
+      <div className="eyebrow rv">{eyebrow}</div>
+      <h2 className="h2 rv d1">{title}</h2>
       <div className="ptrack">
         <div className="pline" aria-hidden="true">
           <i className="pfill"></i>

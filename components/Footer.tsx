@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { caseStudies } from "@/content/case-studies";
+import { services } from "@/content/services";
 import { external, mailto, SITE } from "@/lib/site";
 
 const icon = (children: ReactNode) => (
@@ -73,9 +75,40 @@ const links: FooterLink[] = [
   },
 ];
 
+const columns = [
+  { title: "Services", links: services.map((s) => ({ href: `/services/${s.slug}`, label: s.name })) },
+  { title: "Case studies", links: caseStudies.map((c) => ({ href: `/case-studies/${c.slug}`, label: c.name })) },
+  {
+    title: "Explore",
+    links: [
+      { href: "/services", label: "All services" },
+      { href: "/case-studies", label: "All case studies" },
+      { href: "/blog", label: "Blog" },
+      { href: "/about", label: "About" },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
+];
+
 export default function Footer() {
   return (
     <footer style={{ borderTop: "1px solid #1B1E24" }}>
+      <div className="wrap fcols">
+        {columns.map((col) => (
+          <div key={col.title} className="fcol">
+            <p className="fh mono">{col.title}</p>
+            <ul>
+              {col.links.map((l) => (
+                <li key={l.href}>
+                  <a className="lnk" href={l.href}>
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
       <div
         className="wrap"
         style={{
@@ -97,6 +130,8 @@ export default function Footer() {
               className="lnk flnk"
               href={l.href}
               aria-label={l.aria}
+              data-track={`${l.label.toLowerCase()}_click`}
+              data-track-location="footer"
               {...(l.external ? external : {})}
             >
               {l.icon}

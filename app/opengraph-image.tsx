@@ -1,5 +1,4 @@
 import { ImageResponse } from "next/og";
-import { SITE } from "@/lib/site";
 
 export const alt = "Zain Ul Hassan, Senior Full Stack Developer (AI SaaS)";
 export const size = { width: 1200, height: 630 };
@@ -54,7 +53,7 @@ export default function OpengraphImage() {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "#9A9DA6" }}>
           <div style={{ display: "flex" }}>Zain Ul Hassan · Senior Full Stack Developer</div>
-          <div style={{ display: "flex", color: "#D4FF3F" }}>{new URL(SITE.url).host}</div>
+          <div style={{ display: "flex", color: "#D4FF3F" }}>AI SaaS · Next.js · Supabase</div>
         </div>
       </div>
     ),

@@ -64,6 +64,8 @@ export default function Hero() {
             <a
               className="shine"
               href="#contact"
+              data-track="cta_click"
+              data-track-location="hero"
               style={{ background: "var(--ac)", color: "#0A0B0D", fontWeight: 600, padding: "16px 28px", borderRadius: 999 }}
             >
               Start a project

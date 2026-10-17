@@ -83,6 +83,7 @@ const VelocityViz = () => (
 
 type Project = {
   reveal: "rvl" | "rvr";
+  slug: string;
   kicker: string;
   title: string;
   body: string;
@@ -94,6 +95,7 @@ type Project = {
 const projects: Project[] = [
   {
     reveal: "rvl",
+    slug: "leadsmind",
     kicker: "CRM · LMS · MARKETING AUTOMATION",
     title: "LeadsMind",
     body: "An all-in-one platform for African businesses: CRM, courses, funnels, WhatsApp broadcasts and social publishing in one product. Delivered in milestones for a client who left a 5-star review.",
@@ -108,6 +110,7 @@ const projects: Project[] = [
   },
   {
     reveal: "rvr",
+    slug: "world-teachers-academy",
     kicker: "EDTECH · JOB PORTAL",
     title: "World Teachers Academy",
     body: "A teacher certification and placement site for a South African business, with a teaching job portal that captures leads before sending candidates to apply.",
@@ -121,6 +124,7 @@ const projects: Project[] = [
   },
   {
     reveal: "rvl",
+    slug: "velocity",
     kicker: "OWN PRODUCT · AI VOICE",
     title: "Velocity",
     body: "An AI assistant that recovers missed calls and books appointments for local businesses. Co-founded and built in public.",
@@ -147,7 +151,9 @@ export default function Work() {
                 className="disp"
                 style={{ fontWeight: 800, fontSize: 40, letterSpacing: "-.03em", margin: "12px 0 14px", lineHeight: 1.05 }}
               >
-                {p.title}
+                <a className="tlink" href={`/case-studies/${p.slug}`}>
+                  {p.title}
+                </a>
               </h3>
               <p style={{ margin: 0, color: "#9A9DA6" }}>{p.body}</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 22 }}>
