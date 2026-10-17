@@ -32,7 +32,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const verification: Metadata["verification"] = {
-  ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
+  google: process.env.GOOGLE_SITE_VERIFICATION || "IuCCjzGIXyIIXwIQL82oV3_9lkj6MADZ9FXWOhbhTjw",
   ...(process.env.BING_SITE_VERIFICATION ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } } : {}),
 };
 
