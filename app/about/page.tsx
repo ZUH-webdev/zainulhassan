@@ -88,8 +88,8 @@ export default function AboutPage() {
               co-founded.
             </p>
             <p>
-              I also act as a technical co-founder for founders who need architecture decisions, roadmap planning and
-              hiring input alongside hands-on building.
+              Because I co-founded Velocity, I also work as a technical partner for founders who need architecture decisions
+              and roadmap planning alongside hands-on building.
             </p>
           </section>
 

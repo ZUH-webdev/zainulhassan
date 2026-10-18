@@ -8,18 +8,18 @@ export const post: Post = {
     "What a SaaS MVP really costs: the six drivers that set the price, the running costs founders forget, and how to cut scope without cutting the foundations.",
   keyword: "saas mvp development cost",
   datePublished: "2026-10-17",
-  dateModified: "2026-10-17",
+  dateModified: "2026-10-18",
   service: "saas-mvp-development",
   related: ["what-is-mvp-in-software-development", "supabase-vs-firebase", "stripe-vs-paystack"],
   intro:
-    "The cost of a SaaS MVP is set by scope, not by a market rate: how many user roles and core workflows it has, how many integrations sit behind them, whether it needs AI or payments on day one, and how polished the design must be. Fix the scope first and an honest fixed price follows. Below are the drivers I use to quote MVPs, and the running costs founders often forget.",
+    "The cost of a SaaS MVP is set by scope, not by a market rate: how many user roles and core workflows it has, how many integrations sit behind them, whether it needs AI or payments on day one, and how polished the design must be. Fix the scope first and an honest estimate follows. Below are the drivers I use to quote MVPs, and the running costs founders often forget.",
   sections: [
     {
       id: "why-ranges-mislead",
       title: "Why price ranges online mislead founders",
       blocks: [
         {
-          p: "Search for MVP pricing and you will find ranges so wide they are useless. That is because \"MVP\" covers everything from a single-form tool to a multi-tenant platform with billing, AI and a mobile app. Two founders asking for \"an MVP\" can be asking for products that differ ten times in size.",
+          p: "Search for MVP pricing and you will find ranges so wide they are useless. That is because \"MVP\" covers everything from a single-form tool to a multi-tenant platform with billing, AI and a mobile app. Two founders asking for \"an MVP\" can be asking for products of completely different sizes.",
         },
         {
           p: "A better question is: what is the smallest product that lets a real customer get value and pay you? Once that is written down, it can be estimated precisely. If you are not sure what belongs in that first version, start with my guide to [what an MVP is in software development](/blog/what-is-mvp-in-software-development).",
@@ -123,9 +123,11 @@ export const post: Post = {
       title: "How I price SaaS MVPs",
       blocks: [
         {
-          p: "I quote a fixed price per milestone after a discovery call and a written scope. Each milestone ends with working software you can test and a written progress report, which is how I delivered LeadsMind, an all-in-one CRM, LMS and marketing platform whose client left a 5-star review.",
+          p: "I give a fixed scope and an estimate per milestone after a short discovery call. Each milestone ends with working software you can test and a written progress report, which is how I delivered LeadsMind, an all-in-one CRM, LMS and marketing platform whose client left a 5-star review.",
         },
-        { p: "[PLACEHOLDER: your typical MVP budget range and what it includes]" },
+        {
+          p: "I do not publish a price list, because a number without a scope is a guess. What I can promise is how the estimate is built: every line in the scope maps to one of the six drivers above, so you can see which choices move the cost and decide what waits for version two.",
+        },
         {
           p: "If you have an idea and want an honest estimate, see my [SaaS MVP development service](/services/saas-mvp-development) or get in touch below.",
         },

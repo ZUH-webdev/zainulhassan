@@ -1,6 +1,6 @@
 # SEO to-do (things code can't do for you)
 
-Run `npm run seo:check` after any content change; it also prints every placeholder still on the site.
+Run `npm run seo:check` after any content change; it also flags any bracketed placeholder that reaches a page.
 
 ## 0. Set the production URL (required before launch)
 
@@ -38,17 +38,17 @@ Use this exact bio everywhere:
 - [ ] LinkedIn: headline, About and Featured section; link the site.
 - [ ] GitHub: pin the site in your profile README.
 
-## 3. Fill these placeholders (shown in brackets on the live site)
+## 3. Content only you can supply
 
-| Placeholder | Where | File |
-|---|---|---|
-| `[CLIENT TESTIMONIAL]`, `[Client name], [Role]` | Each case study | `app/case-studies/[slug]/page.tsx` |
-| `[PLACEHOLDER: the client's main problem/goal ...]` | LeadsMind, World Teachers Academy | `content/case-studies.ts` |
-| `[PLACEHOLDER: any measurable outcome ...]` | All 3 case studies | `content/case-studies.ts` |
-| `[PLACEHOLDER: other engagement models ...]`, `[PLACEHOLDER: your typical starting budget or day rate]` | All service pages | `content/services.ts` → `ENGAGEMENT_COMMON` |
-| Timeline / price placeholders (MVP, AI feature, chatbot, Next.js, billing, RLS audit, availability) | Each service page's engagement list and FAQ | `content/services.ts` |
-| `[PLACEHOLDER: your typical MVP budget range and what it includes]` | Blog: SaaS MVP cost | `content/blog/saas-mvp-cost.ts` |
-| `[PLACEHOLDER: scheduling link, e.g. Calendly or Cal.com]` | Contact page | `app/contact/page.tsx` |
+The site has no placeholders left; anything unconfirmed was rewritten without numbers or hidden. To publish more:
+
+| What | Where it goes |
+|---|---|
+| Real client testimonials, with name, role, company and permission | `content/testimonials.ts`, then set `SHOW_TESTIMONIALS = true` in `lib/site.ts` |
+| Prices, rates or typical timelines you want public | Engagement lists and FAQs in `content/services.ts`; "How I price" in `content/blog/saas-mvp-cost.ts` |
+| Measurable case study outcomes (customers, leads, calls recovered) | The "Outcome" section of each entry in `content/case-studies.ts` |
+| A scheduling link (Calendly or Cal.com) | The "Book a discovery call" section of `app/contact/page.tsx`, ideally via a new field in `lib/site.ts` |
+| A YouTube channel | `SITE.youtube` in `lib/site.ts` (the About section and footer show it automatically) |
 
 Your photo (`public/ZUH.png`) is shown in the About section and used as the Person schema `image`. If you replace it, keep the same path or update `PHOTO` in `lib/site.ts`.
 

@@ -278,6 +278,12 @@ test.describe("layout rules", () => {
     expect(await cols(1024, ".sgrid > .card")).toBe(3);
     expect(await cols(1440, ".sgrid > .card")).toBe(3);
     expect(await cols(800, ".titem")).toBe(2);
-    expect(await cols(1100, ".titem")).toBe(3);
+    // Testimonials run 3 across on desktop; the 4-card Track record (shown while SHOW_TESTIMONIALS is false) is 2x2.
+    const ctx = await browser.newContext({ viewport: { width: 1100, height: 900 } });
+    const page = await ctx.newPage();
+    await page.goto("/", { waitUntil: "networkidle" });
+    const trackRecord = (await page.locator(".tgrid.t4").count()) > 0;
+    await ctx.close();
+    expect(await cols(1100, ".titem")).toBe(trackRecord ? 2 : 3);
   });
 });

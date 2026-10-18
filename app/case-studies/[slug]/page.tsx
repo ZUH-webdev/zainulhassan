@@ -7,9 +7,10 @@ import Related from "@/components/Related";
 import { Blocks } from "@/components/Rich";
 import { caseStudies, caseStudyBySlug } from "@/content/case-studies";
 import { serviceBySlug } from "@/content/services";
+import { testimonialForCaseStudy } from "@/content/testimonials";
 import { breadcrumbNode, graph, ids, webPageNode } from "@/lib/schema";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
-import { external } from "@/lib/site";
+import { SHOW_TESTIMONIALS, external } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -36,6 +37,7 @@ export default async function CaseStudyPage({ params }: Props) {
   const c = caseStudyBySlug((await params).slug);
   if (!c) notFound();
   const path = `/case-studies/${c.slug}`;
+  const quote = SHOW_TESTIMONIALS ? testimonialForCaseStudy(c.slug) : undefined;
   const crumbs = [
     { name: "Home", path: "/" },
     { name: "Case studies", path: "/case-studies" },
@@ -56,7 +58,7 @@ export default async function CaseStudyPage({ params }: Props) {
             publisher: { "@id": ids.person },
             datePublished: c.datePublished,
             dateModified: c.dateModified,
-            image: absoluteUrl(`${path}/opengraph-image`),
+            image: absoluteUrl(`${path}/opengraph-image/og`),
             mainEntityOfPage: { "@id": `${absoluteUrl(path)}#webpage` },
             about: c.stack,
           },
@@ -92,15 +94,19 @@ export default async function CaseStudyPage({ params }: Props) {
               <Blocks blocks={sec.blocks} />
             </section>
           ))}
-          <section aria-labelledby="testimonial-h">
-            <h2 id="testimonial-h" className="ah2">
-              What the client said
-            </h2>
-            <blockquote>
-              <p>[CLIENT TESTIMONIAL]</p>
-              <cite>[Client name], [Role]</cite>
-            </blockquote>
-          </section>
+          {quote && (
+            <section aria-labelledby="testimonial-h">
+              <h2 id="testimonial-h" className="ah2">
+                What the client said
+              </h2>
+              <blockquote>
+                <p>{quote.quote}</p>
+                <cite>
+                  {quote.name}, {quote.role}, {quote.company}
+                </cite>
+              </blockquote>
+            </section>
+          )}
         </div>
       </article>
 

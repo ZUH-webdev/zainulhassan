@@ -3,10 +3,10 @@ import HireButton from "@/components/hire/HireButton";
 import MobileNav from "@/components/MobileNav";
 
 const links = [
-  { href: "/#services", label: "Services" },
-  { href: "/#work", label: "Work" },
+  { href: "/services", label: "Services" },
+  { href: "/case-studies", label: "Work" },
   { href: "/#process", label: "Process" },
-  { href: "/#about", label: "About" },
+  { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -27,7 +27,7 @@ export default function Nav() {
           <HireButton
             source="nav"
             className="shine"
-            href="/#contact"
+            href="/contact"
             data-track="cta_click"
             data-track-location="nav"
             style={{ background: "var(--ac)", color: "#0A0B0D", fontWeight: 600, padding: "11px 20px", borderRadius: 999 }}
@@ -37,7 +37,7 @@ export default function Nav() {
         </div>
         {/* <1024px: compact pill + hamburger */}
         <div className="navm">
-          <HireButton source="nav-mobile" className="shine navpill" href="/#contact" data-track="cta_click" data-track-location="nav-mobile">
+          <HireButton source="nav-mobile" className="shine navpill" href="/contact" data-track="cta_click" data-track-location="nav-mobile">
             Hire me
           </HireButton>
           <MobileNav />

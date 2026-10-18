@@ -1,12 +1,10 @@
-import { postBySlug, posts } from "@/content/blog";
+import { postBySlug } from "@/content/blog";
 import { ogContentType, ogImage, ogSize } from "@/lib/og";
 
-export const alt = "Article by Zain Ul Hassan, senior full stack developer";
-export const size = ogSize;
-export const contentType = ogContentType;
-
-export function generateStaticParams() {
-  return posts.map((p) => ({ slug: p.slug }));
+/** One image per post, with alt text naming that article (the URL becomes .../opengraph-image/og). */
+export function generateImageMetadata({ params }: { params: { slug: string } }) {
+  const p = postBySlug(params.slug);
+  return [{ id: "og", alt: `Title card reading "${p?.title ?? "Blog"}"`, size: ogSize, contentType: ogContentType }];
 }
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {

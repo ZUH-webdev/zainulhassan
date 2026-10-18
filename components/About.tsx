@@ -91,14 +91,15 @@ export default function About() {
             aria-label="LinkedIn (opens in a new tab)"
           >
             LinkedIn
-          </a>{" "}
-          and{" "}
-          {SITE.youtube ? (
-            <a className="alnk" href={SITE.youtube} {...external} aria-label="YouTube (opens in a new tab)">
-              YouTube
-            </a>
-          ) : (
-            "YouTube"
+          </a>
+          {SITE.youtube && (
+            <>
+              {" "}
+              and{" "}
+              <a className="alnk" href={SITE.youtube} {...external} aria-label="YouTube (opens in a new tab)">
+                YouTube
+              </a>
+            </>
           )}
           . I&apos;m also finishing a BS in Software Engineering.
         </p>

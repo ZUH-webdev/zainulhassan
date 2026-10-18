@@ -61,7 +61,7 @@ export default async function PostPage({ params }: Props) {
             dateModified: p.dateModified,
             author: { "@id": ids.person },
             publisher: { "@id": ids.person },
-            image: absoluteUrl(`${path}/opengraph-image`),
+            image: absoluteUrl(`${path}/opengraph-image/og`),
             mainEntityOfPage: { "@id": `${absoluteUrl(path)}#webpage` },
             keywords: p.keyword,
             timeRequired: `PT${minutes}M`,

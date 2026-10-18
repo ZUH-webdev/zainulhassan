@@ -16,17 +16,18 @@ export default function NotFound() {
         <div className="grid" aria-hidden="true"></div>
         <div className="wrap" style={{ position: "relative", paddingTop: 96, paddingBottom: 24 }}>
           <div className="eyebrow">404</div>
-          <h1 className="ph1">This page doesn&apos;t exist</h1>
+          <h1 className="ph1">This page does not exist</h1>
           <p className="lead">
-            The link may be old or mistyped. Head back to the <Link className="tl" href="/">home page</Link>, browse my{" "}
-            <Link className="tl" href="/services">services</Link>, or read the <Link className="tl" href="/blog">blog</Link>.
+            The link may be old or mistyped. Try one of these: <Link className="tl" href="/services">services</Link>,{" "}
+            <Link className="tl" href="/case-studies">case studies</Link>, the <Link className="tl" href="/blog">blog</Link> or
+            the <Link className="tl" href="/contact">contact page</Link>.
           </p>
         </div>
       </header>
       <Related
         id="nf-services"
-        eyebrow="Popular"
-        title="Services"
+        eyebrow="Services"
+        title="Start with a service"
         items={services.slice(0, 3).map((s) => ({
           href: `/services/${s.slug}`,
           kicker: s.eyebrow,

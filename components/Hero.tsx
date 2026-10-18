@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Fragment } from "react";
 import HireButton from "@/components/hire/HireButton";
 
@@ -54,20 +55,20 @@ export default function Hero() {
             <HireButton
               source="hero"
               className="shine"
-              href="#contact"
+              href="/contact"
               data-track="cta_click"
               data-track-location="hero"
               style={{ background: "var(--ac)", color: "#0A0B0D", fontWeight: 600, padding: "16px 28px", borderRadius: 999 }}
             >
               Start a project
             </HireButton>
-            <a
+            <Link
               className="ghost-btn"
-              href="#work"
+              href="/case-studies"
               style={{ border: "1px solid #2E323B", padding: "16px 28px", borderRadius: 999, fontWeight: 500 }}
             >
               See selected work
-            </a>
+            </Link>
           </div>
           <div
             className="fx3 mono"

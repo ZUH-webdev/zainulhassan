@@ -643,6 +643,8 @@ html.menu-open body{overflow:hidden;overscroll-behavior:contain}
 .titem{flex:1 1 340px;min-width:0;display:flex}
 @media (min-width:768px) and (max-width:1023px){.titem{flex-basis:calc(50% - 10px)}}
 @media (min-width:1024px) and (max-width:1279px){.titem{flex-basis:calc((100% - 40px) / 3)}}
+/* Track record: four cards sit in a 2x2 grid from tablet up */
+@media (min-width:768px){.tgrid.t4 .titem{flex-basis:calc(50% - 10px)}}
 @media (max-width:767px){
   .tgrid{flex-wrap:nowrap;gap:12px;margin-top:36px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;
     margin-left:calc(-1 * max(20px,env(safe-area-inset-left)));margin-right:calc(-1 * max(20px,env(safe-area-inset-right)));

@@ -8,7 +8,7 @@ export const post: Post = {
     "How to hire an AI developer who ships: the skills that matter beyond prompts, questions to ask, red flags to avoid, and how to start with a small milestone.",
   keyword: "how to hire an ai developer",
   datePublished: "2026-10-17",
-  dateModified: "2026-10-17",
+  dateModified: "2026-10-18",
   service: "ai-developer",
   related: ["rag-chatbot-openai-pgvector", "saas-mvp-cost", "what-is-mvp-in-software-development"],
   intro:
@@ -123,10 +123,10 @@ export const post: Post = {
       title: "Start with a small, paid milestone",
       blocks: [
         {
-          p: "The lowest-risk way to hire is a paid first milestone with a clear deliverable, such as a working retrieval prototype on a sample of your real content. You learn how the developer communicates, how they handle ambiguity and whether the AI can do the job, before committing the full budget.",
+          p: "The lowest-risk way to hire is a paid first milestone with a clear deliverable, such as a working retrieval prototype on a slice of your real content. You learn how the developer communicates, how they handle ambiguity and whether the AI can do the job, before committing the full budget.",
         },
         {
-          p: "That is how I work: fixed-price milestones, each ending with working software and a written progress report. I am Top Rated on Upwork with a 100% Job Success Score, and I have built AI features into production SaaS, including forecasting, copy generation and course Q&A with RAG for [LeadsMind](/case-studies/leadsmind). If you are looking to hire, see my [AI developer service](/services/ai-developer).",
+          p: "That is how I work: milestone-based contracts, each ending with working software and a written progress report. I am Top Rated on Upwork with a 100% Job Success Score, and I have built AI features into production SaaS, including forecasting, copy generation and course Q&A with RAG for [LeadsMind](/case-studies/leadsmind). If you are looking to hire, see my [AI developer service](/services/ai-developer).",
         },
       ],
     },

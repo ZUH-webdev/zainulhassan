@@ -9,10 +9,10 @@ import { socialLinks } from "@/components/social";
 import { external, mailto, SITE } from "@/lib/site";
 
 const items = [
-  { href: "/#services", label: "Services", active: (p: string) => p.startsWith("/services") },
-  { href: "/#work", label: "Work", active: (p: string) => p.startsWith("/case-studies") },
+  { href: "/services", label: "Services", active: (p: string) => p.startsWith("/services") },
+  { href: "/case-studies", label: "Work", active: (p: string) => p.startsWith("/case-studies") },
   { href: "/#process", label: "Process", active: () => false },
-  { href: "/#about", label: "About", active: (p: string) => p === "/about" },
+  { href: "/about", label: "About", active: (p: string) => p === "/about" },
   { href: "/blog", label: "Blog", active: (p: string) => p.startsWith("/blog") },
   { href: "/contact", label: "Contact", active: (p: string) => p === "/contact" },
 ];
@@ -153,7 +153,7 @@ export default function MobileNav() {
           <HireButton
             source="mobile-menu"
             returnFocusTo=".burger"
-            href="/#contact"
+            href="/contact"
             className="shine mcta"
             tabIndex={open ? undefined : -1}
             data-track="cta_click"

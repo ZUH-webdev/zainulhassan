@@ -1,6 +1,6 @@
 /**
  * Service landing pages. One primary keyword per page (no two pages share an intent).
- * Only real facts; anything not yet confirmed is a bracketed [PLACEHOLDER: ...].
+ * Only real facts: no prices, rates or timelines are published until they are confirmed.
  */
 
 export type Faq = { q: string; a: string };
@@ -29,19 +29,15 @@ export type Service = {
   faqs: Faq[];
   related: string[];
   posts: string[];
+  /** Heading of the closing call to action. */
+  cta: string;
 };
 
 const UPWORK_PROOF =
   "On Upwork I am Top Rated with a 100% Job Success Score, which comes from saying what I will deliver and then delivering it, milestone by milestone.";
 
-export const ENGAGEMENT_COMMON = [
-  "Fixed-price milestones through Upwork, the way I delivered LeadsMind: each milestone ends with working software you can test, plus a written progress report.",
-  "[PLACEHOLDER: other engagement models you offer, e.g. hourly contracts or a monthly retainer]",
-  "[PLACEHOLDER: your typical starting budget or day rate]",
-];
-
 export const AREA_NOTE =
-  "I work remotely from Bahawalpur, Pakistan, and serve clients in Africa, the US and the MENA region. My working hours overlap with all three, and every project runs on written updates, so time zones never block progress.";
+  "I work remotely from Bahawalpur, Pakistan, with clients in Africa, the US and the MENA region. Every project runs on written progress reports, so decisions do not wait for a shared working hour.";
 
 export const services: Service[] = [
   {
@@ -96,7 +92,11 @@ export const services: Service[] = [
       { name: "TypeScript", why: "typed prompts, inputs and outputs" },
       { name: "Edge Functions", why: "background jobs and webhooks close to the database" },
     ],
-    engagement: [...ENGAGEMENT_COMMON, "[PLACEHOLDER: typical timeline range for an AI feature, e.g. X to Y weeks]"],
+    engagement: [
+      "Milestone-based contracts, on Upwork or directly. The first milestone is usually a working prototype on your real data, so you can judge answer quality before committing to the rest.",
+      "AI work depends on the data behind it, so I look at yours on a short discovery call and then give you a fixed scope and estimate in writing.",
+      "Each milestone ends with working software you can test and a written progress report covering what shipped, what it costs to run and what is next.",
+    ],
     proof: [
       { slug: "leadsmind", fact: "Built an AI suite: revenue forecasting, ad and landing copy, and course Q&A with RAG." },
       { slug: "velocity", fact: "Co-founded an AI assistant that recovers missed calls and books appointments." },
@@ -121,15 +121,20 @@ export const services: Service[] = [
       },
       {
         q: "How long does an AI feature take to build?",
-        a: "It depends on the data and how many screens the feature touches. A focused feature on clean data is far quicker than one that needs new pipelines. [PLACEHOLDER: your typical range, e.g. X to Y weeks]. You get a fixed scope and timeline after the discovery call.",
+        a: "It depends on the state of your data and how many screens the feature touches. A focused feature on clean, structured data needs far less work than one that first needs a new ingestion pipeline. I look at your data on the discovery call, then give you a fixed scope and an estimate in writing before any work starts.",
       },
       {
-        q: "Do you work with startups outside the US?",
-        a: "Yes. I work remotely from Pakistan with clients in Africa, the US and the MENA region. LeadsMind serves African businesses and World Teachers Academy is a South African business, so I am used to local payment providers and regional requirements.",
+        q: "Can you take over an AI feature someone else started?",
+        a: "Yes. I start by reading the prompts, the data each request sends to the model and how API keys are stored. You get a written list of what to keep, what to fix and what is risky, such as keys exposed in the browser or prompts that include another user's data. The fixes then follow in milestones.",
+      },
+      {
+        q: "What does it cost to run AI features each month?",
+        a: "Model providers bill per token, so running cost scales with how much your users use the feature. I keep prompts lean, cache what can be cached, set usage limits per plan and log what each feature spends. Before building, I size the feature against the current OpenAI and Anthropic pricing pages so the running cost is not a surprise.",
       },
     ],
     related: ["ai-chatbot-development", "saas-mvp-development", "supabase-developer"],
     posts: ["how-to-hire-an-ai-developer", "rag-chatbot-openai-pgvector"],
+    cta: "Have an AI feature in mind? Let's scope it.",
   },
   {
     slug: "saas-mvp-development",
@@ -183,16 +188,20 @@ export const services: Service[] = [
       { name: "Tailwind + shadcn/ui", why: "a polished interface without a design bottleneck" },
       { name: "Vercel", why: "previews for every change and simple deploys" },
     ],
-    engagement: [...ENGAGEMENT_COMMON, "[PLACEHOLDER: typical MVP timeline, e.g. X to Y weeks]"],
+    engagement: [
+      "Scope comes first: a written list of what launches in version one and what waits. The build then runs in milestones, each one a working part of the product you can click through.",
+      "Scope is what sets the cost, so we settle it on a short discovery call before I give you a fixed scope and estimate.",
+      "Each milestone ends with a written progress report and a preview link you can share with co-founders, advisers or early customers.",
+    ],
     proof: [
       { slug: "leadsmind", fact: "Delivered an all-in-one CRM, LMS and marketing platform in milestones; the client left a 5-star review." },
-      { slug: "velocity", fact: "Co-founded and built an AI product in public, now live." },
+      { slug: "velocity", fact: "Co-founded an AI product and shipped it: live at velocity-ai.site." },
       { slug: "world-teachers-academy", fact: "Shipped a job portal with lead capture built into the apply flow." },
     ],
     faqs: [
       {
         q: "How long does it take to build a SaaS MVP?",
-        a: "It depends on how many core workflows the first version needs, and how many integrations sit behind them. A single-workflow MVP is far quicker than a multi-role platform. [PLACEHOLDER: your typical MVP range, e.g. X to Y weeks]. After a discovery call you get a written scope with milestones and dates.",
+        a: "It depends on how many core workflows the first version needs and how many integrations sit behind them. A single-workflow MVP is much smaller than a multi-role platform. After a short discovery call I write down the scope, split it into milestones and give you an estimate for each, so you know exactly what you are committing to.",
       },
       {
         q: "What does an MVP include?",
@@ -200,11 +209,11 @@ export const services: Service[] = [
       },
       {
         q: "How much does a SaaS MVP cost?",
-        a: "Cost follows scope: number of user roles, workflows, integrations, AI features and design polish. I quote a fixed price per milestone once the scope is written down. [PLACEHOLDER: your typical MVP budget range]. My guide to MVP costs explains each cost driver in detail.",
+        a: "Cost follows scope: the number of user roles, workflows, integrations and AI features, and the level of design polish. Once the scope is written down I give you an estimate per milestone. I do not publish a price list, because two MVPs rarely share a scope. My guide to SaaS MVP costs explains each cost driver in detail.",
       },
       {
-        q: "Which payment providers do you integrate?",
-        a: "Stripe and Paystack. Stripe suits most US and global products. Paystack is often the better fit for businesses selling in African markets such as Nigeria, Ghana, Kenya and South Africa. I have also migrated a live product's billing from Stripe to Paystack.",
+        q: "How do we handle payments, Stripe or Paystack?",
+        a: "It depends on where your customers pay from. Stripe suits most US and global products. Paystack often fits better for businesses selling in markets such as Nigeria, Ghana, Kenya and South Africa. I set up whichever fits in the first version, so you can charge from launch. I have also migrated a live product from Stripe to Paystack.",
       },
       {
         q: "Will I own the code?",
@@ -212,11 +221,16 @@ export const services: Service[] = [
       },
       {
         q: "Can you work from my designs or should you design it?",
-        a: "Either. I build from Figma designs, or I design a clean interface myself with Tailwind and shadcn/ui when speed matters more than a custom visual identity.",
+        a: "Either. I build from Figma designs when you have them. When speed matters more than a custom visual identity, I design a clean interface myself with Tailwind and shadcn/ui, and you review the screens at each milestone before anything is final.",
+      },
+      {
+        q: "What happens after the MVP launches?",
+        a: "You keep the code, the accounts and the documentation, so you can continue with me or with anyone else. Most of the work after launch comes from what real users ask for. Because the data model, security and billing were built properly in version one, version two extends the product instead of replacing it.",
       },
     ],
     related: ["nextjs-developer", "supabase-developer", "payments-integration"],
     posts: ["saas-mvp-cost", "what-is-mvp-in-software-development"],
+    cta: "Ready to scope your MVP? Let's talk.",
   },
   {
     slug: "nextjs-developer",
@@ -270,11 +284,15 @@ export const services: Service[] = [
       { name: "Supabase", why: "Postgres backend with auth and RLS" },
       { name: "Vercel", why: "hosting, previews and edge network" },
     ],
-    engagement: [...ENGAGEMENT_COMMON, "[PLACEHOLDER: typical timeline for a Next.js feature or build]"],
+    engagement: [
+      "New builds, feature work or a codebase takeover, each run in milestones with a written progress report at the end of every one.",
+      "For an existing codebase I start with a short audit, then give you a fixed scope and estimate for the work it shows is needed.",
+      "Every change ships to a Vercel preview first, so you can review it on a real URL before it reaches production.",
+    ],
     proof: [
       { slug: "leadsmind", fact: "Audited and hardened 157 Next.js API routes, with RLS fixes across the platform." },
       { slug: "world-teachers-academy", fact: "Built a Next.js job portal with a database-backed blog replacing hardcoded content." },
-      { slug: "velocity", fact: "Designed and built the product dashboard, auth and Twilio integrations." },
+      { slug: "velocity", fact: "Built the product dashboard and auth in Next.js, plus the Twilio integrations." },
     ],
     faqs: [
       {
@@ -294,12 +312,17 @@ export const services: Service[] = [
         a: "Yes. I usually pair Next.js with Supabase for Postgres, auth, storage and Row Level Security, and add Edge Functions or route handlers for background jobs and webhooks. You get one developer for the full stack.",
       },
       {
-        q: "Do you work with startups outside the US?",
-        a: "Yes. I work remotely from Pakistan with clients in Africa, the US and the MENA region, with written progress reports at every milestone so time zones never slow the project down.",
+        q: "Can you make our Next.js app faster?",
+        a: "Usually, yes. The common causes are client components where server components would do, data fetched on every request instead of cached or rendered statically, unoptimised images and fonts, and heavy third-party scripts. I measure first with Lighthouse and real page data, fix the largest causes, then measure again so you can see what changed.",
+      },
+      {
+        q: "Do you build marketing sites as well as apps?",
+        a: "Yes, and Next.js is why I can do both in one codebase. Public pages are rendered statically with proper metadata, sitemaps and structured data so they can rank, while the logged-in app shares the same components and design system. This portfolio site is built that way, on the App Router.",
       },
     ],
     related: ["full-stack-developer", "saas-mvp-development", "supabase-developer"],
     posts: ["supabase-vs-firebase", "saas-mvp-cost"],
+    cta: "Need a senior Next.js developer? Let's talk.",
   },
   {
     slug: "supabase-developer",
@@ -354,13 +377,14 @@ export const services: Service[] = [
       { name: "TypeScript", why: "generated database types" },
     ],
     engagement: [
-      ...ENGAGEMENT_COMMON,
-      "[PLACEHOLDER: fixed price or timeline for a Supabase RLS audit, e.g. by number of tables]",
+      "An RLS audit is a fixed-scope piece of work: the written report comes first, and fixes follow in a separate milestone, so you decide what gets fixed and in what order.",
+      "New Supabase backends are built in milestones, usually alongside a Next.js front end.",
+      "After a first look at your schema, I give you a fixed scope and estimate based on the number of tables, functions, buckets and API routes.",
     ],
     proof: [
       { slug: "leadsmind", fact: "157 API routes audited and hardened, with RLS fixes across the platform." },
       { slug: "world-teachers-academy", fact: "Nightly job ingestion from Adzuna and Reed into Supabase." },
-      { slug: "velocity", fact: "Built the dashboard, auth and Twilio integrations for an AI voice product." },
+      { slug: "velocity", fact: "Built the dashboard, auth and Twilio integrations for an AI missed-call product." },
     ],
     faqs: [
       {
@@ -381,15 +405,20 @@ export const services: Service[] = [
       },
       {
         q: "How long does an RLS audit take?",
-        a: "It scales with the number of tables, functions and API routes. [PLACEHOLDER: your typical audit timeline]. You get a written report before any fixes start, so you can prioritise.",
+        a: "It scales with the number of tables, views, functions, storage buckets and API routes in your project. After a first look at the schema I give you a fixed scope and an estimate. You receive the written report before any fixes start, so you can prioritise them yourself or hand them to your own team.",
       },
       {
-        q: "Do you work with teams outside the US?",
-        a: "Yes. I work remotely from Pakistan with clients in Africa, the US and the MENA region, and every audit is delivered as a written report you can share with your team.",
+        q: "How do I know my customer data is safe?",
+        a: "Test it the way an attacker would. I sign in as users in two different organisations and try to read and change each other's rows, then repeat the same requests with only the public anon key. If every attempt fails, the policies hold. You keep those tests after the audit, so you can rerun them whenever the schema changes.",
+      },
+      {
+        q: "Do you need access to our production database?",
+        a: "Not to start. I can audit from an export of your schema and policies, or from a staging project with test data. Fixes arrive as SQL migrations in your repository that you review and apply, so production access stays with your team unless you decide otherwise.",
       },
     ],
     related: ["nextjs-developer", "saas-mvp-development", "ai-developer"],
     posts: ["supabase-rls-mistakes", "supabase-vs-firebase"],
+    cta: "Not sure your data is safe? Let's check.",
   },
   {
     slug: "ai-chatbot-development",
@@ -443,10 +472,14 @@ export const services: Service[] = [
       { name: "Next.js", why: "streaming responses from the server" },
       { name: "Edge Functions", why: "ingestion and re-embedding jobs" },
     ],
-    engagement: [...ENGAGEMENT_COMMON, "[PLACEHOLDER: typical chatbot timeline, e.g. X to Y weeks]"],
+    engagement: [
+      "The first milestone is a working chatbot on a slice of your real content, tested against questions you supply, before the interface and integrations are built.",
+      "Scope depends on how much content you have and where it lives. You get a fixed scope and estimate in writing after a short discovery call.",
+      "Before launch you get the evaluation results, so you can see which questions the chatbot answers well and where content is missing.",
+    ],
     proof: [
-      { slug: "leadsmind", fact: "Built course Q&A with RAG as part of an AI module suite." },
-      { slug: "velocity", fact: "Co-founded an AI assistant that replies to missed calls in seconds." },
+      { slug: "leadsmind", fact: "Built course Q&A with RAG on pgvector, plus AI lesson summaries, inside an LMS." },
+      { slug: "velocity", fact: "Co-founded an AI product that follows up missed calls and books appointments." },
       { slug: "world-teachers-academy", fact: "Built the data pipelines that keep job content fresh nightly." },
     ],
     faqs: [
@@ -468,15 +501,20 @@ export const services: Service[] = [
       },
       {
         q: "How long does it take to build a custom AI chatbot?",
-        a: "It depends mostly on how clean and accessible your content is, and where the chatbot needs to live. [PLACEHOLDER: your typical chatbot timeline]. You get a fixed scope after the discovery call.",
+        a: "It depends mostly on how clean and accessible your content is, and where the chatbot needs to live: inside your app, on your website or both. Content already in a database or a help centre is quicker to ingest than scattered PDFs. After a discovery call you get a fixed scope and an estimate in writing.",
       },
       {
-        q: "Do you work with businesses outside the US?",
-        a: "Yes. I work remotely from Pakistan with clients in Africa, the US and the MENA region.",
+        q: "Can the chatbot use our existing help centre or documents?",
+        a: "Yes. I ingest content from where it already lives: database tables, web pages, help articles or documents. Each source gets a sync job, so when you edit an article the answers update without a manual upload. Only passages that changed are embedded again, which keeps running costs down as your content grows.",
+      },
+      {
+        q: "How do you measure whether the chatbot is any good?",
+        a: "With an evaluation set: real questions your customers ask, each paired with the answer you expect. I run the set before launch and after every change to prompts, chunking or models, and track which answers got better or worse. Questions the chatbot could not answer in production are added to the set over time.",
       },
     ],
     related: ["ai-developer", "supabase-developer", "saas-mvp-development"],
     posts: ["rag-chatbot-openai-pgvector", "how-to-hire-an-ai-developer"],
+    cta: "Want a chatbot that knows your content? Let's talk.",
   },
   {
     slug: "full-stack-developer",
@@ -494,7 +532,7 @@ export const services: Service[] = [
     audienceTitle: "Who hires a full stack developer like me",
     audience: [
       "Founders who need one senior developer instead of a team, and agencies who need a dependable builder they can hand a whole project to. You get one point of contact who understands the database, the API and the interface, so decisions are fast and nothing falls between two developers.",
-      "For founders without a technical partner, I can also help with architecture decisions, the roadmap and hiring input, and keep building hands-on.",
+      "For founders without a technical partner, I can also help with architecture decisions and the roadmap while I keep building hands-on. I co-founded Velocity, so I have made those calls on my own product.",
     ],
     deliverables: [
       {
@@ -518,8 +556,8 @@ export const services: Service[] = [
         text: "API route audits and RLS reviews so customer data stays private, the work I did across 157 routes on LeadsMind.",
       },
       {
-        title: "Technical co-founder support",
-        text: "Architecture decisions, roadmap planning and hiring input for founders who need a senior technical partner.",
+        title: "Technical partner support",
+        text: "Architecture decisions and roadmap planning for founders who need a senior technical partner alongside the build.",
       },
     ],
     stack: [
@@ -530,7 +568,11 @@ export const services: Service[] = [
       { name: "Stripe / Paystack", why: "payments and subscriptions" },
       { name: "Vercel", why: "deploys and preview environments" },
     ],
-    engagement: [...ENGAGEMENT_COMMON, "[PLACEHOLDER: availability, e.g. hours per week you can commit]"],
+    engagement: [
+      "A single project or ongoing product work, run in milestones. You get one point of contact for the front end, backend, payments and deploys.",
+      "I give you a fixed scope and estimate after a short discovery call, and we agree how often you want progress reports before work starts.",
+      "When the work ends, you get a written handover covering the architecture, environment setup and open items, so the next developer starts quickly.",
+    ],
     proof: [
       { slug: "leadsmind", fact: "Full stack delivery of CRM, LMS, funnels, WhatsApp broadcasts and social publishing." },
       { slug: "world-teachers-academy", fact: "End-to-end job portal with ingestion, lead capture and a blog." },
@@ -554,12 +596,17 @@ export const services: Service[] = [
         a: "Working software at every milestone, plus a written progress report covering what shipped, what is next and any decisions I need from you. You always know where things stand.",
       },
       {
-        q: "Do you work with clients outside the US?",
-        a: "Yes. I work remotely from Pakistan with clients in Africa, the US and the MENA region.",
+        q: "Do you work with non-US clients?",
+        a: "Yes. I work remotely from Bahawalpur, Pakistan, with clients in Africa, the US and the MENA region. LeadsMind serves African businesses and World Teachers Academy is a South African business, so I am used to regional payment providers, time-zone gaps and written, asynchronous updates that keep a project moving.",
+      },
+      {
+        q: "Can you take over an existing codebase?",
+        a: "Yes. I begin with a short review of the repository, the database and how authorisation works on each API route. You get a written list of risks and quick wins before I change anything. On LeadsMind, that kind of review covered 157 API routes and led to IDOR fixes, RLS hardening and closed unauthenticated endpoints.",
       },
     ],
     related: ["nextjs-developer", "saas-mvp-development", "payments-integration"],
     posts: ["saas-mvp-cost", "supabase-vs-firebase"],
+    cta: "Need one developer for the whole stack? Let's talk.",
   },
   {
     slug: "payments-integration",
@@ -613,7 +660,11 @@ export const services: Service[] = [
       { name: "Edge Functions", why: "scheduled billing jobs" },
       { name: "TypeScript", why: "typed events and payloads" },
     ],
-    engagement: [...ENGAGEMENT_COMMON, "[PLACEHOLDER: typical billing integration timeline]"],
+    engagement: [
+      "Billing work is scoped around your plans, countries and currencies. A migration is planned customer by customer before anything is switched.",
+      "You get a fixed scope and estimate after a short discovery call.",
+      "Every milestone is tested in the provider's test mode, covering renewals, failed payments and cancellations, before it goes live.",
+    ],
     proof: [
       { slug: "leadsmind", fact: "Migrated a live SaaS's billing from Stripe to Paystack." },
       { slug: "velocity", fact: "Co-founded and shipped an AI product, from dashboard and auth to Twilio integrations." },
@@ -637,12 +688,17 @@ export const services: Service[] = [
         a: "Stripe and Paystack, the two providers I use in production. If you need another provider, tell me in the discovery call and I will be clear about whether I have used it before.",
       },
       {
-        q: "Do you work with businesses outside Africa?",
-        a: "Yes. I serve clients in Africa, the US and the MENA region, and Stripe covers most products sold internationally.",
+        q: "How do I know billing will not break for existing customers?",
+        a: "Every change is tested in the provider's test mode first: new subscriptions, upgrades, downgrades, renewals, failed payments, cancellations and the same webhook arriving twice. During a migration, customers keep their current plan until the new subscription is active, and both webhook handlers run until the old provider's last subscription ends.",
+      },
+      {
+        q: "Can we use Stripe and Paystack in the same product?",
+        a: "Yes. Some products need both: Stripe for international customers and Paystack for customers paying locally in Africa. I keep one subscription model in your database, map each provider's events onto it, and gate features from that single record, so the rest of your app does not care which provider a customer paid through.",
       },
     ],
     related: ["saas-mvp-development", "full-stack-developer", "supabase-developer"],
     posts: ["stripe-vs-paystack", "saas-mvp-cost"],
+    cta: "Ready to start charging customers? Let's talk.",
   },
 ];
 

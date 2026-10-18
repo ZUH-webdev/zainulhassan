@@ -4,7 +4,7 @@ import { serviceBySlug } from "@/content/services";
 const services = [
   {
     d: "",
-    title: "SaaS MVPs, fast",
+    title: "SaaS MVPs that launch",
     href: "/services/saas-mvp-development",
     body: "Auth, multi-tenant data, billing and a dashboard people actually want to use. A production-ready first version, not a demo.",
     icon: (
@@ -65,7 +65,7 @@ const services = [
     d: " d2",
     title: "Technical co-founder",
     href: "/services/full-stack-developer",
-    body: "Architecture decisions, roadmap, hiring input and hands-on building for founders who need a senior technical partner.",
+    body: "Architecture decisions, roadmap planning and hands-on building for founders who need a senior technical partner. I made the same calls as co-founder of Velocity.",
     icon: (
       <>
         <circle pathLength={1} cx="18" cy="24" r="13" />
@@ -114,7 +114,6 @@ export default function Services() {
               <div className="sweep"></div>
             </>
           );
-          // TODO: if a card's service page does not exist yet, it renders as a plain card without the CTA.
           return target ? (
             <Link
               key={s.title}

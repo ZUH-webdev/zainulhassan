@@ -1,12 +1,10 @@
-import { serviceBySlug, services } from "@/content/services";
+import { serviceBySlug } from "@/content/services";
 import { ogContentType, ogImage, ogSize } from "@/lib/og";
 
-export const alt = "Service by Zain Ul Hassan, senior full stack developer";
-export const size = ogSize;
-export const contentType = ogContentType;
-
-export function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }));
+/** One image per service, with alt text naming that service (the URL becomes .../opengraph-image/og). */
+export function generateImageMetadata({ params }: { params: { slug: string } }) {
+  const s = serviceBySlug(params.slug);
+  return [{ id: "og", alt: `Title card reading "${s?.h1 ?? "Services"}"`, size: ogSize, contentType: ogContentType }];
 }
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {

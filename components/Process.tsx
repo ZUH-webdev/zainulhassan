@@ -1,7 +1,7 @@
 const steps = [
   {
     title: "Discovery call",
-    body: "We talk goals, users and constraints. You leave with a clear scope and honest timeline.",
+    body: "A short call about what you are building, who it is for and what already exists. Afterwards I send a written scope and estimate.",
     // chat bubble
     icon: (
       <>
@@ -13,7 +13,7 @@ const steps = [
   },
   {
     title: "Plan and architecture",
-    body: "Data model, security rules and milestones agreed before a line of code is written.",
+    body: "We agree the data model, Row Level Security rules and milestone list in writing before I start on features.",
     // blueprint grid
     icon: (
       <>
@@ -27,7 +27,7 @@ const steps = [
   },
   {
     title: "Build in milestones",
-    body: "Working software at every milestone, with written progress reports so you always know where things stand.",
+    body: "Each milestone ends with working software you can test and a written progress report on what shipped and what is next.",
     // code brackets </>
     icon: (
       <>
@@ -38,8 +38,8 @@ const steps = [
     ),
   },
   {
-    title: "Launch and support",
-    body: "Deployment, handover and ongoing improvements after you go live.",
+    title: "Launch and handover",
+    body: "I deploy to production, hand over the code, accounts and documentation, and stay available for fixes and the next features.",
     // rocket
     icon: (
       <>

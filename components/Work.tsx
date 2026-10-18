@@ -73,7 +73,7 @@ const VelocityViz = () => (
       Missed call detected
     </div>
     <div className="cap" style={{ animationDelay: "2s", color: "var(--ac)" }}>
-      AI replies in seconds
+      AI follows up
     </div>
     <div className="cap" style={{ animationDelay: "4s" }}>
       Appointment booked ✓
@@ -113,7 +113,7 @@ const projects: Project[] = [
     slug: "world-teachers-academy",
     kicker: "EDTECH · JOB PORTAL",
     title: "World Teachers Academy",
-    body: "A teacher certification and placement site for a South African business, with a teaching job portal that captures leads before sending candidates to apply.",
+    body: "A Next.js and Supabase site for a South African teacher certification and placement business, with a job portal that captures each candidate as a lead before they apply.",
     tags: ["Next.js", "Supabase", "Vercel", "Resend"],
     viz: <WtaViz />,
     bullets: [
@@ -125,12 +125,12 @@ const projects: Project[] = [
   {
     reveal: "rvl",
     slug: "velocity",
-    kicker: "OWN PRODUCT · AI VOICE",
+    kicker: "OWN PRODUCT · AI CALL RECOVERY",
     title: "Velocity",
-    body: "An AI assistant that recovers missed calls and books appointments for local businesses. Co-founded and built in public.",
-    tags: ["React", "Twilio", "Resend"],
+    body: "AI missed-call recovery and appointment booking for local businesses. I co-founded it and built the dashboard, auth and messaging integrations.",
+    tags: ["Next.js", "Node.js", "Twilio", "Resend"],
     viz: <VelocityViz />,
-    bullets: ["Dashboard design, auth and Twilio integrations", "Live at velocity-ai.site"],
+    bullets: ["Dashboard and auth for business owners", "Twilio and Resend integrations", "Live at velocity-ai.site"],
   },
 ];
 

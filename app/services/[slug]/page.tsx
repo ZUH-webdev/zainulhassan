@@ -113,7 +113,7 @@ export default async function ServicePage({ params }: Props) {
       <section className="wrap sec" aria-labelledby="engagement">
         <div className="eyebrow rv">Engagement</div>
         <h2 id="engagement" className="h2 rv d1">
-          Engagement and timeline
+          How we work together
         </h2>
         <div className="prose" style={{ marginTop: 24 }}>
           <ul>
@@ -158,7 +158,7 @@ export default async function ServicePage({ params }: Props) {
         ]}
       />
 
-      <PageCta location="service-page" title="Ready to start? Let's talk about your project." />
+      <PageCta location="service-page" title={s.cta} />
     </main>
   );
 }

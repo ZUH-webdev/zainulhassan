@@ -1,12 +1,10 @@
-import { caseStudies, caseStudyBySlug } from "@/content/case-studies";
+import { caseStudyBySlug } from "@/content/case-studies";
 import { ogContentType, ogImage, ogSize } from "@/lib/og";
 
-export const alt = "Case study by Zain Ul Hassan, senior full stack developer";
-export const size = ogSize;
-export const contentType = ogContentType;
-
-export function generateStaticParams() {
-  return caseStudies.map((c) => ({ slug: c.slug }));
+/** One image per case study, with alt text naming that project (the URL becomes .../opengraph-image/og). */
+export function generateImageMetadata({ params }: { params: { slug: string } }) {
+  const c = caseStudyBySlug(params.slug);
+  return [{ id: "og", alt: `Title card reading "${c?.h1 ?? "Case study"}"`, size: ogSize, contentType: ogContentType }];
 }
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {

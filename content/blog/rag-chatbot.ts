@@ -8,7 +8,7 @@ export const post: Post = {
     "Build a RAG chatbot that answers from your own content: chunking, OpenAI embeddings, pgvector search in Supabase, permission-aware retrieval and evaluation.",
   keyword: "rag chatbot",
   datePublished: "2026-10-17",
-  dateModified: "2026-10-17",
+  dateModified: "2026-10-18",
   service: "ai-chatbot-development",
   related: ["how-to-hire-an-ai-developer", "supabase-rls-mistakes", "supabase-vs-firebase"],
   intro:
@@ -166,6 +166,26 @@ $$;`,
             "**Evaluation**: keep a list of real questions with expected answers and check them after every change.",
             "**Fallbacks**: when similarity is low, say so and offer a human contact instead of guessing.",
           ],
+        },
+      ],
+    },
+    {
+      id: "failure-modes",
+      title: "Why RAG chatbots give bad answers",
+      blocks: [
+        {
+          p: "When a RAG chatbot answers badly, the cause is usually in retrieval, not in the model. Check these before you change prompts or switch providers:",
+        },
+        {
+          ul: [
+            "**The right passage was never retrieved.** Log the chunks sent with each question. If the answer is not in them, fix chunking or the content itself before touching the prompt.",
+            "**The passage was retrieved but ranked too low.** Raise the match count, or add a keyword filter alongside vector search for product names and codes, which embeddings can blur.",
+            "**The content contradicts itself.** Two versions of the same policy produce two answers. Remove or mark outdated pages so only one version is embedded.",
+            "**The question needs data, not documents.** \"How many orders did I place last month?\" is a database query, not a retrieval job. Route those questions to a SQL function the user is allowed to call.",
+          ],
+        },
+        {
+          p: "Each fix should be checked against your evaluation questions, so an improvement on one question does not quietly break three others.",
         },
       ],
     },

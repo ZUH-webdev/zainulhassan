@@ -96,13 +96,12 @@ export default function ContactPage() {
             <h2 id="include" className="ah2">
               What to include in your message
             </h2>
-            <p>A short message is enough to start. These details help me reply with a useful estimate:</p>
-            <ul>
-              <li>What you are building and who it is for.</li>
-              <li>Where the project is today: idea, designs, an existing codebase or a live product.</li>
-              <li>The features the first version must have.</li>
-              <li>Your timeline and budget range, if you have one.</li>
-            </ul>
+            <p>
+              A few lines are enough to start. Tell me what you are building and who it is for, where it stands today (an
+              idea, designs, an existing codebase or a live product), the timeline you are working to, and a budget range
+              if you have one. With those four things I can reply with real questions and a first estimate instead of a
+              generic pitch.
+            </p>
           </section>
 
           <section aria-labelledby="call">
@@ -110,8 +109,8 @@ export default function ContactPage() {
               Book a discovery call
             </h2>
             <p>
-              We talk goals, users and constraints, and you leave with a clear scope and an honest timeline.
-              [PLACEHOLDER: scheduling link, e.g. Calendly or Cal.com]
+              If a call is easier, say so in your email and suggest two or three times that suit you. I send a calendar
+              invite, and after the call you get a written scope and estimate.
             </p>
           </section>
 
@@ -134,6 +133,35 @@ export default function ContactPage() {
             <p>
               I&apos;m based in Bahawalpur, Pakistan, and work remotely with clients in Africa, the US and the MENA region.
             </p>
+          </section>
+
+          <section aria-labelledby="channels">
+            <h2 id="channels" className="ah2">
+              Every way to reach me
+            </h2>
+            <p>I reply within one working day on any of these:</p>
+            <ul>
+              <li>
+                <a href={mailto} data-track="email_click" data-track-location="contact-list">
+                  Email: {SITE.email}
+                </a>
+              </li>
+              <li>
+                <a href={SITE.upwork} {...external} data-track="upwork_click" data-track-location="contact-list">
+                  Upwork: send an offer or an invite to a job
+                </a>
+              </li>
+              <li>
+                <a href={SITE.linkedin} {...external} data-track="linkedin_click" data-track-location="contact-list">
+                  LinkedIn: message me directly
+                </a>
+              </li>
+              <li>
+                <a href={SITE.github} {...external} data-track="github_click" data-track-location="contact-list">
+                  GitHub: see my public code
+                </a>
+              </li>
+            </ul>
           </section>
         </div>
       </article>

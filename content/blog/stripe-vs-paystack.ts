@@ -8,7 +8,7 @@ export const post: Post = {
     "Paystack vs Stripe for a SaaS selling in Africa: country support, local payment methods, subscriptions, developer experience and what migrating involves.",
   keyword: "paystack vs stripe",
   datePublished: "2026-10-17",
-  dateModified: "2026-10-17",
+  dateModified: "2026-10-18",
   service: "payments-integration",
   related: ["saas-mvp-cost", "what-is-mvp-in-software-development", "supabase-rls-mistakes"],
   intro:
@@ -19,7 +19,7 @@ export const post: Post = {
       title: "Background: Paystack is part of Stripe",
       blocks: [
         {
-          p: "Paystack is a Nigerian payments company that Stripe acquired in 2020. The two still run as separate products with separate accounts, dashboards and APIs, and they serve different markets, so choosing between them is a real decision.",
+          p: "Paystack is a Nigerian payments company that Stripe [acquired in October 2020](https://en.wikipedia.org/wiki/Paystack). The two still run as separate products with separate accounts, dashboards and APIs, and they serve different markets, so choosing between them is a real decision.",
         },
       ],
     },
@@ -156,6 +156,7 @@ export const post: Post = {
     },
   ],
   sources: [
+    { label: "Wikipedia: Paystack (acquisition by Stripe)", href: "https://en.wikipedia.org/wiki/Paystack" },
     { label: "Paystack documentation", href: "https://paystack.com/docs" },
     { label: "Paystack subscriptions", href: "https://paystack.com/docs/payments/subscriptions/" },
     { label: "Stripe global availability", href: "https://stripe.com/global" },
