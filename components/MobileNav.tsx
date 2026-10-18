@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
+import HireButton from "@/components/hire/HireButton";
 import { socialLinks } from "@/components/social";
 import { external, mailto, SITE } from "@/lib/site";
 
@@ -149,16 +150,18 @@ export default function MobileNav() {
           </ol>
         </nav>
         <div className="mfoot" style={{ "--i": items.length } as CSSProperties}>
-          <Link
+          <HireButton
+            source="mobile-menu"
+            returnFocusTo=".burger"
             href="/#contact"
             className="shine mcta"
             tabIndex={open ? undefined : -1}
             data-track="cta_click"
             data-track-location="mobile-menu"
-            onClick={(e) => onLink(e, "/#contact")}
+            onClick={() => setOpen(false)}
           >
             Start a project
-          </Link>
+          </HireButton>
           <a
             href={mailto}
             className="memail mono"

@@ -1,7 +1,9 @@
+import HireButton from "@/components/hire/HireButton";
 import { TRUST, external, mailto, SITE } from "@/lib/site";
 
 /** Primary CTAs used above the fold on inner pages: Upwork + email, with trust line. */
-export default function CtaButtons({ location }: { location: string }) {
+/** With `hire`, the secondary button is "Hire me" and opens the project inquiry modal instead of the mail app. */
+export default function CtaButtons({ location, hire = false }: { location: string; hire?: boolean }) {
   return (
     <>
       <div className="btnrow" style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 36 }}>
@@ -16,15 +18,28 @@ export default function CtaButtons({ location }: { location: string }) {
         >
           Hire me on Upwork
         </a>
-        <a
-          className="ghost-btn"
-          href={mailto}
-          data-track="email_click"
-          data-track-location={location}
-          style={{ border: "1px solid #2E323B", padding: "16px 28px", borderRadius: 999, fontWeight: 500 }}
-        >
-          Email me
-        </a>
+        {hire ? (
+          <HireButton
+            source={location}
+            className="ghost-btn"
+            href="/contact"
+            data-track="cta_click"
+            data-track-location={location}
+            style={{ border: "1px solid #2E323B", padding: "16px 28px", borderRadius: 999, fontWeight: 500 }}
+          >
+            Hire me
+          </HireButton>
+        ) : (
+          <a
+            className="ghost-btn"
+            href={mailto}
+            data-track="email_click"
+            data-track-location={location}
+            style={{ border: "1px solid #2E323B", padding: "16px 28px", borderRadius: 999, fontWeight: 500 }}
+          >
+            Email me
+          </a>
+        )}
       </div>
       <div
         className="mono"

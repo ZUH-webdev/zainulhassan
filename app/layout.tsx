@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, DM_Sans, JetBrains_Mono } from "next/font/google";
 import Analytics from "@/components/Analytics";
 import Footer from "@/components/Footer";
+import ModalProvider from "@/components/hire/ModalProvider";
 import Nav from "@/components/Nav";
 import { BRAND } from "@/lib/seo";
 import { SITE, isIndexable } from "@/lib/site";
@@ -83,9 +84,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             } as React.CSSProperties
           }
         >
-          <Nav />
-          {children}
-          <Footer />
+          <ModalProvider>
+            <Nav />
+            {children}
+            <Footer />
+          </ModalProvider>
         </div>
         <Analytics />
       </body>

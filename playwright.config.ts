@@ -9,6 +9,7 @@ const PORT = Number(process.env.TEST_PORT ?? 3200);
  */
 export default defineConfig({
   testDir: "tests",
+  testIgnore: ["unit/**"],
   timeout: 120_000,
   fullyParallel: true,
   workers: process.env.PW_WORKERS ? Number(process.env.PW_WORKERS) : 4,

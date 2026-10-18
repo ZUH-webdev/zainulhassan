@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CopyEmail from "@/components/CopyEmail";
+import HireButton from "@/components/hire/HireButton";
 import { socialLinks } from "@/components/social";
 import { caseStudies } from "@/content/case-studies";
 import { services } from "@/content/services";
@@ -99,9 +100,9 @@ export default function Footer() {
             Let&apos;s talk
           </p>
           <p className="ft-note">Replies within one working day.</p>
-          <Link href="/contact" className="shine ft-cta" data-track="cta_click" data-track-location="footer">
+          <HireButton source="footer" href="/contact" className="shine ft-cta" data-track="cta_click" data-track-location="footer">
             Start a project
-          </Link>
+          </HireButton>
         </section>
       </div>
 

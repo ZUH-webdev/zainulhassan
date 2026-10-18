@@ -57,7 +57,7 @@ export default async function ServicePage({ params }: Props) {
       />
 
       <PageHeader crumbs={crumbs} eyebrow={s.eyebrow} title={s.h1} lead={s.intro}>
-        <CtaButtons location="service-page" />
+        <CtaButtons location="service-page" hire />
       </PageHeader>
 
       <section className="wrap sec" aria-labelledby="audience">

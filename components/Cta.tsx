@@ -1,4 +1,5 @@
 import CopyEmail from "@/components/CopyEmail";
+import HireButton from "@/components/hire/HireButton";
 import { external, mailto, SITE } from "@/lib/site";
 
 const words = [
@@ -69,10 +70,11 @@ export default function Cta() {
               marginTop: 36,
             }}
           >
-            <a
+            <HireButton
+              source="home-cta"
               className="shine"
-              href={mailto}
-              data-track="email_click"
+              href="/contact"
+              data-track="cta_click"
               data-track-location="home-cta"
               style={{
                 background: "#0A0B0D",
@@ -80,13 +82,10 @@ export default function Cta() {
                 fontWeight: 600,
                 padding: "16px 28px",
                 borderRadius: 999,
-                overflowWrap: "anywhere",
               }}
             >
-              {/* <wbr> lets the address break before "@" on narrow screens */}
-              Email me: {emailUser}
-              <wbr />@{emailDomain}
-            </a>
+              Email me
+            </HireButton>
             <CopyEmail />
             <a
               className="ghost-btn"
@@ -100,6 +99,14 @@ export default function Cta() {
               Hire me on Upwork
             </a>
           </div>
+          <p style={{ position: "relative", margin: "26px 0 0", fontSize: 15, color: "#2B3000", overflowWrap: "anywhere" }}>
+            Prefer your own mail app?{" "}
+            <a className="ctal" href={mailto} data-track="email_click" data-track-location="home-cta-link">
+              {/* <wbr> lets the address break before "@" on narrow screens */}
+              {emailUser}
+              <wbr />@{emailDomain}
+            </a>
+          </p>
         </div>
       </div>
     </section>

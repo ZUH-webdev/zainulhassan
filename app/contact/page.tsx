@@ -1,4 +1,5 @@
 import CopyEmail from "@/components/CopyEmail";
+import ContactForm from "@/components/hire/ContactForm";
 import JsonLd from "@/components/JsonLd";
 import PageHeader from "@/components/PageHeader";
 import Related from "@/components/Related";
@@ -78,6 +79,16 @@ export default function ContactPage() {
           ))}
         </div>
       </PageHeader>
+
+      <section id="brief" className="wrap" style={{ paddingTop: 24 }} aria-labelledby="brief-title">
+        <div className="cf-card">
+          <div className="eyebrow">Project brief</div>
+          <h2 id="brief-title" className="h2">
+            Tell me what you&apos;re building.
+          </h2>
+          <ContactForm variant="page" source="contact-page" />
+        </div>
+      </section>
 
       <article className="wrap" style={{ paddingTop: 40 }}>
         <div className="prose">

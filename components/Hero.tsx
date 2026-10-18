@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import HireButton from "@/components/hire/HireButton";
 
 const words = ["I", "build", "AI", "SaaS", "products", "that"];
 const slotWords = ["ship.", "scale.", "convert.", "earn.", "ship."];
@@ -50,7 +51,8 @@ export default function Hero() {
             deploys, I take your idea from spec to paying customers.
           </p>
           <div className="fx2" style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 40 }}>
-            <a
+            <HireButton
+              source="hero"
               className="shine"
               href="#contact"
               data-track="cta_click"
@@ -58,7 +60,7 @@ export default function Hero() {
               style={{ background: "var(--ac)", color: "#0A0B0D", fontWeight: 600, padding: "16px 28px", borderRadius: 999 }}
             >
               Start a project
-            </a>
+            </HireButton>
             <a
               className="ghost-btn"
               href="#work"
