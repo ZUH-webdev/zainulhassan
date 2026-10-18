@@ -118,6 +118,7 @@ a{color:inherit;text-decoration:none}
 .mq-in{display:flex;width:max-content;animation:marquee 38s linear infinite}
 .mq-in.rev{animation:marqueeR 34s linear infinite}
 .mq.slow .mq-in{animation-duration:24s}
+@media (min-width:768px) and (max-width:1199px){.mq.slow .mq-in{animation-duration:16s}}
 @media (hover:hover) and (pointer:fine){.mq:hover .mq-in{animation-play-state:paused}}
 .mq-in>*{flex:none;margin-right:14px}
 .big{font-family:var(--font-bricolage),'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,6vw,84px);letter-spacing:-.03em;line-height:1.1;white-space:nowrap;margin-right:36px}
@@ -585,7 +586,7 @@ html.menu-open body{overflow:hidden;overscroll-behavior:contain}
 @media (max-width:767px){
   .mq-in{animation-duration:52s}
   .mq-in.rev{animation-duration:46s}
-  .mq.slow .mq-in{animation-duration:32s}
+  .mq.slow .mq-in{animation-duration:12s}
   .mq-in>*{margin-right:10px}
   .big{font-size:min(clamp(40px,6vw,84px),clamp(28px,8vw,84px));margin-right:20px}
   .big em{margin-left:20px}

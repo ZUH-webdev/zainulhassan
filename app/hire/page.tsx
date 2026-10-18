@@ -27,11 +27,10 @@ const STATS = [
   { value: "4+ yrs", label: "building SaaS" },
 ];
 
-const FACTS = [
-  { k: "Response", v: "Within one working day" },
-  { k: "Based in", v: "Bahawalpur, Pakistan" },
-  { k: "Clients in", v: "Africa, the US, MENA" },
-  { k: "Contracts", v: "Milestone-based" },
+const CHANNELS = [
+  { label: "Email", value: SITE.email, href: mailto, ext: false, track: "email_click" },
+  { label: "Upwork", value: "Send an offer", href: SITE.upwork, ext: true, track: "upwork_click" },
+  { label: "LinkedIn", value: "Message me", href: SITE.linkedin, ext: true, track: "linkedin_click" },
 ];
 
 const FAQS = [
@@ -79,33 +78,42 @@ export default function HirePage() {
       <header className="hx">
         <div className="grid" aria-hidden="true"></div>
         <div className="wrap hx-in">
-          <div className="hp-in" style={d(0)}>
+          <div className="hx-crumbs hp-in" style={d(0)}>
             <Breadcrumbs items={crumbs} />
           </div>
 
-          <div className="hx-grid">
-            <div>
-              <p className="eyebrow hp-in" style={d(1)}>
-                Hire me
-              </p>
-              <h1 className="disp hx-title" aria-label="Tell me what you're building.">
-                {HEADLINE.map((w, i) => (
-                  <span key={w} className="hp-w" aria-hidden="true">
-                    <span style={d(i)}>{w}</span>
-                  </span>
-                ))}
-              </h1>
-              <p className="hx-lead hp-in" style={d(6)}>
-                I build SaaS and AI products from database to deploy. Send a short brief and you get a reply within one
-                working day with next steps and an honest estimate.
-              </p>
-              <a href="#brief" className="shine hx-cta hp-in" style={d(7)} data-track="cta_click" data-track-location="hire-hero">
-                Start your brief
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M12 5v14M6 13l6 6 6-6" />
-                </svg>
-              </a>
-              <dl className="hx-stats hp-in" style={d(8)}>
+          <div className="hx-center">
+            <span className="hx-pill mono hp-in" style={d(1)}>
+              <span className="live-dot" aria-hidden="true"></span>
+              Open for new projects
+              <span className="hx-sep" aria-hidden="true"></span>
+              <span className="hx-pill2">Reply in 1 working day</span>
+            </span>
+
+            <h1 className="disp hx-title" aria-label="Tell me what you're building.">
+              {HEADLINE.map((w, i) => (
+                <span key={w} className="hp-w" aria-hidden="true">
+                  <span style={d(i)}>{w}</span>
+                </span>
+              ))}
+            </h1>
+
+            <p className="hx-lead hp-in" style={d(6)}>
+              I build SaaS and AI products from database to deploy. Send a short brief and you get next steps and an
+              honest estimate.
+            </p>
+
+            <div className="hx-profile hp-in" style={d(7)}>
+              <div className="hx-who">
+                <span className="hx-ph">
+                  <Image src={PHOTO.src} alt="Zain Ul Hassan" width={112} height={112} sizes="56px" priority />
+                </span>
+                <span className="hx-whot">
+                  <span className="hx-name">Zain Ul Hassan</span>
+                  <span className="hx-role">Senior full stack &amp; AI developer</span>
+                </span>
+              </div>
+              <dl className="hx-stats">
                 {STATS.map((s) => (
                   <div key={s.label}>
                     <dt className="disp">{s.value}</dt>
@@ -114,47 +122,6 @@ export default function HirePage() {
                 ))}
               </dl>
             </div>
-
-            <aside className="hx-card hp-rise" aria-label="About Zain Ul Hassan">
-              <div className="hx-who">
-                <span className="hx-ph">
-                  <Image src={PHOTO.src} alt="Zain Ul Hassan" width={128} height={128} sizes="64px" priority />
-                </span>
-                <span>
-                  <span className="hx-name">Zain Ul Hassan</span>
-                  <span className="hx-role">Senior full stack &amp; AI developer</span>
-                </span>
-              </div>
-              <span className="hm-avail mono hx-avail">
-                <span className="live-dot" aria-hidden="true"></span>
-                Open for new projects
-              </span>
-              <dl className="hx-facts">
-                {FACTS.map((f) => (
-                  <div key={f.k}>
-                    <dt className="mono">{f.k}</dt>
-                    <dd>{f.v}</dd>
-                  </div>
-                ))}
-              </dl>
-              <div className="hx-links">
-                <a href={mailto} className="hx-link" data-track="email_click" data-track-location="hire-page">
-                  <span>{SITE.email}</span>
-                  <span aria-hidden="true">→</span>
-                </a>
-                <a
-                  href={SITE.upwork}
-                  {...external}
-                  className="hx-link"
-                  data-track="upwork_click"
-                  data-track-location="hire-page"
-                  aria-label="Hire me on Upwork (opens in a new tab)"
-                >
-                  <span>Hire me on Upwork</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </aside>
           </div>
         </div>
       </header>
@@ -162,19 +129,39 @@ export default function HirePage() {
       <div className="wrap">
         <section id="brief" className="hp hp-rise" aria-labelledby="brief-title">
           <div className="hp-form">
-            <div className="hp-fhead">
-              <p className="eyebrow">Project brief</p>
-              <span className="hp-badge mono">
-                <span className="live-dot" aria-hidden="true"></span>
-                Reply within 1 working day
-              </span>
-            </div>
+            <p className="eyebrow">Project brief</p>
             <h2 id="brief-title" className="disp hp-ftitle">
               A few lines is enough to start.
             </h2>
             <BriefProgress />
             <ContactForm variant="page" source="hire-page" />
           </div>
+        </section>
+
+        <section className="hc" aria-labelledby="hc-title">
+          <h2 id="hc-title" className="hc-title mono">
+            Prefer another way?
+          </h2>
+          <ul className="hc-list">
+            {CHANNELS.map((c) => (
+              <li key={c.label}>
+                <a
+                  href={c.href}
+                  {...(c.ext ? external : {})}
+                  className="hc-card"
+                  data-track={c.track}
+                  data-track-location="hire-page"
+                  aria-label={c.ext ? `${c.label}: ${c.value} (opens in a new tab)` : undefined}
+                >
+                  <span className="hc-label mono">{c.label}</span>
+                  <span className="hc-value">{c.value}</span>
+                  <span className="hc-arrow" aria-hidden="true">
+                    {c.ext ? "↗" : "→"}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </section>
       </div>
 
