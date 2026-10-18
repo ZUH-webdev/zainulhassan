@@ -31,14 +31,21 @@ function walk(dir: string): string[] {
   });
 }
 
+const htmlFiles = existsSync(APP_DIR)
+  ? walk(APP_DIR).filter((f) => f.endsWith(".html") && !/(^|[\\/])_(not-found|global-error)\.html$/.test(f))
+  : [];
+
+// On Vercel the build adapter moves prerendered HTML out of .next/server/app, so there is
+// nothing to crawl there. The gate runs on local builds (`npm run build` / `npm run seo:check`).
+if (htmlFiles.length === 0 && process.env.VERCEL) {
+  console.warn("\nSEO check skipped on Vercel: no prerendered HTML in .next/server/app. Run `npm run build` locally to check.\n");
+  process.exit(0);
+}
+
 if (!existsSync(APP_DIR)) {
   console.error("No build output found. Run `next build` first.");
   process.exit(1);
 }
-
-const htmlFiles = walk(APP_DIR).filter(
-  (f) => f.endsWith(".html") && !/(^|[\\/])_(not-found|global-error)\.html$/.test(f),
-);
 
 const routeOf = (file: string) => {
   const rel = relative(APP_DIR, file).split(sep).join("/").replace(/\.html$/, "");
