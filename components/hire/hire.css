@@ -82,6 +82,20 @@ html.hire-open body{overflow:hidden}
   .hm-body{--hp:20px;overflow:visible;padding:24px var(--hp) 0}
 }
 
+/* ---------- dedicated /hire page: the modal layout, inline ---------- */
+.hp{--ac:#D4FF3F;display:grid;grid-template-columns:minmax(0,37fr) minmax(0,63fr);margin-top:32px;background:#121418;border:1px solid #23262D;border-radius:28px;overflow:hidden}
+.hp .hm-info{overflow:hidden}
+.hp .hm-title{font-size:clamp(40px,4.4vw,52px)}
+.hp .hm-body{overflow:visible;padding:44px var(--hp) 44px}
+@media (max-width:899px){
+  .hp{display:block;border-radius:24px}
+  .hp .hm-info{padding:32px 20px 8px;border-right:0}
+  .hp .hm-title{font-size:clamp(32px,8vw,40px)}
+  .hp .hm-star{left:auto;right:-80px;bottom:auto;top:-90px}
+  .hp .hm-meta{padding-top:24px}
+  .hp .hm-body{--hp:20px;padding:24px var(--hp) 32px}
+}
+
 /* =====================================================================
    FORM
    ===================================================================== */

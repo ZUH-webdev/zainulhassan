@@ -36,6 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     })),
     { url: absoluteUrl("/about"), lastModified: SITE_UPDATED, changeFrequency: "yearly", priority: 0.6 },
+    { url: absoluteUrl("/hire"), lastModified: SITE_UPDATED, changeFrequency: "yearly", priority: 0.7 },
     { url: absoluteUrl("/contact"), lastModified: SITE_UPDATED, changeFrequency: "yearly", priority: 0.6 },
   ];
 }

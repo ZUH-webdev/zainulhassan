@@ -1,5 +1,4 @@
 import Link from "next/link";
-import HireButton from "@/components/hire/HireButton";
 import MobileNav from "@/components/MobileNav";
 
 const links = [
@@ -24,22 +23,21 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <HireButton
-            source="nav"
+          <Link
             className="shine"
-            href="/contact"
+            href="/hire"
             data-track="cta_click"
             data-track-location="nav"
             style={{ background: "var(--ac)", color: "#0A0B0D", fontWeight: 600, padding: "11px 20px", borderRadius: 999 }}
           >
             Hire me
-          </HireButton>
+          </Link>
         </div>
         {/* <1024px: compact pill + hamburger */}
         <div className="navm">
-          <HireButton source="nav-mobile" className="shine navpill" href="/contact" data-track="cta_click" data-track-location="nav-mobile">
+          <Link className="shine navpill" href="/hire" data-track="cta_click" data-track-location="nav-mobile">
             Hire me
-          </HireButton>
+          </Link>
           <MobileNav />
         </div>
       </div>
