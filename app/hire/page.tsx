@@ -1,10 +1,14 @@
+import Image from "next/image";
 import type { CSSProperties } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Faq from "@/components/Faq";
+import BriefProgress from "@/components/hire/BriefProgress";
 import ContactForm from "@/components/hire/ContactForm";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbNode, graph, ids, webPageNode } from "@/lib/schema";
+import { breadcrumbNode, faqNode, graph, ids, webPageNode } from "@/lib/schema";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
-import { SITE, external, mailto } from "@/lib/site";
+import { PHOTO, SITE, external, mailto } from "@/lib/site";
+import "@/components/hire/hire-page.css";
 
 const path = "/hire";
 const title = "Hire Me: Start Your SaaS or AI Project";
@@ -15,12 +19,42 @@ const crumbs = [
   { name: "Hire me", path },
 ];
 
-const starPath = "M24 2 C25 15 33 23 46 24 C33 25 25 33 24 46 C23 33 15 25 2 24 C15 23 23 15 24 2 Z";
 const HEADLINE = ["Tell", "me", "what", "you're", "building."];
-const PROOF = [
-  "Top Rated on Upwork, 100% Job Success",
-  "4+ years building AI SaaS",
-  "Clients in Africa, the US and the MENA region",
+
+const STATS = [
+  { value: "Top Rated", label: "on Upwork" },
+  { value: "100%", label: "Job Success" },
+  { value: "4+ yrs", label: "building SaaS" },
+];
+
+const FACTS = [
+  { k: "Response", v: "Within one working day" },
+  { k: "Based in", v: "Bahawalpur, Pakistan" },
+  { k: "Clients in", v: "Africa, the US, MENA" },
+  { k: "Contracts", v: "Milestone-based" },
+];
+
+const FAQS = [
+  {
+    q: "How quickly will you reply?",
+    a: "Within one working day. You get questions specific to your product or a first estimate, not a generic pitch.",
+  },
+  {
+    q: "What should I include in my brief?",
+    a: "A few lines are enough: what you are building and who it is for, where it stands today (an idea, designs, an existing codebase or a live product), your timeline, and a budget range if you have one.",
+  },
+  {
+    q: "How do you price projects?",
+    a: "Milestone-based contracts. After your brief I send a written scope with milestones, a timeline and an estimate. Each milestone ends with working software and a written progress report.",
+  },
+  {
+    q: "Can we talk on a call first?",
+    a: "Yes. Mention it in your brief and suggest two or three times that suit you. I send a calendar invite, and after the call you get a written scope and estimate.",
+  },
+  {
+    q: "Do you work through Upwork or directly?",
+    a: "Either. I am Top Rated on Upwork with a 100% Job Success Score, so you can send an offer there, or use this form and we agree terms directly.",
+  },
 ];
 
 const d = (i: number) => ({ "--i": i }) as CSSProperties;
@@ -38,86 +72,116 @@ export default function HirePage() {
             breadcrumb: { "@id": `${absoluteUrl(path)}#breadcrumb` },
           },
           breadcrumbNode(crumbs),
+          faqNode(path, FAQS),
         )}
       />
-      <div style={{ position: "relative" }}>
+
+      <header className="hx">
         <div className="grid" aria-hidden="true"></div>
-        <div className="wrap" style={{ position: "relative", paddingTop: 56, paddingBottom: 56 }}>
-          <div className="hp-crumbs">
+        <div className="wrap hx-in">
+          <div className="hp-in" style={d(0)}>
             <Breadcrumbs items={crumbs} />
           </div>
 
-          <section className="hp" aria-labelledby="hire-title">
-            <aside className="hm-info">
-              <div className="hm-grid" aria-hidden="true"></div>
-              <svg className="hm-star" width="200" height="200" viewBox="0 0 48 48" aria-hidden="true">
-                <path d={starPath} fill="#ECEAE4" />
-              </svg>
-              <p className="hm-eyebrow mono hp-in" style={d(0)}>
-                Start a project
+          <div className="hx-grid">
+            <div>
+              <p className="eyebrow hp-in" style={d(1)}>
+                Hire me
               </p>
-              <h1 id="hire-title" className="disp hm-title" aria-label="Tell me what you're building.">
+              <h1 className="disp hx-title" aria-label="Tell me what you're building.">
                 {HEADLINE.map((w, i) => (
                   <span key={w} className="hp-w" aria-hidden="true">
                     <span style={d(i)}>{w}</span>
                   </span>
                 ))}
               </h1>
-              <p className="hm-desc hp-in" style={d(5)}>
-                I reply within one working day with next steps and an honest estimate.
+              <p className="hx-lead hp-in" style={d(6)}>
+                I build SaaS and AI products from database to deploy. Send a short brief and you get a reply within one
+                working day with next steps and an honest estimate.
               </p>
-              <ul className="hm-proof">
-                {PROOF.map((p, i) => (
-                  <li key={p} className="hp-proof" style={d(6 + i)}>
-                    <span className="hm-tick" aria-hidden="true">
-                      <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M5 12.5l4.5 4.5L19 7.5" pathLength={1} />
-                      </svg>
-                    </span>
-                    {p}
-                  </li>
+              <a href="#brief" className="shine hx-cta hp-in" style={d(7)} data-track="cta_click" data-track-location="hire-hero">
+                Start your brief
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 5v14M6 13l6 6 6-6" />
+                </svg>
+              </a>
+              <dl className="hx-stats hp-in" style={d(8)}>
+                {STATS.map((s) => (
+                  <div key={s.label}>
+                    <dt className="disp">{s.value}</dt>
+                    <dd className="mono">{s.label}</dd>
+                  </div>
                 ))}
-              </ul>
-              <div className="hm-meta hp-in" style={d(10)}>
-                <span className="hm-avail mono">
-                  <span className="live-dot" aria-hidden="true"></span>
-                  Open for new projects
+              </dl>
+            </div>
+
+            <aside className="hx-card hp-rise" aria-label="About Zain Ul Hassan">
+              <div className="hx-who">
+                <span className="hx-ph">
+                  <Image src={PHOTO.src} alt="Zain Ul Hassan" width={128} height={128} sizes="64px" priority />
                 </span>
-                <div className="hm-links">
-                  <a href={mailto} className="hm-link" data-track="email_click" data-track-location="hire-page">
-                    {SITE.email}
-                  </a>
-                  <a
-                    href={SITE.upwork}
-                    {...external}
-                    className="hm-link"
-                    data-track="upwork_click"
-                    data-track-location="hire-page"
-                    aria-label="Hire me on Upwork (opens in a new tab)"
-                  >
-                    Hire me on Upwork ↗
-                  </a>
-                </div>
+                <span>
+                  <span className="hx-name">Zain Ul Hassan</span>
+                  <span className="hx-role">Senior full stack &amp; AI developer</span>
+                </span>
+              </div>
+              <span className="hm-avail mono hx-avail">
+                <span className="live-dot" aria-hidden="true"></span>
+                Open for new projects
+              </span>
+              <dl className="hx-facts">
+                {FACTS.map((f) => (
+                  <div key={f.k}>
+                    <dt className="mono">{f.k}</dt>
+                    <dd>{f.v}</dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="hx-links">
+                <a href={mailto} className="hx-link" data-track="email_click" data-track-location="hire-page">
+                  <span>{SITE.email}</span>
+                  <span aria-hidden="true">→</span>
+                </a>
+                <a
+                  href={SITE.upwork}
+                  {...external}
+                  className="hx-link"
+                  data-track="upwork_click"
+                  data-track-location="hire-page"
+                  aria-label="Hire me on Upwork (opens in a new tab)"
+                >
+                  <span>Hire me on Upwork</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </aside>
-
-            <div className="hm-body">
-              <ContactForm variant="page" source="hire-page" />
-            </div>
-          </section>
+          </div>
         </div>
+      </header>
+
+      <div className="wrap">
+        <section id="brief" className="hp hp-rise" aria-labelledby="brief-title">
+          <div className="hp-form">
+            <div className="hp-fhead">
+              <p className="eyebrow">Project brief</p>
+              <span className="hp-badge mono">
+                <span className="live-dot" aria-hidden="true"></span>
+                Reply within 1 working day
+              </span>
+            </div>
+            <h2 id="brief-title" className="disp hp-ftitle">
+              A few lines is enough to start.
+            </h2>
+            <BriefProgress />
+            <ContactForm variant="page" source="hire-page" />
+          </div>
+        </section>
       </div>
 
-      <div style={{ height: 40 }} />
+      <div className="hp-faq">
+        <Faq items={FAQS} title="Before you send a brief" />
+      </div>
+      <div style={{ height: 96 }} />
     </main>
   );
 }
