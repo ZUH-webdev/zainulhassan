@@ -1,4 +1,3 @@
-import CopyEmail from "@/components/CopyEmail";
 import HireButton from "@/components/hire/HireButton";
 import { external, mailto, SITE } from "@/lib/site";
 
@@ -86,7 +85,6 @@ export default function Cta() {
             >
               Email me
             </HireButton>
-            <CopyEmail />
             <a
               className="ghost-btn"
               href={SITE.upwork}

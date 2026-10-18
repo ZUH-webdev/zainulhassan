@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ContactForm from "@/components/hire/ContactForm";
 import JsonLd from "@/components/JsonLd";
@@ -15,17 +16,20 @@ const crumbs = [
 ];
 
 const starPath = "M24 2 C25 15 33 23 46 24 C33 25 25 33 24 46 C23 33 15 25 2 24 C15 23 23 15 24 2 Z";
+const HEADLINE = ["Tell", "me", "what", "you're", "building."];
 const PROOF = [
   "Top Rated on Upwork, 100% Job Success",
   "4+ years building AI SaaS",
   "Clients in Africa, the US and the MENA region",
 ];
 
+const d = (i: number) => ({ "--i": i }) as CSSProperties;
+
 export const metadata = buildMetadata({ title, description, path });
 
 export default function HirePage() {
   return (
-    <main>
+    <main className="hpage">
       <JsonLd
         data={graph(
           {
@@ -38,8 +42,10 @@ export default function HirePage() {
       />
       <div style={{ position: "relative" }}>
         <div className="grid" aria-hidden="true"></div>
-        <div className="wrap" style={{ position: "relative", paddingTop: 56, paddingBottom: 96 }}>
-          <Breadcrumbs items={crumbs} />
+        <div className="wrap" style={{ position: "relative", paddingTop: 56, paddingBottom: 56 }}>
+          <div className="hp-crumbs">
+            <Breadcrumbs items={crumbs} />
+          </div>
 
           <section className="hp" aria-labelledby="hire-title">
             <aside className="hm-info">
@@ -47,14 +53,22 @@ export default function HirePage() {
               <svg className="hm-star" width="200" height="200" viewBox="0 0 48 48" aria-hidden="true">
                 <path d={starPath} fill="#ECEAE4" />
               </svg>
-              <p className="hm-eyebrow mono">Start a project</p>
-              <h1 id="hire-title" className="disp hm-title">
-                Tell me what you&apos;re building.
+              <p className="hm-eyebrow mono hp-in" style={d(0)}>
+                Start a project
+              </p>
+              <h1 id="hire-title" className="disp hm-title" aria-label="Tell me what you're building.">
+                {HEADLINE.map((w, i) => (
+                  <span key={w} className="hp-w" aria-hidden="true">
+                    <span style={d(i)}>{w}</span>
+                  </span>
+                ))}
               </h1>
-              <p className="hm-desc">I reply within one working day with next steps and an honest estimate.</p>
+              <p className="hm-desc hp-in" style={d(5)}>
+                I reply within one working day with next steps and an honest estimate.
+              </p>
               <ul className="hm-proof">
-                {PROOF.map((p) => (
-                  <li key={p}>
+                {PROOF.map((p, i) => (
+                  <li key={p} className="hp-proof" style={d(6 + i)}>
                     <span className="hm-tick" aria-hidden="true">
                       <svg
                         width="12"
@@ -66,14 +80,14 @@ export default function HirePage() {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       >
-                        <path d="M5 12.5l4.5 4.5L19 7.5" />
+                        <path d="M5 12.5l4.5 4.5L19 7.5" pathLength={1} />
                       </svg>
                     </span>
                     {p}
                   </li>
                 ))}
               </ul>
-              <div className="hm-meta">
+              <div className="hm-meta hp-in" style={d(10)}>
                 <span className="hm-avail mono">
                   <span className="live-dot" aria-hidden="true"></span>
                   Open for new projects
@@ -102,6 +116,8 @@ export default function HirePage() {
           </section>
         </div>
       </div>
+
+      <div style={{ height: 40 }} />
     </main>
   );
 }

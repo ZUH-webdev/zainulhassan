@@ -117,7 +117,7 @@ a{color:inherit;text-decoration:none}
 .mq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .mq-in{display:flex;width:max-content;animation:marquee 38s linear infinite}
 .mq-in.rev{animation:marqueeR 34s linear infinite}
-.mq.slow .mq-in{animation-duration:55s}
+.mq.slow .mq-in{animation-duration:24s}
 @media (hover:hover) and (pointer:fine){.mq:hover .mq-in{animation-play-state:paused}}
 .mq-in>*{flex:none;margin-right:14px}
 .big{font-family:var(--font-bricolage),'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,6vw,84px);letter-spacing:-.03em;line-height:1.1;white-space:nowrap;margin-right:36px}
@@ -585,7 +585,7 @@ html.menu-open body{overflow:hidden;overscroll-behavior:contain}
 @media (max-width:767px){
   .mq-in{animation-duration:52s}
   .mq-in.rev{animation-duration:46s}
-  .mq.slow .mq-in{animation-duration:75s}
+  .mq.slow .mq-in{animation-duration:32s}
   .mq-in>*{margin-right:10px}
   .big{font-size:min(clamp(40px,6vw,84px),clamp(28px,8vw,84px));margin-right:20px}
   .big em{margin-left:20px}
@@ -808,3 +808,14 @@ html.menu-open body{overflow:hidden;overscroll-behavior:contain}
   .ft-grid{grid-template-columns:minmax(0,1fr)}
   .ft-svc,.ft-work{grid-column:1 / -1}
 }
+
+/* Custom cursor (components/CustomCursor.tsx); .has-cursor is only set on hover+fine-pointer devices. */
+.zcursor{display:none}
+.has-cursor,.has-cursor *,.has-cursor ::backdrop{cursor:none!important}
+.has-cursor textarea,.has-cursor [contenteditable="true"],.has-cursor input:not([type=checkbox],[type=radio],[type=range],[type=color],[type=file],[type=button],[type=submit],[type=reset],[type=image]){cursor:text!important}
+.has-cursor .zcursor{display:block;position:fixed;inset:auto;top:0;left:0;width:12px;height:12px;margin:-6px 0 0 -6px;padding:0;border:0;overflow:visible;border-radius:50%;background:var(--ac,#D4FF3F);pointer-events:none;z-index:2147483647;opacity:0;will-change:translate,scale;translate:-100px -100px 0;mix-blend-mode:difference}
+.zcursor[data-show="1"]{opacity:1}
+.zcursor[data-hover="1"]{scale:2.4;box-shadow:0 0 24px var(--ac,#D4FF3F)}
+.zcursor[data-show="1"][data-hover="1"]{opacity:.35}
+.zcursor[data-down="1"]{scale:.7}
+@media (prefers-reduced-motion:no-preference){.zcursor{transition:scale .2s cubic-bezier(.2,.8,.2,1),opacity .2s ease,box-shadow .2s ease}}

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, DM_Sans, JetBrains_Mono } from "next/font/google";
 import Analytics from "@/components/Analytics";
+import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
 import ModalProvider from "@/components/hire/ModalProvider";
 import Nav from "@/components/Nav";
@@ -91,6 +92,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           </ModalProvider>
         </div>
         <Analytics />
+        <CustomCursor />
       </body>
     </html>
   );
