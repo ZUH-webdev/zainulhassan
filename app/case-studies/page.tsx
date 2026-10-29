@@ -4,6 +4,8 @@ import PageCta from "@/components/PageCta";
 import PageHeader from "@/components/PageHeader";
 import Related from "@/components/Related";
 import { caseStudies } from "@/content/case-studies";
+import { work } from "@/content/work";
+import { flutron } from "@/content/work/flutron";
 import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 
@@ -39,13 +41,29 @@ export default function CaseStudiesPage() {
         id="all-case-studies"
         eyebrow="Selected work"
         title="Projects"
-        items={caseStudies.map((c) => ({
-          href: `/case-studies/${c.slug}`,
-          kicker: c.kicker,
-          title: c.name,
-          text: `${c.summary} ${c.headlineFact}.`,
-          cta: "Read the case study",
-        }))}
+        items={[
+          ...caseStudies.map((c) => ({
+            href: `/case-studies/${c.slug}`,
+            kicker: c.kicker,
+            title: c.name,
+            text: `${c.summary} ${c.headlineFact}.`,
+            cta: "Read the case study",
+          })),
+          {
+            href: `/work/${flutron.slug}`,
+            kicker: "Client site · Drone light shows",
+            title: flutron.client,
+            text: flutron.cardBody,
+            cta: "Read the case study",
+          },
+          ...work.map((w) => ({
+            href: `/work/${w.slug}`,
+            kicker: `${w.badge} · ${w.type}`,
+            title: w.title,
+            text: w.pitch,
+            cta: "Read the case study",
+          })),
+        ]}
       />
       <PageCta location="case-study" />
     </main>

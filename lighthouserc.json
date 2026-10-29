@@ -6,7 +6,8 @@
       "url": [
         "http://localhost:3000/",
         "http://localhost:3000/services/ai-developer",
-        "http://localhost:3000/blog/supabase-rls-mistakes"
+        "http://localhost:3000/blog/supabase-rls-mistakes",
+        "http://localhost:3000/work/flutron"
       ],
       "numberOfRuns": 3,
       "settings": {

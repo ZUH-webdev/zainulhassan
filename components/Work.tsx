@@ -1,4 +1,8 @@
 import type { ReactNode } from "react";
+import type { CaseStudy } from "@/content/work";
+import { flutron } from "@/content/work/flutron";
+import { pulse } from "@/content/work/pulse";
+import { sentinel } from "@/content/work/sentinel";
 
 const barHeights = ["35%", "50%", "42%", "68%", "60%", "82%", "100%"];
 const jobs = ["Maths Teacher", "Primary Teacher", "ESL Teacher", "Science Teacher"];
@@ -81,9 +85,104 @@ const VelocityViz = () => (
   </div>
 );
 
+const heart = [".XX...XX.", "XXXX.XXXX", "XXXXXXXXX", ".XXXXXXX.", "..XXXXX..", "...XXX...", "....X...."];
+
+const FlutronViz = () => (
+  <div className="viz">
+    <div
+      className="mono"
+      style={{
+        position: "absolute",
+        left: 20,
+        top: 14,
+        fontSize: 12,
+        color: "#9A9DA6",
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+      }}
+    >
+      <span className="live-dot"></span>Drone formation
+    </div>
+    <div className="drones">
+      {heart.flatMap((row, y) =>
+        [...row].map((c, x) => (
+          <i key={`${x}-${y}`} className={c === "X" ? "on" : undefined} style={{ "--k": x + y } as React.CSSProperties}></i>
+        )),
+      )}
+    </div>
+  </div>
+);
+
+const themeHeights = ["100%", "78%", "64%", "52%", "40%", "31%", "24%"];
+
+const PulseViz = () => (
+  <div className="viz">
+    <div
+      className="mono"
+      style={{
+        position: "absolute",
+        left: 20,
+        top: 14,
+        fontSize: 12,
+        color: "#9A9DA6",
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+      }}
+    >
+      <span className="live-dot"></span>Feedback themes, ranked
+    </div>
+    <div className="bars">
+      {themeHeights.map((h, k) => (
+        <i key={k} style={{ "--k": k, height: h } as React.CSSProperties}></i>
+      ))}
+    </div>
+  </div>
+);
+
+const findings = [
+  ["RLS disabled on table", "Critical"],
+  ["Policy allows any user", "High"],
+  ["Route skips auth check", "High"],
+  ["Missing ownership check", "Medium"],
+];
+
+const SentinelViz = () => (
+  <div className="viz">
+    <div className="vs">
+      <div className="vs-in">
+        {[...findings, ...findings].map(([title, severity], i) => (
+          <div key={i} className="job">
+            <span>{title}</span>
+            <span className="mono" style={{ fontSize: 12, color: "var(--ac)" }}>
+              {severity}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+/** Card for a /work case study: kicker from badge and type, bullets from the first features. */
+const workCard = (w: CaseStudy, reveal: Project["reveal"], viz: ReactNode, tags: string[]): Project => ({
+  reveal,
+  slug: w.slug,
+  href: `/work/${w.slug}`,
+  kicker: `${w.badge} · ${w.type}`.toUpperCase(),
+  title: w.client || w.title,
+  body: w.pitch,
+  tags,
+  viz,
+  bullets: w.features.slice(0, 4).map((f) => f.title),
+});
+
 type Project = {
   reveal: "rvl" | "rvr";
   slug: string;
+  /** Case study URL; defaults to /case-studies/<slug>. */
+  href?: string;
   kicker: string;
   title: string;
   body: string;
@@ -132,6 +231,19 @@ const projects: Project[] = [
     viz: <VelocityViz />,
     bullets: ["Dashboard and auth for business owners", "Twilio and Resend integrations", "Live at velocity-ai.site"],
   },
+  {
+    reveal: "rvr",
+    slug: flutron.slug,
+    href: `/work/${flutron.slug}`,
+    kicker: flutron.kicker,
+    title: flutron.client,
+    body: flutron.cardBody,
+    tags: ["Multilingual", "Booking flow", "Pricing pages"],
+    viz: <FlutronViz />,
+    bullets: flutron.cardBullets,
+  },
+  workCard(pulse, "rvl", <PulseViz />, ["Next.js", "Supabase", "pgvector", "OpenAI"]),
+  workCard(sentinel, "rvr", <SentinelViz />, ["Next.js", "Supabase", "Edge Functions", "OpenAI"]),
 ];
 
 export default function Work() {
@@ -148,7 +260,7 @@ export default function Work() {
                 {p.kicker}
               </div>
               <h3 className="disp wtitle">
-                <a className="tlink" href={`/case-studies/${p.slug}`}>
+                <a className="tlink" href={p.href ?? `/case-studies/${p.slug}`}>
                   {p.title}
                 </a>
               </h3>
@@ -160,6 +272,15 @@ export default function Work() {
                   </span>
                 ))}
               </div>
+              <a
+                className="ghost-btn wcta mono"
+                href={p.href ?? `/case-studies/${p.slug}`}
+                aria-label={`Read the ${p.title} case study`}
+                data-track="cta_click"
+                data-track-location="home-work"
+              >
+                Read case study →
+              </a>
             </div>
             <div className="wcol wviz">
               {p.viz}

@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { posts } from "@/content/blog";
 import { caseStudies } from "@/content/case-studies";
 import { services } from "@/content/services";
+import { work } from "@/content/work";
+import { flutron } from "@/content/work/flutron";
 import { absoluteUrl } from "@/lib/seo";
 import { SITE_UPDATED } from "@/lib/site";
 
@@ -28,6 +30,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly" as const,
       priority: 0.7,
     })),
+    ...work.map((w) => ({
+      url: absoluteUrl(`/work/${w.slug}`),
+      lastModified: SITE_UPDATED,
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
+    })),
+    {
+      url: absoluteUrl(`/work/${flutron.slug}`),
+      lastModified: flutron.dateModified,
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
     { url: absoluteUrl("/blog"), lastModified: latestPost, changeFrequency: "weekly", priority: 0.7 },
     ...posts.map((p) => ({
       url: absoluteUrl(`/blog/${p.slug}`),
