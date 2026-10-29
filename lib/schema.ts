@@ -34,7 +34,7 @@ export const personNode = (): Node => ({
     "Stripe",
     "Paystack",
   ],
-  address: { "@type": "PostalAddress", addressLocality: "Bahawalpur", addressCountry: "PK" },
+  address: { "@type": "PostalAddress", addressCountry: "PK" },
   image: {
     "@type": "ImageObject",
     url: absoluteUrl(PHOTO.src),

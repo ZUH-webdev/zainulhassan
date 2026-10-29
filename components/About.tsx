@@ -4,7 +4,7 @@ import { PHOTO, external, SITE } from "@/lib/site";
 
 const words = ["Hi,", "I'm", "Zain."];
 const role = "Senior Full Stack Developer · AI SaaS";
-const facts = ["Bahawalpur, Pakistan", "Africa · US · MENA", "4+ years"];
+const facts = ["Pakistan", "Africa · US · MENA", "4+ years"];
 
 export default function About() {
   return (
@@ -72,7 +72,7 @@ export default function About() {
           <span className="acur" aria-hidden="true"></span>
         </div>
         <p className="rv d1" style={{ margin: "0 0 18px", color: "#9A9DA6" }}>
-          I&apos;m a senior full stack developer based in Bahawalpur, Pakistan, working with founders and teams across Africa,
+          I&apos;m a senior full stack developer based in Pakistan, working with founders and teams across Africa,
           the US and the MENA region.
         </p>
         <p className="rv d2" style={{ margin: "0 0 18px", color: "#9A9DA6" }}>

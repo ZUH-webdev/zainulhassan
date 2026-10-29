@@ -131,7 +131,7 @@ export default function ContactPage() {
               Where I work
             </h2>
             <p>
-              I&apos;m based in Bahawalpur, Pakistan, and work remotely with clients in Africa, the US and the MENA region.
+              I&apos;m based in Pakistan, and work remotely with clients in Africa, the US and the MENA region.
             </p>
           </section>
 

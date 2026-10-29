@@ -12,7 +12,7 @@ export function GET() {
 
 > ${BIO}
 
-Based in Bahawalpur, Pakistan. 4+ years of experience. Clients in Africa, the US and the MENA region.
+Based in Pakistan. 4+ years of experience. Clients in Africa, the US and the MENA region.
 Stack: Next.js, React, TypeScript, Supabase (PostgreSQL, Auth, RLS, Edge Functions), Node.js, OpenAI and Claude APIs, Stripe, Paystack.
 
 ## Services

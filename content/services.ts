@@ -37,7 +37,7 @@ const UPWORK_PROOF =
   "On Upwork I am Top Rated with a 100% Job Success Score, which comes from saying what I will deliver and then delivering it, milestone by milestone.";
 
 export const AREA_NOTE =
-  "I work remotely from Bahawalpur, Pakistan, with clients in Africa, the US and the MENA region. Every project runs on written progress reports, so decisions do not wait for a shared working hour.";
+  "I work remotely from Pakistan, with clients in Africa, the US and the MENA region. Every project runs on written progress reports, so decisions do not wait for a shared working hour.";
 
 export const services: Service[] = [
   {
@@ -597,7 +597,7 @@ export const services: Service[] = [
       },
       {
         q: "Do you work with non-US clients?",
-        a: "Yes. I work remotely from Bahawalpur, Pakistan, with clients in Africa, the US and the MENA region. LeadsMind serves African businesses and World Teachers Academy is a South African business, so I am used to regional payment providers, time-zone gaps and written, asynchronous updates that keep a project moving.",
+        a: "Yes. I work remotely from Pakistan, with clients in Africa, the US and the MENA region. LeadsMind serves African businesses and World Teachers Academy is a South African business, so I am used to regional payment providers, time-zone gaps and written, asynchronous updates that keep a project moving.",
       },
       {
         q: "Can you take over an existing codebase?",

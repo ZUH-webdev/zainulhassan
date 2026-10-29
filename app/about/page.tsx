@@ -12,7 +12,7 @@ import { BIO, SITE, external, mailto } from "@/lib/site";
 const path = "/about";
 const title = "About Me: Senior Full Stack Developer";
 const description =
-  "Zain Ul Hassan is a senior full stack developer in Bahawalpur, Pakistan, building AI-powered SaaS with Next.js and Supabase. Top Rated on Upwork, 100% JSS.";
+  "Zain Ul Hassan is a senior full stack developer from Pakistan, building AI-powered SaaS with Next.js and Supabase. Top Rated on Upwork, 100% JSS.";
 const crumbs = [
   { name: "Home", path: "/" },
   { name: "About", path },
@@ -68,7 +68,7 @@ export default function AboutPage() {
               Who I am
             </h2>
             <p>
-              I&apos;m a senior full stack developer based in Bahawalpur, Pakistan, with 4+ years of experience. I work with
+              I&apos;m a senior full stack developer based in Pakistan, with 4+ years of experience. I work with
               founders and teams across Africa, the US and the MENA region, building AI-powered SaaS applications from
               database architecture to payments to production deploys.
             </p>
@@ -126,7 +126,7 @@ export default function AboutPage() {
               Location and education
             </h2>
             <p>
-              I live and work in Bahawalpur, Pakistan, and work remotely with clients in Africa, the US and the MENA region.
+              I live and work in Pakistan, and work remotely with clients in Africa, the US and the MENA region.
               I&apos;m finishing a BS in Software Engineering.
             </p>
           </section>
