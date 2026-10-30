@@ -515,10 +515,13 @@ input,select,textarea{font-size:16px}
 .burger:active{transform:scale(.94)}
 
 /* mobile menu panel (portaled to <body>, so it sets its own tokens) */
+/* Lock only <html>: its overflow goes to the viewport. Also locking <body> would make body the
+   scroll container, so the sticky .nav and the scroll(nearest) .prog bar would snap back to the top. */
 html.menu-open{overflow:hidden;overscroll-behavior:contain;padding-right:var(--sbw,0px)}
-html.menu-open body{overflow:hidden;overscroll-behavior:contain}
-.mm{--ac:#D4FF3F;position:fixed;inset:0;height:100vh;height:100dvh;z-index:45;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;color:#ECEAE4;font-family:var(--font-dm-sans),'DM Sans',system-ui,sans-serif;font-size:17px;line-height:1.6;background:rgba(10,11,13,.96);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);visibility:hidden;clip-path:circle(0px at var(--mx,100%) var(--my,0px));transition:clip-path .32s cubic-bezier(.4,0,.2,1),visibility 0s linear .32s}
-.mm.open{visibility:visible;clip-path:circle(150% at var(--mx,100%) var(--my,0px));transition:clip-path .55s cubic-bezier(.2,.8,.2,1),visibility 0s;will-change:clip-path}
+/* Opaque fill, no backdrop-filter: re-blurring the page on every frame of the clip-path reveal flickers on mobile GPUs.
+   will-change stays on so the layer already exists when the reveal starts. */
+.mm{--ac:#D4FF3F;position:fixed;inset:0;height:100vh;height:100dvh;z-index:45;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;color:#ECEAE4;font-family:var(--font-dm-sans),'DM Sans',system-ui,sans-serif;font-size:17px;line-height:1.6;background:#0A0B0D;visibility:hidden;clip-path:circle(0px at var(--mx,100%) var(--my,0px));will-change:clip-path;transition:clip-path .32s cubic-bezier(.4,0,.2,1),visibility 0s linear .32s}
+.mm.open{visibility:visible;clip-path:circle(150% at var(--mx,100%) var(--my,0px));transition:clip-path .55s cubic-bezier(.2,.8,.2,1),visibility 0s}
 @supports not (clip-path:circle(1px at 0 0)){
   .mm{clip-path:none;opacity:0;transition:opacity .2s ease,visibility 0s linear .2s}
   .mm.open{opacity:1;transition:opacity .3s ease,visibility 0s}
