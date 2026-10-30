@@ -1,5 +1,5 @@
 /**
- * Case study shape for /work/[slug].
+ * Case study shape for concept projects, rendered by /case-studies/[slug].
  * Empty strings and empty arrays hide their section on the page.
  */
 export type CaseStudy = {
@@ -27,6 +27,8 @@ export type CaseStudy = {
   decisions: { title: string; why: string }[];
   challenges: { challenge: string; solution: string }[];
   roadmap: string[];
+  /** Service page slugs this project demonstrates (concept projects). */
+  services?: string[];
   /** Verified outcomes only, never estimates. */
   results?: string[];
 
@@ -50,7 +52,7 @@ export type CaseStudy = {
 };
 
 /**
- * Client case study shape for dedicated /work/<slug> pages (e.g. /work/flutron).
+ * Client case study shape for dedicated /case-studies/<slug> pages (e.g. /case-studies/flutron).
  * Same rule as above: empty strings and empty arrays hide their item or section, so
  * unconfirmed copy can sit in the data file as "" and never reach the page.
  */

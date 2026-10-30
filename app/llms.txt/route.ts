@@ -1,5 +1,5 @@
 import { posts } from "@/content/blog";
-import { caseStudies } from "@/content/case-studies";
+import { allCaseStudies } from "@/content/case-studies";
 import { services } from "@/content/services";
 import { absoluteUrl } from "@/lib/seo";
 import { BIO, SITE } from "@/lib/site";
@@ -19,7 +19,7 @@ Stack: Next.js, React, TypeScript, Supabase (PostgreSQL, Auth, RLS, Edge Functio
 ${services.map((s) => `- [${s.name}](${absoluteUrl(`/services/${s.slug}`)}): ${s.summary}`).join("\n")}
 
 ## Case studies
-${caseStudies.map((c) => `- [${c.name}](${absoluteUrl(`/case-studies/${c.slug}`)}): ${c.summary}`).join("\n")}
+${allCaseStudies.map((c) => `- [${c.name}](${absoluteUrl(`/case-studies/${c.slug}`)}): ${c.summary}`).join("\n")}
 
 ## Guides
 ${posts.map((p) => `- [${p.title}](${absoluteUrl(`/blog/${p.slug}`)})`).join("\n")}

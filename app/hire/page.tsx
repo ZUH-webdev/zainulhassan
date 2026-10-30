@@ -93,7 +93,8 @@ export default function HirePage() {
             <h1 className="disp hx-title" aria-label="Tell me what you're building.">
               {HEADLINE.map((w, i) => (
                 <span key={w} className="hp-w" aria-hidden="true">
-                  <span style={d(i)}>{w}</span>
+                  {/* Trailing space collapses inside the inline-block (no visual change) but gives crawlers separate words. */}
+                  <span style={d(i)}>{w}</span>{" "}
                 </span>
               ))}
             </h1>

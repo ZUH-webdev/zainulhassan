@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CaseStudyPager from "@/components/CaseStudyPager";
 import JsonLd from "@/components/JsonLd";
 import FlagshipCaseStudy from "@/components/work/FlagshipCaseStudy";
 import { leadsmind as s } from "@/content/work/leadsmind";
@@ -50,6 +51,7 @@ export default function LeadsMindCaseStudy() {
         )}
       />
       <FlagshipCaseStudy study={s} crumbs={crumbs} />
+      <CaseStudyPager slug={s.slug} />
     </main>
   );
 }

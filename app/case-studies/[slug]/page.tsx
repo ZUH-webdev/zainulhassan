@@ -1,83 +1,135 @@
 import { notFound } from "next/navigation";
+import CaseStudyPager from "@/components/CaseStudyPager";
 import CtaButtons from "@/components/CtaButtons";
 import JsonLd from "@/components/JsonLd";
 import PageCta from "@/components/PageCta";
 import PageHeader from "@/components/PageHeader";
 import Related from "@/components/Related";
 import { Blocks } from "@/components/Rich";
+import ConceptCaseStudy from "@/components/work/ConceptCaseStudy";
 import { caseStudies, caseStudyBySlug } from "@/content/case-studies";
 import { serviceBySlug } from "@/content/services";
 import { testimonialForCaseStudy } from "@/content/testimonials";
+import { work, workBySlug } from "@/content/work";
 import { breadcrumbNode, graph, ids, webPageNode } from "@/lib/schema";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { SHOW_TESTIMONIALS, external } from "@/lib/site";
 
 export const dynamicParams = false;
 
+/** Client case studies from content/case-studies.ts plus concept projects from content/work. */
 export function generateStaticParams() {
-  return caseStudies.filter((c) => !c.ownRoute).map((c) => ({ slug: c.slug }));
+  return [...caseStudies.filter((c) => !c.ownRoute), ...work].map((c) => ({ slug: c.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props) {
-  const c = caseStudyBySlug((await params).slug);
-  if (!c) return {};
-  return buildMetadata({
-    title: c.metaTitle,
-    description: c.description,
-    path: `/case-studies/${c.slug}`,
-    type: "article",
-    publishedTime: c.datePublished,
-    modifiedTime: c.dateModified,
-  });
+  const slug = (await params).slug;
+  const path = `/case-studies/${slug}`;
+  const c = caseStudyBySlug(slug);
+  if (c)
+    return buildMetadata({
+      title: c.metaTitle,
+      description: c.description,
+      path,
+      type: "article",
+      publishedTime: c.datePublished,
+      modifiedTime: c.dateModified,
+    });
+  const w = workBySlug(slug);
+  return w ? buildMetadata({ title: w.metaTitle, description: w.metaDescription, path }) : {};
+}
+
+/** "The services this project proves" cards. */
+function ServiceLinks({ slugs }: { slugs: string[] }) {
+  if (slugs.length === 0) return null;
+  return (
+    <Related
+      id="proves"
+      eyebrow="Services"
+      title="The services this project proves"
+      items={slugs.map((slug) => {
+        const s = serviceBySlug(slug)!;
+        return { href: `/services/${s.slug}`, kicker: "Service", title: s.name, text: s.summary, cta: `See the ${s.name.toLowerCase()} service` };
+      })}
+    />
+  );
 }
 
 export default async function CaseStudyPage({ params }: Props) {
-  const c = caseStudyBySlug((await params).slug);
-  if (!c) notFound();
-  const path = `/case-studies/${c.slug}`;
-  const quote = SHOW_TESTIMONIALS ? testimonialForCaseStudy(c.slug) : undefined;
+  const slug = (await params).slug;
+  const path = `/case-studies/${slug}`;
+  const c = caseStudyBySlug(slug);
+  const w = c ? undefined : workBySlug(slug);
+  if (!c && !w) notFound();
   const crumbs = [
     { name: "Home", path: "/" },
     { name: "Case studies", path: "/case-studies" },
-    { name: c.name, path },
+    { name: c?.name ?? w!.title, path },
   ];
 
+  if (w)
+    return (
+      <main>
+        <JsonLd
+          data={graph(
+            { ...webPageNode(path, w.title, w.metaDescription), breadcrumb: { "@id": `${absoluteUrl(path)}#breadcrumb` } },
+            {
+              "@type": "CreativeWork",
+              "@id": `${absoluteUrl(path)}#work`,
+              name: w.title,
+              description: w.pitch,
+              creator: { "@id": ids.person },
+              mainEntityOfPage: { "@id": `${absoluteUrl(path)}#webpage` },
+              keywords: w.stack.join(", "),
+            },
+            breadcrumbNode(crumbs),
+          )}
+        />
+        <ConceptCaseStudy study={w} crumbs={crumbs} />
+        <ServiceLinks slugs={w.services ?? []} />
+        <CaseStudyPager slug={slug} />
+        <PageCta location="case-study" />
+      </main>
+    );
+
+  const cs = c!;
+  const quote = SHOW_TESTIMONIALS ? testimonialForCaseStudy(cs.slug) : undefined;
   return (
     <main>
       <JsonLd
         data={graph(
-          { ...webPageNode(path, c.h1, c.description), breadcrumb: { "@id": `${absoluteUrl(path)}#breadcrumb` } },
+          { ...webPageNode(path, cs.h1, cs.description), breadcrumb: { "@id": `${absoluteUrl(path)}#breadcrumb` } },
           {
             "@type": "Article",
             "@id": `${absoluteUrl(path)}#article`,
-            headline: c.h1,
-            description: c.description,
+            headline: cs.h1,
+            description: cs.description,
             author: { "@id": ids.person },
             publisher: { "@id": ids.person },
-            datePublished: c.datePublished,
-            dateModified: c.dateModified,
+            datePublished: cs.datePublished,
+            dateModified: cs.dateModified,
             image: absoluteUrl(`${path}/opengraph-image/og`),
             mainEntityOfPage: { "@id": `${absoluteUrl(path)}#webpage` },
-            about: c.stack,
+            about: cs.stack,
           },
           breadcrumbNode(crumbs),
         )}
       />
 
-      <PageHeader crumbs={crumbs} eyebrow={c.kicker} title={c.h1} lead={c.intro}>
+      <PageHeader crumbs={crumbs} eyebrow={cs.kicker} title={cs.h1} lead={cs.intro}>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 28 }}>
-          {c.stack.map((t) => (
+          {cs.stack.map((t) => (
             <span key={t} className="pill">
               {t}
             </span>
           ))}
         </div>
-        {c.link && (
+        {cs.link && (
           <p className="mono" style={{ margin: "20px 0 0", fontSize: 13 }}>
-            <a className="tl" href={c.link.href} {...external}>
-              {c.link.label}
+            <a className="tl" href={cs.link.href} {...external}>
+              {cs.link.label}
             </a>
           </p>
         )}
@@ -86,7 +138,7 @@ export default async function CaseStudyPage({ params }: Props) {
 
       <article className="wrap" style={{ paddingTop: 56 }}>
         <div className="prose">
-          {c.sections.map((sec) => (
+          {cs.sections.map((sec) => (
             <section key={sec.id} id={sec.id} aria-labelledby={`${sec.id}-h`}>
               <h2 id={`${sec.id}-h`} className="ah2">
                 {sec.title}
@@ -110,25 +162,8 @@ export default async function CaseStudyPage({ params }: Props) {
         </div>
       </article>
 
-      <Related
-        id="proves"
-        eyebrow="Services"
-        title="The services this project proves"
-        items={c.services.map((slug) => {
-          const s = serviceBySlug(slug)!;
-          return { href: `/services/${s.slug}`, kicker: "Service", title: s.h1.replace(/:.*/, ""), text: s.summary, cta: "See the service" };
-        })}
-      />
-
-      <Related
-        id="more-work"
-        eyebrow="More work"
-        title="Other case studies"
-        items={caseStudies
-          .filter((o) => o.slug !== c.slug)
-          .map((o) => ({ href: `/case-studies/${o.slug}`, kicker: o.kicker, title: o.name, text: o.summary, cta: "Read the case study" }))}
-      />
-
+      <ServiceLinks slugs={cs.services} />
+      <CaseStudyPager slug={slug} />
       <PageCta location="case-study" />
     </main>
   );

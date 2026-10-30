@@ -2,14 +2,16 @@ import type { Post } from "./types";
 
 export const post: Post = {
   slug: "stripe-vs-paystack",
+  shortTitle: "Stripe vs Paystack",
   title: "Stripe vs Paystack for SaaS in Africa",
   metaTitle: "Stripe vs Paystack for SaaS in Africa",
   description:
     "Paystack vs Stripe for a SaaS selling in Africa: country support, local payment methods, subscriptions, developer experience and what migrating involves.",
   keyword: "paystack vs stripe",
   datePublished: "2026-10-17",
-  dateModified: "2026-10-18",
+  dateModified: "2026-10-30",
   service: "payments-integration",
+  caseStudy: "leadsmind",
   related: ["saas-mvp-cost", "what-is-mvp-in-software-development", "supabase-rls-mistakes"],
   intro:
     "If your SaaS is registered in, and sells mainly to, African markets such as Nigeria, Ghana, Kenya or South Africa, Paystack is usually the better fit: it supports local payment methods and currencies your customers already use. Stripe is the stronger choice for products sold globally, with more advanced subscription billing. Many teams start with one and move later.",
@@ -69,6 +71,26 @@ export const post: Post = {
       ],
     },
     {
+      id: "fees-payouts",
+      title: "Fees, currencies and payouts: what to compare",
+      blocks: [
+        {
+          p: "Both providers publish their transaction fees, and both change them from time to time, so I will not quote numbers here. What matters more than the headline rate is how the fee applies to your customers. Compare these on the current [Paystack pricing](https://paystack.com/pricing) and [Stripe pricing](https://stripe.com/pricing) pages, using the countries and payment methods you actually expect:",
+        },
+        {
+          ul: [
+            "**Local versus international cards.** Fees often differ depending on where the card was issued, so a product with mostly local customers and one with mostly foreign customers can see very different effective costs.",
+            "**Currency conversion.** If customers pay in one currency and you are paid out in another, conversion adds a cost and a delay in your reporting.",
+            "**Payout schedule and destination.** Check which bank accounts and currencies each provider can settle to for your country, and how long funds take to arrive.",
+            "**Refunds and disputes.** Look at how each provider handles a refund or a chargeback, because support time costs more than the fee.",
+          ],
+        },
+        {
+          p: "Run a simple example before you decide: take a typical month of expected customers, split them by country and payment method, and work out what each provider would charge and pay out. The answer is often clearer than any feature list.",
+        },
+      ],
+    },
+    {
       id: "integration",
       title: "How the integration differs in a Next.js SaaS",
       blocks: [
@@ -79,6 +101,26 @@ export const post: Post = {
             "**Source of truth**: store subscription status in your own database and gate features from it, enforced on the server and with Row Level Security, not only in the UI.",
             "**Testing**: both provide test modes. Test renewals, failed payments and cancellations, not just the first purchase.",
           ],
+        },
+      ],
+    },
+    {
+      id: "both-providers",
+      title: "Running Stripe and Paystack in the same product",
+      blocks: [
+        {
+          p: "You do not always have to choose. A product that sells both locally in Africa and internationally can offer Paystack to some customers and Stripe to others. The trick is to keep the rest of the app unaware of which provider a customer used.",
+        },
+        {
+          ol: [
+            "Keep one subscriptions table in your own database, with a column for the provider and one for the provider's subscription ID.",
+            "Write one webhook handler per provider, and have each translate its events into the same small set of internal changes: activated, renewed, payment failed, cancelled.",
+            "Gate features from your own subscription record only, never from a live call to either provider.",
+            "Choose the provider at checkout from the customer's country or currency, and store that choice so renewals stay with the same provider.",
+          ],
+        },
+        {
+          p: "Built this way, adding or removing a provider later touches the checkout and one webhook handler, not every screen that checks a plan.",
         },
       ],
     },
@@ -154,6 +196,35 @@ export const post: Post = {
         },
       ],
     },
+    {
+      id: "checklist",
+      title: "A decision checklist",
+      blocks: [
+        { p: "Answer these before you write any billing code. If most of your answers point the same way, the decision is made." },
+        {
+          ol: [
+            "Where is your business registered, and which provider can onboard a business from that country?",
+            "Where are most of your paying customers, and which payment methods do they use today?",
+            "Which currencies do you want to charge in, and which currency do you want to be paid out in?",
+            "Are your plans fixed monthly or yearly prices, or do you need usage-based billing and proration?",
+            "Do you need a hosted customer portal, or will you build a billing page inside your app?",
+            "Will you sell outside Africa within the next year, and would that mean adding a second provider?",
+          ],
+        },
+        {
+          p: "Billing is also one of the drivers of your build budget. My guide to [what a SaaS MVP costs](/blog/saas-mvp-cost) explains why payments are the one integration most MVPs should not postpone.",
+        },
+      ],
+    },
+    {
+      id: "conclusion",
+      title: "Conclusion",
+      blocks: [
+        {
+          p: "Stripe and Paystack are both solid choices; the right one depends on where you and your customers are. Paystack wins when local payment methods and currencies in supported African countries decide whether customers can pay at all. Stripe wins for global sales and complex billing. Whichever you choose, keep subscription state in your own database, verify every webhook and plan for failed payments, and switching or adding a provider later stays manageable.",
+        },
+      ],
+    },
   ],
   sources: [
     { label: "Wikipedia: Paystack (acquisition by Stripe)", href: "https://en.wikipedia.org/wiki/Paystack" },
@@ -161,5 +232,7 @@ export const post: Post = {
     { label: "Paystack subscriptions", href: "https://paystack.com/docs/payments/subscriptions/" },
     { label: "Stripe global availability", href: "https://stripe.com/global" },
     { label: "Stripe Billing documentation", href: "https://docs.stripe.com/billing" },
+    { label: "Paystack pricing", href: "https://paystack.com/pricing" },
+    { label: "Stripe pricing", href: "https://stripe.com/pricing" },
   ],
 };

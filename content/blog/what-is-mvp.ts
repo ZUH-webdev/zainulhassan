@@ -2,14 +2,16 @@ import type { Post } from "./types";
 
 export const post: Post = {
   slug: "what-is-mvp-in-software-development",
+  shortTitle: "What is an MVP?",
   title: "What Is an MVP in Software Development? A Founder's Guide",
   metaTitle: "What Is an MVP in Software Development?",
   description:
-    "An MVP is the smallest version of a product that lets you learn from real users. What it includes, how it differs from a prototype, and how to scope one well.",
+    "An MVP is the smallest product that lets you learn from real users: what it includes, how it differs from a prototype, and how to scope one well.",
   keyword: "what is mvp in software development",
   datePublished: "2026-10-17",
   dateModified: "2026-10-17",
   service: "saas-mvp-development",
+  caseStudy: "velocity",
   related: ["saas-mvp-cost", "how-to-hire-an-ai-developer", "supabase-vs-firebase"],
   intro:
     "An MVP (minimum viable product) in software development is the smallest version of a product that real users can use, so you can learn whether it solves their problem before investing in everything else. For a SaaS, a good MVP lets a customer sign up, get value from one core workflow and pay. It is small, but it is real.",

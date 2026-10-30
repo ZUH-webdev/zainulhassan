@@ -14,12 +14,15 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      // Case studies used to live under /work. Only these slugs: /work/leadsmind/*.webp are screenshots in /public.
+      { source: "/work", destination: "/case-studies", statusCode: 301 },
+      { source: "/work/:slug(flutron|pulse|sentinel)", destination: "/case-studies/:slug", statusCode: 301 },
       // www -> apex for whatever domain the site is served on (no domain hardcoded).
       {
         source: "/:path*",
         has: [{ type: "host", value: "www\\.(?<apex>.+)" }],
         destination: "https://:apex/:path*",
-        permanent: true,
+        statusCode: 301,
       },
       // Force HTTPS behind proxies that report the original protocol (Vercel already does this at the edge).
       {
@@ -29,7 +32,7 @@ const nextConfig: NextConfig = {
           { type: "host", value: "(?<host>(?!localhost|127\\.0\\.0\\.1).+)" },
         ],
         destination: "https://:host/:path*",
-        permanent: true,
+        statusCode: 301,
       },
     ];
   },

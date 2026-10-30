@@ -8,7 +8,7 @@ import type { CaseStudy } from "./types";
 export const leadsmind: CaseStudy = {
   slug: "leadsmind",
   title: "LeadsMind: Building and Securing an All-in-One CRM, LMS and Marketing Platform",
-  metaTitle: "LeadsMind Case Study: All-in-One CRM, LMS and Marketing SaaS",
+  metaTitle: "LeadsMind Case Study: CRM and LMS SaaS",
   metaDescription:
     "How I built and secured LeadsMind, a multi-tenant CRM, LMS and marketing SaaS for African businesses: AI suite, Paystack billing, 157 API routes audited.",
   badge: "Client project",
@@ -209,7 +209,7 @@ export const leadsmind: CaseStudy = {
   ],
   results: [], // FILL: real, verifiable outcomes only
   cta: "Need a platform like this built?",
-  next: { href: "/case-studies/world-teachers-academy", title: "World Teachers Academy: teacher certification site and job portal" },
+  next: null, // previous/next links come from CaseStudyPager
   datePublished: "2026-10-17",
   dateModified: "2026-10-30",
 };

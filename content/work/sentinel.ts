@@ -3,9 +3,9 @@ import type { CaseStudy } from "./types";
 export const sentinel: CaseStudy = {
   slug: "sentinel",
   title: "Sentinel",
-  metaTitle: "Sentinel: Supabase Security Scanner Concept",
+  metaTitle: "Sentinel: Supabase Security Scanner",
   metaDescription:
-    "Sentinel is a concept SaaS that audits Supabase and Postgres apps for missing RLS, weak policies and exposed endpoints. The problem, architecture and decisions.",
+    "Sentinel, a concept SaaS that audits Supabase apps for missing RLS, weak policies and exposed endpoints: the problem, architecture and key decisions.",
   badge: "Concept project",
   pitch: "A security scanner that audits Supabase and Postgres apps for exposed data, weak access rules and risky endpoints.",
   type: "Concept SaaS",
@@ -35,6 +35,8 @@ export const sentinel: CaseStudy = {
     { challenge: "Avoiding false positives that would make users ignore the tool.", solution: "Every rule checks the actual policy expression rather than just whether RLS is on, and findings show the evidence behind them." },
     { challenge: "Handling sensitive connection credentials safely.", solution: "Encrypt at rest, scope them to read-only, and redact them from logs and error reports." },
   ],
+  services: ["supabase-developer"],
+  dateModified: "2026-10-30",
   roadmap: [
     "Scheduled re-scans with change alerts",
     "CI integration to block deploys that introduce new issues",

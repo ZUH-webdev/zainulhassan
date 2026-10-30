@@ -2,17 +2,15 @@ import Link from "next/link";
 import CopyEmail from "@/components/CopyEmail";
 import HireButton from "@/components/hire/HireButton";
 import { socialLinks } from "@/components/social";
-import { caseStudies } from "@/content/case-studies";
+import { posts } from "@/content/blog";
+import { allCaseStudies } from "@/content/case-studies";
 import { services } from "@/content/services";
 import { external, mailto, SITE } from "@/lib/site";
 
-const explore = [
-  { href: "/services", label: "All services" },
-  { href: "/case-studies", label: "All case studies" },
-  { href: "/#github", label: "GitHub" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
+const contact = [
   { href: "/contact", label: "Contact" },
+  { href: "/hire", label: "Hire me" },
+  { href: "/about", label: "About" },
 ];
 
 function LinkList({ items }: { items: { href: string; label: string }[] }) {
@@ -76,30 +74,35 @@ export default function Footer() {
           <p className="ft-h" id="ft-services">
             Services
           </p>
-          <LinkList items={services.map((s) => ({ href: `/services/${s.slug}`, label: s.name }))} />
+          <LinkList items={[...services.map((s) => ({ href: `/services/${s.slug}`, label: s.name })), { href: "/services", label: "All services" }]} />
         </nav>
 
-        {/* Case studies + Explore */}
+        {/* Work + Resources */}
         <div className="ft-work rv d2">
-          <nav aria-label="Case studies">
+          <nav aria-label="Work">
             <p className="ft-h" id="ft-cases">
-              Case studies
+              Work
             </p>
-            <LinkList items={caseStudies.map((c) => ({ href: `/case-studies/${c.slug}`, label: c.name }))} />
+            <LinkList
+              items={[...allCaseStudies.map((c) => ({ href: `/case-studies/${c.slug}`, label: c.name })), { href: "/case-studies", label: "All case studies" }]}
+            />
           </nav>
-          <nav aria-label="Explore">
-            <p className="ft-h" id="ft-explore">
-              Explore
+          <nav aria-label="Resources">
+            <p className="ft-h" id="ft-resources">
+              Resources
             </p>
-            <LinkList items={explore} />
+            <LinkList items={[...posts.map((p) => ({ href: `/blog/${p.slug}`, label: p.shortTitle })), { href: "/blog", label: "All articles" }]} />
           </nav>
         </div>
 
-        {/* Hire */}
+        {/* Contact */}
         <section className="ft-hire rv d3" aria-labelledby="ft-talk">
           <p className="ft-h" id="ft-talk">
-            Let&apos;s talk
+            Contact
           </p>
+          <nav aria-label="Contact" style={{ marginBottom: 18 }}>
+            <LinkList items={contact} />
+          </nav>
           <p className="ft-note">Replies within one working day.</p>
           <HireButton source="footer" href="/contact" className="shine ft-cta" data-track="cta_click" data-track-location="footer">
             Start a project

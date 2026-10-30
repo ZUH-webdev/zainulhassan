@@ -11,7 +11,7 @@ import { absoluteUrl, buildMetadata } from "@/lib/seo";
 const path = "/services";
 const title = "Hire a Developer for SaaS and AI Builds";
 const description =
-  "Hire a developer for SaaS and AI products: MVPs, AI features and chatbots, Next.js and Supabase builds, RLS security audits and Stripe or Paystack billing.";
+  "Services for SaaS and AI products: MVPs, AI features and chatbots, Next.js and Supabase builds, RLS security audits and Stripe or Paystack billing.";
 const crumbs = [
   { name: "Home", path: "/" },
   { name: "Services", path },

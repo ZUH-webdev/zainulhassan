@@ -10,7 +10,7 @@ import { absoluteUrl, buildMetadata } from "@/lib/seo";
 const path = "/blog";
 const title = "Blog: SaaS, AI and Supabase Development";
 const description =
-  "Practical guides on building SaaS and AI products: MVP scope and cost, Supabase security, RAG chatbots, hiring AI developers and Stripe or Paystack billing.";
+  "Practical guides on building SaaS and AI products: MVP scope and cost, Supabase security, RAG chatbots, hiring AI developers and Stripe or Paystack.";
 const crumbs = [
   { name: "Home", path: "/" },
   { name: "Blog", path },

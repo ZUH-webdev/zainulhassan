@@ -2,14 +2,16 @@ import type { Post } from "./types";
 
 export const post: Post = {
   slug: "rag-chatbot-openai-pgvector",
+  shortTitle: "Building a RAG chatbot",
   title: "How to Build a RAG Chatbot for Your Business with OpenAI and pgvector",
   metaTitle: "How to Build a RAG Chatbot with pgvector",
   description:
-    "Build a RAG chatbot that answers from your own content: chunking, OpenAI embeddings, pgvector search in Supabase, permission-aware retrieval and evaluation.",
+    "Build a RAG chatbot that answers from your own content: chunking, OpenAI embeddings, pgvector search in Supabase, permission-aware retrieval and testing.",
   keyword: "rag chatbot",
   datePublished: "2026-10-17",
   dateModified: "2026-10-18",
   service: "ai-chatbot-development",
+  caseStudy: "leadsmind",
   related: ["how-to-hire-an-ai-developer", "supabase-rls-mistakes", "supabase-vs-firebase"],
   intro:
     "A RAG (retrieval-augmented generation) chatbot answers questions by first searching your own content for relevant passages, then asking a language model to answer using only those passages. To build one: split your content into chunks, create embeddings with OpenAI, store them in Postgres with pgvector, retrieve the closest chunks for each question, and generate an answer with sources.",
