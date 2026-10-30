@@ -56,7 +56,8 @@ export type ClientCaseStudy = {
   cardBullets: string[];
   role: string;
   timeline: string;
-  hero: { src: string; alt: string; width: number; height: number };
+  /** Optional screenshot; when omitted the page shows no hero image and uses the default OG image. */
+  hero?: { src: string; alt: string; width: number; height: number };
   challenge: string;
   /** `detail` is appended to `body` when set. */
   features: { title: string; body: string; detail: string }[];

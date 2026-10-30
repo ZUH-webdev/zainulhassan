@@ -71,24 +71,26 @@ export default function ClientCaseStudy({ study: s, crumbs }: { study: Study; cr
         </div>
       </PageHeader>
 
-      <figure className="wrap cs-shot">
-        <div className="bframe">
-          <div className="bbar" aria-hidden="true">
-            <i></i>
-            <i></i>
-            <i></i>
-            <span className="mono">{host}</span>
+      {s.hero && (
+        <figure className="wrap cs-shot">
+          <div className="bframe">
+            <div className="bbar" aria-hidden="true">
+              <i></i>
+              <i></i>
+              <i></i>
+              <span className="mono">{host}</span>
+            </div>
+            <Image
+              src={s.hero.src}
+              alt={s.hero.alt}
+              width={s.hero.width}
+              height={s.hero.height}
+              sizes="(max-width: 1200px) calc(100vw - 40px), 1150px"
+              priority
+            />
           </div>
-          <Image
-            src={s.hero.src}
-            alt={s.hero.alt}
-            width={s.hero.width}
-            height={s.hero.height}
-            sizes="(max-width: 1200px) calc(100vw - 40px), 1150px"
-            priority
-          />
-        </div>
-      </figure>
+        </figure>
+      )}
 
       <article className="wrap">
         <Section id="challenge" title="The challenge" show={!!s.challenge}>

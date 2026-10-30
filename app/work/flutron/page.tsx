@@ -21,6 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
     publishedTime: s.datePublished,
     modifiedTime: s.dateModified,
   });
+  if (!s.hero) return base;
   const image = { url: absoluteUrl(s.hero.src), width: s.hero.width, height: s.hero.height, alt: s.hero.alt };
   return {
     ...base,
@@ -41,7 +42,7 @@ export default function FlutronCaseStudy() {
             "@id": `${url}#article`,
             headline: s.title,
             description: s.metaDescription,
-            image: absoluteUrl(s.hero.src),
+            ...(s.hero ? { image: absoluteUrl(s.hero.src) } : {}),
             datePublished: s.datePublished,
             dateModified: s.dateModified,
             author: { "@id": ids.person },

@@ -25,12 +25,6 @@ export const flutron: ClientCaseStudy = {
   ],
   role: "Design and full-stack development", // FILL: confirm role
   timeline: "", // FILL: duration
-  hero: {
-    src: "/work/flutron/hero.webp",
-    alt: "Flutron homepage: drones spelling out words in red light over a night sky, with the headline about drone shows that make your event feel different and a booking button",
-    width: 1440,
-    height: 900,
-  },
   challenge:
     "Drone shows are a new, high-ticket purchase. Visitors don't know what a show involves, what it costs, or whether it's even allowed where they live. The site had to explain the product, set price expectations, and make requesting a booking feel simple and safe, in more than one language.",
   features: [
@@ -86,5 +80,5 @@ export const flutron: ClientCaseStudy = {
   cta: "Need a site that turns visitors into bookings?",
   next: { href: "/case-studies/leadsmind", title: "LeadsMind: CRM, LMS and marketing platform" },
   datePublished: "2026-10-29",
-  dateModified: "2026-10-29",
+  dateModified: "2026-10-30",
 };
