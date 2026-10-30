@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { CaseStudy } from "@/content/work";
 import { flutron } from "@/content/work/flutron";
+import { leadsmind } from "@/content/work/leadsmind";
 import { pulse } from "@/content/work/pulse";
 import { sentinel } from "@/content/work/sentinel";
 
@@ -171,7 +172,7 @@ const workCard = (w: CaseStudy, reveal: Project["reveal"], viz: ReactNode, tags:
   slug: w.slug,
   href: `/work/${w.slug}`,
   kicker: `${w.badge} · ${w.type}`.toUpperCase(),
-  title: w.client || w.title,
+  title: w.title,
   body: w.pitch,
   tags,
   viz,
@@ -194,10 +195,10 @@ type Project = {
 const projects: Project[] = [
   {
     reveal: "rvl",
-    slug: "leadsmind",
-    kicker: "CRM · LMS · MARKETING AUTOMATION",
+    slug: leadsmind.slug,
+    kicker: `${leadsmind.badge} · ${leadsmind.type}`.toUpperCase(),
     title: "LeadsMind",
-    body: "An all-in-one platform for African businesses: CRM, courses, funnels, WhatsApp broadcasts and social publishing in one product. Delivered in milestones for a client who left a 5-star review.",
+    body: leadsmind.pitch,
     tags: ["Next.js", "Supabase", "Paystack", "pgvector"],
     viz: <LeadsMindViz />,
     bullets: [
@@ -207,6 +208,29 @@ const projects: Project[] = [
       "Billing migrated from Stripe to Paystack",
     ],
   },
+  {
+    reveal: "rvr",
+    slug: "velocity",
+    kicker: "OWN PRODUCT · AI CALL RECOVERY",
+    title: "Velocity",
+    body: "AI missed-call recovery and appointment booking for local businesses. I co-founded it and built the dashboard, auth and messaging integrations.",
+    tags: ["Next.js", "Node.js", "Twilio", "Resend"],
+    viz: <VelocityViz />,
+    bullets: ["Dashboard and auth for business owners", "Twilio and Resend integrations", "Live at velocity-ai.site"],
+  },
+  workCard(sentinel, "rvl", <SentinelViz />, ["Next.js", "Supabase", "Edge Functions", "OpenAI"]),
+  {
+    reveal: "rvr",
+    slug: flutron.slug,
+    href: `/work/${flutron.slug}`,
+    kicker: flutron.kicker,
+    title: flutron.client,
+    body: flutron.cardBody,
+    tags: ["Multilingual", "Booking flow", "Pricing pages"],
+    viz: <FlutronViz />,
+    bullets: flutron.cardBullets,
+  },
+  workCard(pulse, "rvl", <PulseViz />, ["Next.js", "Supabase", "pgvector", "OpenAI"]),
   {
     reveal: "rvr",
     slug: "world-teachers-academy",
@@ -221,29 +245,6 @@ const projects: Project[] = [
       "Database-backed blog replacing hardcoded template content",
     ],
   },
-  {
-    reveal: "rvl",
-    slug: "velocity",
-    kicker: "OWN PRODUCT · AI CALL RECOVERY",
-    title: "Velocity",
-    body: "AI missed-call recovery and appointment booking for local businesses. I co-founded it and built the dashboard, auth and messaging integrations.",
-    tags: ["Next.js", "Node.js", "Twilio", "Resend"],
-    viz: <VelocityViz />,
-    bullets: ["Dashboard and auth for business owners", "Twilio and Resend integrations", "Live at velocity-ai.site"],
-  },
-  {
-    reveal: "rvr",
-    slug: flutron.slug,
-    href: `/work/${flutron.slug}`,
-    kicker: flutron.kicker,
-    title: flutron.client,
-    body: flutron.cardBody,
-    tags: ["Multilingual", "Booking flow", "Pricing pages"],
-    viz: <FlutronViz />,
-    bullets: flutron.cardBullets,
-  },
-  workCard(pulse, "rvl", <PulseViz />, ["Next.js", "Supabase", "pgvector", "OpenAI"]),
-  workCard(sentinel, "rvr", <SentinelViz />, ["Next.js", "Supabase", "Edge Functions", "OpenAI"]),
 ];
 
 export default function Work() {

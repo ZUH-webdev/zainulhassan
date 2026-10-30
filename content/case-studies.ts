@@ -1,4 +1,5 @@
 import type { Section } from "@/content/blocks";
+import { leadsmind } from "@/content/work/leadsmind";
 
 export type CaseStudy = {
   slug: string;
@@ -15,6 +16,8 @@ export type CaseStudy = {
   /** Service pages this case study proves. */
   services: string[];
   link?: { label: string; href: string };
+  /** Has its own route under app/case-studies/<slug>, so the [slug] template skips it. */
+  ownRoute?: boolean;
   datePublished: string;
   dateModified: string;
   sections: Section[];
@@ -22,109 +25,22 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "leadsmind",
+    // Flagship: rendered by app/case-studies/leadsmind from content/work/leadsmind.ts. This entry feeds listings only.
+    slug: leadsmind.slug,
     name: "LeadsMind",
     kicker: "CRM · LMS · Marketing automation",
-    metaTitle: "LeadsMind Case Study: CRM and LMS Platform",
-    description:
-      "How I built and secured LeadsMind, an all-in-one CRM, LMS and marketing platform for African businesses: 157 API routes audited, AI suite, Paystack billing.",
-    h1: "LeadsMind: Building and Securing an All-in-One CRM, LMS and Marketing Platform",
-    intro:
-      "LeadsMind is an all-in-one CRM, LMS and marketing automation platform for African businesses. On a milestone-based contract I security-audited and hardened 157 API routes, redesigned the dashboard, built the funnel and website builders, an AI suite and real OAuth social publishing, and migrated billing from Stripe to Paystack.",
+    metaTitle: leadsmind.metaTitle,
+    description: leadsmind.metaDescription,
+    h1: leadsmind.title,
+    intro: leadsmind.pitch,
     summary: "An all-in-one CRM, LMS and marketing automation platform for African businesses.",
     headlineFact: "157 API routes audited and hardened",
     stack: ["Next.js", "Supabase", "PostgreSQL", "Row Level Security", "pgvector", "OpenAI", "Paystack"],
     services: ["supabase-developer", "ai-developer", "payments-integration"],
-    datePublished: "2026-10-17",
-    dateModified: "2026-10-18",
-    sections: [
-      {
-        id: "problem",
-        title: "The problem",
-        blocks: [
-          {
-            p: "Growing businesses often run contacts, courses, landing pages, messaging and social media on separate tools that do not share data. LeadsMind puts all of that into one product built for African businesses.",
-          },
-          {
-            p: "A platform that holds many businesses' contacts, students and campaigns in one database has one requirement that cannot slip: each business must only ever see its own data. It also needed billing that suits its customers' markets, and AI features that do real work inside the product.",
-          },
-        ],
-      },
-      {
-        id: "built",
-        title: "What I built",
-        blocks: [
-          {
-            ul: [
-              "**Security audit and hardening** of 157 API routes: IDOR fixes, Row Level Security hardening and closing unauthenticated endpoints.",
-              "**Dashboard redesign**, plus finance screens for the business owner.",
-              "**Funnel builder and website builder**, so businesses publish pages without another tool.",
-              "**WhatsApp broadcasts** and a **smart tags engine** for segmenting contacts.",
-              "**AI suite**: revenue forecasting, campaign recommendations, ad and landing-page copy, image generation, lesson summaries and course Q&A with RAG on pgvector.",
-              "**Social publishing** with real OAuth for LinkedIn, TikTok, YouTube, Facebook and Instagram, and a worker that publishes scheduled posts.",
-              "**Communications hub** that brings Messenger and Instagram DMs into the platform.",
-              "**Billing migration** from Stripe to Paystack.",
-            ],
-          },
-        ],
-      },
-      {
-        id: "decisions",
-        title: "Key technical decisions",
-        blocks: [
-          { h3: "Enforce tenant isolation in the database" },
-          {
-            p: "The audit covered all 157 routes. Where a route trusted an ID from the request, I fixed the IDOR. Where a table relied on the interface to filter rows, I hardened its RLS policies, so a missed check in one route cannot expose another business's data. I explain the patterns in [Supabase RLS mistakes](/blog/supabase-rls-mistakes).",
-          },
-          { h3: "Ground the AI in the platform's own data" },
-          {
-            p: "Course Q&A uses retrieval-augmented generation with embeddings in pgvector, so answers come from the course material a learner is enrolled in, not the model's general knowledge. Keeping vectors in the same Postgres database means the same access rules apply. See [how I build RAG chatbots](/blog/rag-chatbot-openai-pgvector).",
-          },
-          { h3: "Use real OAuth, not workarounds" },
-          {
-            p: "Each social network connects through its official OAuth flow, so businesses publish to their own accounts. A separate scheduled worker handles queued posts, which keeps publishing out of the request path.",
-          },
-          { h3: "Move billing to the provider the market uses" },
-          {
-            p: "I migrated billing from Stripe to Paystack, which fits businesses selling in African markets, while keeping plan-based access working for existing customers. I compare the two in [Stripe vs Paystack for SaaS in Africa](/blog/stripe-vs-paystack).",
-          },
-          { h3: "Report progress in writing" },
-          {
-            p: "The work ran in milestones. Each one ended with working software and a PDF progress report, so the client always had a record of what shipped and what came next.",
-          },
-        ],
-      },
-      {
-        id: "stack",
-        title: "Stack",
-        blocks: [
-          {
-            ul: [
-              "**Next.js and TypeScript** for the app and its API routes.",
-              "**Supabase**: PostgreSQL, Auth and Row Level Security for multi-tenant data.",
-              "**pgvector** for course Q&A retrieval.",
-              "**OpenAI API** for the AI suite.",
-              "**Paystack** for billing, migrated from **Stripe**.",
-            ],
-          },
-        ],
-      },
-      {
-        id: "outcome",
-        title: "Outcome",
-        blocks: [
-          {
-            ul: [
-              "157 API routes security-audited and hardened, with IDOR fixes, RLS hardening and unauthenticated endpoints closed.",
-              "AI suite shipped: forecasting, campaign recommendations, ad and landing-page copy, image generation, lesson summaries and course Q&A.",
-              "Real OAuth publishing to five social networks, with scheduled posts.",
-              "Billing running on Paystack after the migration from Stripe.",
-              "Contract closed with a 5-star client review on Upwork.",
-            ],
-          },
-        ],
-      },
-    ],
+    datePublished: leadsmind.datePublished!,
+    dateModified: leadsmind.dateModified!,
+    ownRoute: true,
+    sections: [],
   },
   {
     slug: "world-teachers-academy",

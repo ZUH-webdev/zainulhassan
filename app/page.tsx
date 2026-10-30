@@ -1,5 +1,6 @@
 import About from "@/components/About";
 import Cta from "@/components/Cta";
+import GitHub from "@/components/github/GitHub";
 import Hero from "@/components/Hero";
 import JsonLd from "@/components/JsonLd";
 import Process from "@/components/Process";
@@ -27,6 +28,7 @@ export default function Home() {
       <Stats />
       <Services />
       <Work />
+      <GitHub />
       <Process />
       <Stack />
       <Testimonials />

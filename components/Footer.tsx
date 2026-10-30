@@ -9,6 +9,7 @@ import { external, mailto, SITE } from "@/lib/site";
 const explore = [
   { href: "/services", label: "All services" },
   { href: "/case-studies", label: "All case studies" },
+  { href: "/#github", label: "GitHub" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },

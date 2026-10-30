@@ -21,7 +21,7 @@ export const SITE = {
   url: siteUrl,
   email: "zainulhassan5857@gmail.com",
   upwork: "https://www.upwork.com/freelancers/~01143c0f702d75da0d",
-  github: "https://github.com/ZUH-webdev/",
+  github: "https://github.com/ZUH-webdev",
   linkedin: "https://www.linkedin.com/in/zain-ul-hassan-dev/",
   youtube: "", // not provided yet: YouTube links render only when this is set
   mailSubject: "Project inquiry from your portfolio",

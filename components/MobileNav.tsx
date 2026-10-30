@@ -11,6 +11,7 @@ const items = [
   { href: "/services", label: "Services", active: (p: string) => p.startsWith("/services") },
   { href: "/case-studies", label: "Work", active: (p: string) => p.startsWith("/case-studies") },
   { href: "/#process", label: "Process", active: () => false },
+  { href: "/#github", label: "GitHub", active: () => false },
   { href: "/about", label: "About", active: (p: string) => p === "/about" },
   { href: "/blog", label: "Blog", active: (p: string) => p.startsWith("/blog") },
   { href: "/contact", label: "Contact", active: (p: string) => p === "/contact" },

@@ -13,8 +13,6 @@ export type CaseStudy = {
   badge: string;
   pitch: string;
   type: string;
-  /** Client name, client projects only. */
-  client?: string;
   role: string;
   timeline: string;
   stack: string[];
@@ -31,6 +29,24 @@ export type CaseStudy = {
   roadmap: string[];
   /** Verified outcomes only, never estimates. */
   results?: string[];
+
+  /* Flagship fields (e.g. LeadsMind). Optional, so concept projects are unaffected. */
+  /** Meta row value, e.g. "12 milestones". */
+  engagement?: string;
+  /** Product modules: a card in the "at a glance" grid plus a detail block. A module with no summary is hidden. */
+  modules?: { id: string; title: string; summary: string; bullets: string[]; detail: string; image: string }[];
+  security?: string[];
+  howIWorked?: string;
+  /** Review badge text. Never name the client. */
+  review?: string;
+  /** Exact review text, only with the client's permission. Rendered without attribution. */
+  clientQuote?: string;
+  /** Screenshots under /public. Files that don't exist yet are skipped at build time. */
+  gallery?: { src: string; alt: string }[];
+  cta?: string;
+  next?: { href: string; title: string } | null;
+  datePublished?: string;
+  dateModified?: string;
 };
 
 /**

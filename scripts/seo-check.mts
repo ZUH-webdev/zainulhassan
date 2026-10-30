@@ -16,6 +16,7 @@ const DESC_MAX = 160;
 /** Titles allowed outside 50-60 chars, with the reason. */
 const TITLE_EXCEPTIONS: Record<string, string> = {
   "/": "Home title is specified verbatim in the SEO brief (66 chars).",
+  "/case-studies/leadsmind": "Flagship case study title is specified verbatim by the site owner (77 chars).",
 };
 
 /** Non-page routes that internal links may point to. */

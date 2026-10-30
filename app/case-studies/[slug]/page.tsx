@@ -15,7 +15,7 @@ import { SHOW_TESTIMONIALS, external } from "@/lib/site";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return caseStudies.map((c) => ({ slug: c.slug }));
+  return caseStudies.filter((c) => !c.ownRoute).map((c) => ({ slug: c.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };
