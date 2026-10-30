@@ -15,7 +15,7 @@ export const personNode = (): Node => ({
   "@id": ids.person,
   name: SITE.name,
   alternateName: "Zain",
-  jobTitle: "Senior Full Stack Developer",
+  jobTitle: SITE.jobTitle,
   description: BIO,
   url: absoluteUrl("/about"),
   email: `mailto:${SITE.email}`,

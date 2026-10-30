@@ -18,6 +18,7 @@ export const isIndexable = !process.env.VERCEL_ENV || process.env.VERCEL_ENV ===
 
 export const SITE = {
   name: "Zain Ul Hassan",
+  jobTitle: "Senior Full Stack Developer",
   url: siteUrl,
   email: "zainulhassan5857@gmail.com",
   upwork: "https://www.upwork.com/freelancers/~01143c0f702d75da0d",

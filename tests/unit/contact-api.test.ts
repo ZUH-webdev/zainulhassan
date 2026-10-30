@@ -86,8 +86,35 @@ describe("POST /api/contact", () => {
     vi.stubEnv("CONTACT_SEND_AUTOREPLY", "true");
     await handleContactRequest(request(validBody()));
     expect(send).toHaveBeenCalledTimes(2);
-    expect(send.mock.calls[1][0]).toMatchObject({ to: "ada@example.com" });
-    expect(send.mock.calls[1][0].text).toContain("Thanks Ada Lovelace, I got your message about AI features.");
+    expect(send.mock.calls[1][0]).toMatchObject({
+      from: "Zain <hello@example.com>",
+      to: "ada@example.com",
+      replyTo: "owner@example.com",
+      subject: "Thanks Ada, I've got your message",
+    });
+    expect(send.mock.calls[1][0].text).toContain("I've received your inquiry about AI features.");
+  });
+
+  it("does not send the auto-reply when the inquiry email fails", async () => {
+    vi.stubEnv("CONTACT_SEND_AUTOREPLY", "true");
+    send.mockResolvedValue({ data: null, error: { name: "validation_error", message: "nope" } });
+    expect((await handleContactRequest(request(validBody()))).status).toBe(500);
+    expect(send).toHaveBeenCalledTimes(1);
+  });
+
+  it("still returns ok when only the auto-reply fails", async () => {
+    vi.stubEnv("CONTACT_SEND_AUTOREPLY", "true");
+    send.mockResolvedValueOnce({ data: { id: "email_1" }, error: null }).mockRejectedValueOnce(new Error("network down"));
+    const res = await handleContactRequest(request(validBody()));
+    expect(res.status).toBe(200);
+    expect(send).toHaveBeenCalledTimes(2);
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining("Auto-reply request failed"), "network down");
+  });
+
+  it("does not send the auto-reply for honeypot submissions", async () => {
+    vi.stubEnv("CONTACT_SEND_AUTOREPLY", "true");
+    await handleContactRequest(request({ ...validBody(), website_url: "http://spam.example" }));
+    expect(send).not.toHaveBeenCalled();
   });
 
   it("returns 422 with field errors for invalid input", async () => {
