@@ -9,14 +9,16 @@ import { parse } from "node-html-parser";
 
 const APP_DIR = join(process.cwd(), ".next", "server", "app");
 const TITLE_MIN = 50;
-const TITLE_MAX = 60;
+const TITLE_MAX = 59;
 const DESC_MIN = 120;
-const DESC_MAX = 160;
+const DESC_MAX = 154;
+/** Words of main content (inside <main>, outside the closing CTA panel) a service page must have. */
+const SERVICE_WORDS = [700, 1100];
 
 /** Titles allowed outside 50-60 chars, with the reason. */
 const TITLE_EXCEPTIONS: Record<string, string> = {
   "/": "Home title is specified verbatim in the SEO brief (66 chars).",
-  "/case-studies/leadsmind": "Flagship case study title is specified verbatim by the site owner (77 chars).",
+  "/case-studies/leadsmind": "Title specified verbatim by the site owner (49 chars).",
 };
 
 /** Non-page routes that internal links may point to. */
@@ -72,6 +74,8 @@ const descs = new Map<string, string>();
 const placeholders = new Map<string, Set<string>>();
 const h1Seen = new Map<string, string>();
 const leadSeen = new Map<string, string>();
+/** Service pages: every heading and paragraph-level block, to prove no two service pages share copy. */
+const serviceBlocks = new Map<string, Set<string>>();
 
 for (const [route, html] of [...pages.entries()].sort()) {
   const root = parse(html);
@@ -89,6 +93,30 @@ for (const [route, html] of [...pages.entries()].sort()) {
   const lead = (root.querySelector("p.lead") ?? root.querySelector("p.answer"))?.text.replace(/\s+/g, " ").trim() ?? "";
   if (lead && leadSeen.has(lead)) err(`duplicate intro paragraph with ${leadSeen.get(lead)}`);
   if (lead) leadSeen.set(lead, route);
+
+  // Never noindex
+  const robots = meta("name", "robots");
+  if (/noindex/i.test(robots)) err(`meta robots is "${robots}"`);
+
+  // Service pages: unique copy and enough of it
+  if (route.startsWith("/services/")) {
+    const main = parse(root.querySelector("main")?.toString() ?? "<main></main>").querySelector("main");
+    main?.querySelectorAll("script, style, .pcta").forEach((n) => n.remove());
+    const words = main?.text.split(/\s+/).filter(Boolean).length ?? 0;
+    if (words < SERVICE_WORDS[0] || words > SERVICE_WORDS[1]) err(`service page has ${words} words of main content (want ${SERVICE_WORDS.join("-")})`);
+    for (const el of main?.querySelectorAll("h1, h2, h3, p, li") ?? []) {
+      // A case study card titled with the project name is a reference, not shared copy.
+      if (el.tagName === "H3" && el.closest('a[href^="/case-studies/"]')) continue;
+      // So is a one-line "Related work:" link to a case study.
+      if (el.classList.contains("relwork")) continue;
+      const t = el.text.replace(/\s+/g, " ").trim();
+      // Headings always count; other blocks once they are sentence-length (skips chrome like breadcrumbs).
+      if (/^H[123]$/.test(el.tagName) || t.split(" ").length >= 8) {
+        if (!serviceBlocks.has(t)) serviceBlocks.set(t, new Set());
+        serviceBlocks.get(t)!.add(route);
+      }
+    }
+  }
 
   // OG image alt present
   if (!meta("property", "og:image:alt")) err("missing og:image:alt");
@@ -164,6 +192,10 @@ for (const [route, html] of [...pages.entries()].sort()) {
     placeholders.get(m[0])!.add(route);
   }
 }
+
+// No heading or paragraph may appear on more than one service page
+for (const [t, routes] of serviceBlocks)
+  if (routes.size > 1) errors.push(`text shared by service pages ${[...routes].join(", ")}: "${t.slice(0, 80)}"`);
 
 // Sitemap must not list pages that don't exist
 for (const p of sitemapPaths) if (!pages.has(p)) errors.push(`sitemap.xml lists ${p}, which was not built`);

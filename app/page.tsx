@@ -3,6 +3,7 @@ import Cta from "@/components/Cta";
 import GitHub from "@/components/github/GitHub";
 import Hero from "@/components/Hero";
 import JsonLd from "@/components/JsonLd";
+import LatestArticles from "@/components/LatestArticles";
 import Process from "@/components/Process";
 import Services from "@/components/Services";
 import Stack from "@/components/Stack";
@@ -33,6 +34,7 @@ export default function Home() {
       <Stack />
       <Testimonials />
       <About />
+      <LatestArticles />
       <Cta />
     </main>
   );

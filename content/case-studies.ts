@@ -1,4 +1,6 @@
 import type { Section } from "@/content/blocks";
+import { work } from "@/content/work";
+import { flutron } from "@/content/work/flutron";
 import { leadsmind } from "@/content/work/leadsmind";
 
 export type CaseStudy = {
@@ -48,7 +50,7 @@ export const caseStudies: CaseStudy[] = [
     kicker: "EdTech · Job portal",
     metaTitle: "World Teachers Academy: Job Portal Build",
     description:
-      "A teacher certification site and Next.js job portal for a South African business, with nightly Adzuna and Reed job ingestion into Supabase and lead capture.",
+      "A teacher certification site and Next.js job portal for a South African business, with nightly Adzuna and Reed job ingestion and lead capture.",
     h1: "World Teachers Academy: A Teacher Certification Site and Job Portal",
     intro:
       "World Teachers Academy is a South African teacher certification and placement business. I built its site and a teaching job portal on Next.js and Supabase. The portal ingests jobs nightly from Adzuna and Reed and captures each candidate as a lead before redirecting them to the apply link.",
@@ -152,7 +154,7 @@ export const caseStudies: CaseStudy[] = [
     kicker: "Own product · AI call recovery",
     metaTitle: "Velocity: AI Missed Call Recovery App",
     description:
-      "Velocity case study: an AI product I co-founded that recovers missed calls and books appointments for local businesses, built with Next.js, Twilio and Resend.",
+      "Velocity: an AI product I co-founded that recovers missed calls and books appointments for local businesses, built with Next.js, Twilio and Resend.",
     h1: "Velocity: An AI Assistant That Recovers Missed Calls and Books Appointments",
     intro:
       "Velocity is an AI product that recovers missed calls and books appointments for local businesses. I co-founded it and built the dashboard, the auth, and the Twilio and Resend integrations. It is live at velocity-ai.site, and it is the product where I make the business decisions as well as the technical ones.",
@@ -253,3 +255,31 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 export const caseStudyBySlug = (slug: string) => caseStudies.find((c) => c.slug === slug);
+
+/** Listing shape shared by every case study, whichever content file and layout renders it. */
+export type CaseStudyCard = { slug: string; name: string; kicker: string; summary: string; dateModified: string };
+
+/**
+ * Every case study, all served under /case-studies/<slug>. This order drives the footer,
+ * the /case-studies hub and the previous/next links at the bottom of each case study.
+ */
+export const allCaseStudies: CaseStudyCard[] = [
+  ...caseStudies.map((c) => ({ slug: c.slug, name: c.name, kicker: c.kicker, summary: c.summary, dateModified: c.dateModified })),
+  {
+    slug: flutron.slug,
+    name: flutron.client,
+    kicker: "Client site · Drone light shows",
+    summary: flutron.cardBody,
+    dateModified: flutron.dateModified,
+  },
+  ...work.map((w) => ({ slug: w.slug, name: w.title, kicker: `${w.badge} · ${w.type}`, summary: w.pitch, dateModified: w.dateModified! })),
+];
+
+export const caseStudyCard = (slug: string) => allCaseStudies.find((c) => c.slug === slug);
+
+/** Previous and next case study in `allCaseStudies` order, wrapping around at the ends. */
+export function caseStudyNeighbours(slug: string) {
+  const i = allCaseStudies.findIndex((c) => c.slug === slug);
+  const n = allCaseStudies.length;
+  return { prev: allCaseStudies[(i - 1 + n) % n], next: allCaseStudies[(i + 1) % n] };
+}

@@ -4,7 +4,7 @@ import type { CaseStudy } from "./types";
 
 export type { CaseStudy, ClientCaseStudy } from "./types";
 
-/** Concept projects rendered by /work/[slug]. Client case studies (e.g. flutron) have their own route. */
+/** Concept projects rendered by /case-studies/[slug]. Client case studies (e.g. flutron) have their own route. */
 export const work: CaseStudy[] = [pulse, sentinel];
 
 export const workBySlug = (slug: string) => work.find((w) => w.slug === slug);

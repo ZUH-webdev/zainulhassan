@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import CaseStudyPager from "@/components/CaseStudyPager";
 import JsonLd from "@/components/JsonLd";
 import ClientCaseStudy from "@/components/work/ClientCaseStudy";
 import { flutron as s } from "@/content/work/flutron";
 import { breadcrumbNode, graph, ids, webPageNode } from "@/lib/schema";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 
-const path = `/work/${s.slug}`;
+/* Client layout. This static route takes precedence over /case-studies/[slug], which renders the other entries. */
+const path = `/case-studies/${s.slug}`;
 const crumbs = [
   { name: "Home", path: "/" },
-  { name: "Work", path: "/#work" },
+  { name: "Case studies", path: "/case-studies" },
   { name: s.client, path },
 ];
 
@@ -61,6 +63,7 @@ export default function FlutronCaseStudy() {
         )}
       />
       <ClientCaseStudy study={s} crumbs={crumbs} />
+      <CaseStudyPager slug={s.slug} />
     </main>
   );
 }

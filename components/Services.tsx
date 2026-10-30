@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { serviceBySlug } from "@/content/services";
+import { serviceBySlug, services as allServices } from "@/content/services";
 
-const services = [
+const cards = [
   {
     d: "",
     title: "SaaS MVPs that launch",
@@ -81,7 +81,7 @@ export default function Services() {
       <div className="eyebrow rv">01 / Services</div>
       <h2 className="h2 rv d1">What I can build for you</h2>
       <div className="sgrid">
-        {services.map((s, i) => {
+        {cards.map((s, i) => {
           const target = serviceBySlug(s.href.replace("/services/", ""));
           const id = `svc-${i + 1}`;
           const body = (
@@ -131,6 +131,23 @@ export default function Services() {
           );
         })}
       </div>
+      {/* Services without a card above still get a crawlable link from the homepage. */}
+      <p className="mono rv" style={{ margin: "28px 0 0", fontSize: 13, color: "#9A9DA6" }}>
+        Also:{" "}
+        {allServices
+          .filter((s) => !cards.some((c) => c.href === `/services/${s.slug}`))
+          .map((s) => (
+            <span key={s.slug}>
+              <a className="tl" href={`/services/${s.slug}`}>
+                {s.name}
+              </a>
+              {" · "}
+            </span>
+          ))}
+        <Link className="tl" href="/services">
+          See all {allServices.length} services →
+        </Link>
+      </p>
     </section>
   );
 }

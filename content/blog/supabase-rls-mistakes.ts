@@ -2,6 +2,7 @@ import type { Post } from "./types";
 
 export const post: Post = {
   slug: "supabase-rls-mistakes",
+  shortTitle: "Supabase RLS mistakes",
   title: "Supabase Row Level Security: Mistakes That Leak Customer Data",
   metaTitle: "Supabase RLS Mistakes That Leak Data",
   description:
@@ -10,6 +11,7 @@ export const post: Post = {
   datePublished: "2026-10-17",
   dateModified: "2026-10-17",
   service: "supabase-developer",
+  caseStudy: "leadsmind",
   related: ["supabase-vs-firebase", "rag-chatbot-openai-pgvector", "saas-mvp-cost"],
   intro:
     "Supabase exposes your Postgres tables through an API that anyone with your public anon key can call, so Row Level Security (RLS) is what keeps one customer's data away from everyone else. Most leaks come from a short list of mistakes: RLS left off, policies that are too broad, missing WITH CHECK rules, and server code that bypasses RLS entirely.",
@@ -136,7 +138,7 @@ export const post: Post = {
       title: "Get your Supabase project audited",
       blocks: [
         {
-          p: "If you built quickly and are not sure what your anon key can reach, an audit gives you a ranked list of gaps and tested fixes. See my [Supabase developer and RLS audit service](/services/supabase-developer), or read how I approached it in the [LeadsMind case study](/case-studies/leadsmind).",
+          p: "If you built quickly and are not sure what your anon key can reach, an audit gives you a ranked list of gaps and tested fixes. See my [Supabase developer and RLS audit service](/services/supabase-developer), or read how I approached it in the [LeadsMind CRM and LMS case study](/case-studies/leadsmind).",
         },
       ],
     },

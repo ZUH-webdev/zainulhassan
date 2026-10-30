@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import AuthorBox from "@/components/AuthorBox";
 import CtaButtons from "@/components/CtaButtons";
 import JsonLd from "@/components/JsonLd";
 import PageCta from "@/components/PageCta";
@@ -6,6 +7,7 @@ import PageHeader from "@/components/PageHeader";
 import Related from "@/components/Related";
 import { Blocks } from "@/components/Rich";
 import { postBySlug, posts, readingMinutes } from "@/content/blog";
+import { caseStudyCard } from "@/content/case-studies";
 import { serviceBySlug } from "@/content/services";
 import { breadcrumbNode, graph, ids, webPageNode } from "@/lib/schema";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
@@ -45,6 +47,7 @@ export default async function PostPage({ params }: Props) {
     { name: p.title, path },
   ];
   const service = serviceBySlug(p.service)!;
+  const work = caseStudyCard(p.caseStudy)!;
   const minutes = readingMinutes(p);
 
   return (
@@ -120,6 +123,8 @@ export default async function PostPage({ params }: Props) {
               </ul>
             </section>
           )}
+
+          <AuthorBox />
         </div>
 
         {/* >=1024px: sticky sidebar table of contents */}
@@ -142,7 +147,7 @@ export default async function PostPage({ params }: Props) {
       <Related
         id="next"
         eyebrow="Keep reading"
-        title="Related service and articles"
+        title="Related service, case study and articles"
         items={[
           {
             href: `/services/${service.slug}`,
@@ -151,6 +156,7 @@ export default async function PostPage({ params }: Props) {
             text: service.summary,
             cta: "See the service",
           },
+          { href: `/case-studies/${work.slug}`, kicker: "Case study", title: work.name, text: work.summary, cta: "Read the case study" },
           ...p.related.map((slug) => {
             const r = postBySlug(slug)!;
             return { href: `/blog/${r.slug}`, kicker: "Guide", title: r.title, text: r.description, cta: "Read the article" };

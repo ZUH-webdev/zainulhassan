@@ -2,14 +2,16 @@ import type { Post } from "./types";
 
 export const post: Post = {
   slug: "supabase-vs-firebase",
+  shortTitle: "Supabase vs Firebase",
   title: "Next.js + Supabase vs Firebase for SaaS: Which Should You Choose?",
   metaTitle: "Supabase vs Firebase for SaaS in Next.js",
   description:
-    "Supabase vs Firebase for a Next.js SaaS: relational Postgres vs a document database, RLS vs Security Rules, pricing models, lock-in and which fits your product.",
+    "Supabase vs Firebase for a Next.js SaaS: Postgres vs documents, RLS vs Security Rules, pricing models, lock-in, and a checklist to pick the right one.",
   keyword: "supabase vs firebase",
   datePublished: "2026-10-17",
-  dateModified: "2026-10-17",
-  service: "nextjs-developer",
+  dateModified: "2026-10-30",
+  service: "supabase-developer",
+  caseStudy: "world-teachers-academy",
   related: ["supabase-rls-mistakes", "saas-mvp-cost", "rag-chatbot-openai-pgvector"],
   intro:
     "For most B2B SaaS products built with Next.js, I choose Supabase over Firebase, because SaaS data is relational (organisations, users, plans, invoices) and Supabase gives you a full PostgreSQL database with SQL, joins and Row Level Security. Firebase is a strong choice for mobile-first apps that need offline sync and a flexible document model.",
@@ -129,6 +131,53 @@ export const post: Post = {
       ],
     },
     {
+      id: "mistakes",
+      title: "Mistakes that hurt on either platform",
+      blocks: [
+        {
+          p: "Neither platform is safe or fast by default. The same handful of problems shows up in projects on both, and they are worth checking whichever you choose:",
+        },
+        {
+          ul: [
+            "**Admin credentials in the wrong place.** Firebase's Admin SDK and Supabase's service-role key both bypass your access rules. Use them only in server code that has already checked who the user is, and never ship them to the browser.",
+            "**Rules that only check sign-in.** A rule or policy that allows any signed-in user is not tenant isolation. Each check has to compare the record's owner or organisation with the current user.",
+            "**Copies of data that drift.** Denormalising in Firestore, or caching counts in Postgres, means two places to update. Decide which copy is the source of truth and update the other from it.",
+            "**Missing indexes.** Slow dashboards on Supabase are often a missing index on the column your policies and queries filter by; on Firestore, composite queries need their indexes declared.",
+            "**Testing only as the owner.** Test with a second account in a different organisation. If it can see the first account's data, your rules are wrong.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "real-project",
+      title: "What the choice looked like on a real project",
+      blocks: [
+        {
+          p: "On the [World Teachers Academy job portal](/case-studies/world-teachers-academy), jobs are ingested every night from Adzuna and Reed into Supabase, candidates are captured as leads before they reach the apply link, and the blog is stored in the database instead of hardcoded templates. Jobs, sources, leads and posts relate to each other, and the business wants to ask questions across them, which is exactly the relational shape Postgres is built for.",
+        },
+        {
+          p: "Scheduled ingestion also fits Supabase well: a job writes new listings straight into tables that the Next.js site reads on the server, with no separate sync layer in between.",
+        },
+      ],
+    },
+    {
+      id: "checklist",
+      title: "A checklist to decide in ten minutes",
+      blocks: [
+        { p: "Answer these about your product. Mostly yes on the first four points to Supabase; mostly yes on the last two points to Firebase." },
+        {
+          ol: [
+            "Do customers sign up as organisations with members and roles?",
+            "Will you need reports that combine data across several record types, such as revenue per plan per month?",
+            "Do you want the option to move your database to another host later?",
+            "Will AI features search your users' own data, with the same permissions as the rest of the app?",
+            "Is the product mainly a mobile app that must work offline and sync later?",
+            "Is your data mostly self-contained documents, such as user profiles or chat messages, with few relationships between them?",
+          ],
+        },
+      ],
+    },
+    {
       id: "recommendation",
       title: "My recommendation",
       blocks: [
@@ -139,7 +188,16 @@ export const post: Post = {
           ],
         },
         {
-          p: "I build SaaS products on Next.js and Supabase, including LeadsMind and the [World Teachers Academy job portal](/case-studies/world-teachers-academy). If you are starting a product, see my [Next.js developer service](/services/nextjs-developer).",
+          p: "I build SaaS products on Next.js and Supabase, including [LeadsMind, an all-in-one CRM and LMS platform](/case-studies/leadsmind), and World Teachers Academy. If you are starting a product, see my [Next.js developer service](/services/nextjs-developer); if you already run on Supabase and want the schema or policies reviewed, see my [Supabase developer service](/services/supabase-developer).",
+        },
+      ],
+    },
+    {
+      id: "conclusion",
+      title: "Conclusion",
+      blocks: [
+        {
+          p: "The choice comes down to the shape of your data and where your users are. Relational, multi-tenant data with reporting and AI on top points to Supabase and Postgres. Offline-first mobile apps with document-shaped data point to Firebase. Whichever you pick, the security work is the same in spirit: rules enforced by the platform, tested with a second account, and admin credentials kept on the server.",
         },
       ],
     },

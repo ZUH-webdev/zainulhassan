@@ -20,7 +20,7 @@ export function Section({ id, title, show, children }: { id: string; title: stri
   );
 }
 
-/** Data-driven layout for a client case study (/work/<slug>). Empty fields hide themselves. */
+/** Data-driven layout for a client case study (/case-studies/<slug>). Empty fields hide themselves. */
 export default function ClientCaseStudy({ study: s, crumbs }: { study: Study; crumbs: Crumb[] }) {
   const source = `case-study-${s.slug}`;
   const host = new URL(s.siteUrl).host;

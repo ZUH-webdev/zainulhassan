@@ -7,10 +7,11 @@ import type { CaseStudy } from "./types";
  */
 export const leadsmind: CaseStudy = {
   slug: "leadsmind",
-  title: "LeadsMind: Building and Securing an All-in-One CRM, LMS and Marketing Platform",
-  metaTitle: "LeadsMind Case Study: All-in-One CRM, LMS and Marketing SaaS",
+  title: "LeadsMind: an all-in-one CRM, LMS and marketing platform I built",
+  /** Used as the full <title>, without the brand suffix (under 60 chars). */
+  metaTitle: "LeadsMind Case Study: CRM, LMS and Marketing SaaS",
   metaDescription:
-    "How I built and secured LeadsMind, a multi-tenant CRM, LMS and marketing SaaS for African businesses: AI suite, Paystack billing, 157 API routes audited.",
+    "How I built LeadsMind, a CRM, LMS and marketing platform with its own AI assistant, LENA, across 11 modules on Next.js and Supabase.",
   badge: "Client project",
   pitch:
     "An all-in-one CRM, LMS and marketing-automation platform built for African businesses, replacing a stack of separate tools with one workspace.",
@@ -97,25 +98,28 @@ export const leadsmind: CaseStudy = {
     {
       id: "commerce",
       title: "Commerce & Ops",
-      summary: "", // FILL: one-line summary
-      bullets: [], // FILL: 3 to 4 real capabilities of this module
-      detail: "", // FILL
-      image: "",
+      summary: "Run products, orders and fulfillment from the same workspace as your CRM.",
+      bullets: ["Products", "Orders", "Shipments", "Affiliates (with sub-options)", "Inventory"],
+      detail:
+        "Commerce & Ops brings the operational side of a business into LeadsMind. Teams manage their product catalog and inventory, process orders, track shipments, and run an affiliate program, all connected to the customer records in the CRM.",
+      image: "/work/leadsmind/commerce-ops.webp",
     },
     {
       id: "calendar",
       title: "Calendar & Meetings",
-      summary: "Appointment booking and calendar management.",
-      bullets: ["Appointment booking", "Calendar management"], // FILL: extras such as availability, reminders, video links
-      detail: "Appointment booking and calendar management.",
-      image: "",
+      summary: "Booking pages, waitlists and Instant Meet, built on each person's availability.",
+      bullets: ["Booking Pages", "Waitlists", "Instant Meet", "Availability"],
+      detail:
+        "Calendar & Meetings lets teams take bookings without back-and-forth. Customers book through shareable booking pages based on each person's availability, waitlists capture demand when slots are full, and Instant Meet starts a meeting on the spot.",
+      image: "/work/leadsmind/calendar-meetings.webp",
     },
     {
       id: "hr",
       title: "HR & Payroll",
       summary: "Staff and HR management with payroll tools.",
       bullets: ["Staff and HR management", "Payroll tools"], // FILL: confirm, e.g. employee records, leave, payroll runs
-      detail: "Staff and HR management with payroll tools.",
+      detail:
+        "HR & Payroll covers staff and HR management, with payroll tools. It replaces the paper staff records many of the businesses LeadsMind serves were relying on, in the same workspace as their sales and finance.",
       image: "",
     },
     {
@@ -130,7 +134,7 @@ export const leadsmind: CaseStudy = {
         "Automatic lesson summaries",
       ],
       detail:
-        "Courses are built from modules and lessons, with enrollment and access gating so only enrolled learners reach the content, plus certificates and automations. The AI layer answers learner questions with retrieval over pgvector, grounded in the course material, and writes lesson summaries automatically.",
+        "Courses are built from modules and lessons, with enrollment and access gating so only enrolled learners reach the content, plus certificates and automations. The AI layer answers learner questions with retrieval over pgvector, grounded in the course material, and writes lesson summaries automatically. A follow-up audit of the LMS covered RLS gaps, enrollment gating, certificate rules and automations.",
       image: "/work/leadsmind/lms.webp",
     },
     {
@@ -139,7 +143,7 @@ export const leadsmind: CaseStudy = {
       summary: "Messenger, Instagram DMs and WhatsApp in one inbox.",
       bullets: ["Communications Hub for Messenger and Instagram DMs", "WhatsApp in the same inbox", "Built on Meta webhooks", "Telephony"], // FILL: confirm telephony scope
       detail:
-        "The Communications Hub brings Messenger and Instagram DMs, received through Meta webhooks, and WhatsApp into one inbox, alongside telephony.",
+        "The Communications Hub brings Messenger and Instagram DMs, received through Meta webhooks, and WhatsApp into one inbox, alongside telephony. The Meta webhooks had been failing silently; I traced and fixed the failures so messages are not lost.",
       image: "/work/leadsmind/communication.webp",
     },
     {
@@ -147,12 +151,14 @@ export const leadsmind: CaseStudy = {
       title: "Settings",
       summary: "Workspace, team roles and permissions, billing and integrations.", // FILL: confirm
       bullets: ["Workspace settings", "Team roles and permissions", "Billing", "Integrations"],
-      detail: "Workspace settings, team roles and permissions, billing and integrations.",
+      detail:
+        "Settings is where each business manages its workspace, its team's roles and permissions, its billing and its integrations. The billing shown here is the LeadsMind subscription itself, which runs on Paystack after the migration from Stripe.",
       image: "",
     },
   ],
   /** Shown as "AI across the platform". */
   features: [
+    { title: "LENA, the in-product AI assistant", description: "" },
     { title: "Revenue forecasting", description: "" },
     { title: "Campaign recommendations", description: "" },
     { title: "Video and hashtag generation", description: "" },
@@ -196,6 +202,8 @@ export const leadsmind: CaseStudy = {
   review: "5-star Upwork review, August 2026",
   clientQuote: "", // FILL: exact review text, only if the client allows it
   gallery: [
+    { src: "/work/leadsmind/commerce-ops.webp", alt: "LeadsMind Commerce & Ops module with products, orders, shipments, affiliates and inventory" },
+    { src: "/work/leadsmind/calendar-meetings.webp", alt: "LeadsMind Calendar & Meetings module with booking pages, waitlists, Instant Meet and availability" },
     {
       src: "/work/leadsmind/dashboard.webp",
       alt: "LeadsMind dashboard with 30-day revenue, leads captured, active deals and conversion rate, plus revenue trend and lead growth charts (demo data)",
@@ -209,7 +217,83 @@ export const leadsmind: CaseStudy = {
   ],
   results: [], // FILL: real, verifiable outcomes only
   cta: "Need a platform like this built?",
-  next: { href: "/case-studies/world-teachers-academy", title: "World Teachers Academy: teacher certification site and job portal" },
+  next: null, // previous/next links come from CaseStudyPager
+  whatIs:
+    "LeadsMind is an all-in-one CRM, LMS and marketing-automation platform for small and mid-sized businesses across Africa. It brings sales, marketing, social publishing, finance, learning, HR and communication into one multi-tenant workspace with AI built in, so a business stops juggling a separate tool for each job. It runs on Next.js and Supabase, with Paystack for billing.",
+  builtBy: "Built by [Zain Ul Hassan](/about), lead full-stack developer, working solo across a 12-milestone engagement.",
+  officialSite: { label: "leadsmind.io", href: "https://leadsmind.io" },
+  notes: {
+    ai: "This is the kind of work I take on as an [AI developer adding OpenAI features to SaaS products](/services/ai-developer). The retrieval behind course Q&A follows the approach in my guide to [building a RAG chatbot with OpenAI and pgvector](/blog/rag-chatbot-openai-pgvector).",
+    security:
+      "Database-level tenant isolation and RLS audits are the core of my [Supabase developer and RLS audit service](/services/supabase-developer). The patterns this audit turned up are written up in [Supabase RLS mistakes that leak customer data](/blog/supabase-rls-mistakes).",
+    "hard-problems":
+      "The billing move is unpacked in [Stripe vs Paystack for SaaS in Africa](/blog/stripe-vs-paystack), and it is the kind of change my [Stripe and Paystack payments integration service](/services/payments-integration) handles.",
+    "how-i-worked":
+      "Building a multi-tenant product in milestones, with auth, billing and tenant isolation in place from the start, is also how I run [SaaS MVP development](/services/saas-mvp-development) for founders.",
+  },
+  assistant: {
+    id: "lena",
+    title: "LENA: the AI product assistant I built into LeadsMind",
+    intro:
+      "LENA is the in-app assistant that lives in every LeadsMind workspace. I built it and trained it on LeadsMind's features, so users can ask how a feature works, find out why something isn't behaving as expected, and get help without leaving the product.",
+    features: [
+      { title: "Ask anything about the product", text: "Answers questions about how LeadsMind features work.", detail: "" },
+      {
+        title: "Live diagnostics",
+        text: "Troubleshoots issues and can scan the workspace for problems directly.",
+        detail: "", // FILL: one sentence on what the scan checks (e.g. integrations, automations, settings)
+      },
+      {
+        title: "Contact support",
+        text: "A one-click path from the chat to the support team, so users never have to hunt for help.",
+        detail: "", // FILL: how it routes (e.g. creates a ticket or sends an email)
+      },
+      { title: "Book a meeting", text: "Users can book a call from inside the assistant without leaving the app.", detail: "" },
+    ],
+    launcher:
+      "The LeadsMind AI assistant opens from a persistent assistant button on every screen, with an active status indicator, so help is always one click away.",
+    built: "", // FILL: one or two sentences on the approach (grounding, model, accuracy, guardrails)
+    note:
+      "Assistants that know a product and answer from its own content are what I build as an [AI chatbot developer for product assistants](/services/ai-chatbot-development), alongside the wider [AI features I add to SaaS products](/services/ai-developer).",
+    image: {
+      src: "/work/leadsmind/lena-chat.webp",
+      alt: "LENA, the LeadsMind AI product assistant, showing Live diagnostics, Contact support and Book a meeting",
+    },
+  },
+  faqs: [
+    {
+      q: "What is LeadsMind?",
+      a: "LeadsMind is an all-in-one CRM, LMS and marketing-automation platform built for small and mid-sized businesses across Africa. It brings sales, marketing, social publishing, finance, learning, HR and communication into one multi-tenant workspace with AI built in. This page is an independent case study by the developer who built it; the product itself is at leadsmind.io.",
+    },
+    {
+      q: "What modules does LeadsMind include?",
+      a: "Dashboard, CRM & Sales, Marketing, Social, Finance & Accounting, Commerce & Ops, Calendar & Meetings, HR & Payroll, LMS, Communication and Settings, all inside one workspace per business. Commerce & Ops covers LeadsMind inventory and orders alongside products, shipments and affiliates, and Calendar & Meetings adds LeadsMind booking pages, waitlists and Instant Meet. An Audio Learning & Podcast platform and a Realtor module are in development and not yet delivered.",
+    },
+    {
+      q: "What is LENA in LeadsMind?",
+      a: "LENA is the LeadsMind AI assistant: the in-product assistant I built and trained on LeadsMind's features. It answers questions about how the product works, helps troubleshoot issues, and connects users to the support team or lets them book a meeting, all from inside the chat.",
+    },
+    {
+      q: "Can users get human support from inside LeadsMind?",
+      a: "Yes. The LENA AI assistant includes Contact support and Book a meeting actions inside the chat, so users can reach the support team or book a call without leaving the app.",
+    },
+    {
+      q: "What technology is LeadsMind built on?",
+      a: "Next.js with TypeScript and Tailwind CSS for the app and its API routes, and Supabase for Postgres with row level security, Auth, Edge Functions and pgvector. The landing-page builder uses Craft.js, the AI features use the OpenAI API, billing runs on Paystack, and messaging connects through the Meta Graph API and the WhatsApp Business API.",
+    },
+    {
+      q: "Who built the LeadsMind platform?",
+      a: "Zain Ul Hassan, as the solo lead full-stack developer. The build was delivered as a 12-milestone engagement with a formal PDF report sent to the client at each milestone, and the client left a 5-star review on Upwork in August 2026.",
+    },
+    {
+      q: "How were security and tenant isolation handled in LeadsMind?",
+      a: "Tenant isolation is enforced in the database with row level security, so a missed check in one API route cannot expose another business's data. A full security audit of 157 API routes closed IDOR vulnerabilities, hardened RLS and removed unauthenticated endpoints, and a follow-up audit of the LMS covered RLS gaps, enrollment gating, certificate rules and automations.",
+    },
+    {
+      q: "How was the LeadsMind AI layer built?",
+      a: "The AI features use the OpenAI API: revenue forecasting, campaign recommendations, video and hashtag generation, landing-page copy, ad copy within each platform's character limits, and image generation. In the LMS, learner questions are answered with retrieval over pgvector, grounded in the course material, and lesson summaries are written automatically.",
+    },
+  ],
   datePublished: "2026-10-17",
   dateModified: "2026-10-30",
 };

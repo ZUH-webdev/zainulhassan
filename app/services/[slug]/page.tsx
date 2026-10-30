@@ -6,9 +6,9 @@ import PageCta from "@/components/PageCta";
 import PageHeader from "@/components/PageHeader";
 import Process from "@/components/Process";
 import Related from "@/components/Related";
-import { caseStudyBySlug } from "@/content/case-studies";
+import { caseStudyCard } from "@/content/case-studies";
 import { postBySlug } from "@/content/blog";
-import { AREA_NOTE, UPWORK_FACTS, serviceBySlug, services } from "@/content/services";
+import { serviceBySlug, services } from "@/content/services";
 import { AREA_SERVED, breadcrumbNode, faqNode, graph, ids, webPageNode } from "@/lib/schema";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 
@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: Props) {
   return buildMetadata({ title: s.metaTitle, description: s.description, path: `/services/${s.slug}` });
 }
 
+/** Every heading and paragraph comes from the service's own content, so no two service pages share copy. */
 export default async function ServicePage({ params }: Props) {
   const s = serviceBySlug((await params).slug);
   if (!s) notFound();
@@ -73,9 +74,9 @@ export default async function ServicePage({ params }: Props) {
       </section>
 
       <section className="wrap sec" aria-labelledby="deliverables">
-        <div className="eyebrow rv">Deliverables</div>
+        <div className="eyebrow rv">What I deliver</div>
         <h2 id="deliverables" className="h2 rv d1">
-          What you get
+          {s.deliverTitle}
         </h2>
         <div className="cards">
           {s.deliverables.map((d, i) => (
@@ -93,10 +94,12 @@ export default async function ServicePage({ params }: Props) {
         </div>
       </section>
 
+      <Process id="how-i-work" eyebrow="How I work" title={s.processTitle} steps={s.process} />
+
       <section className="wrap sec" aria-labelledby="stack">
         <div className="eyebrow rv">Tech stack</div>
         <h2 id="stack" className="h2 rv d1">
-          The stack I use
+          {s.stackTitle}
         </h2>
         <ul className="slist">
           {s.stack.map((t) => (
@@ -108,49 +111,34 @@ export default async function ServicePage({ params }: Props) {
         </ul>
       </section>
 
-      <Process id="how-i-work" eyebrow="How I work" title="My process, step by step" />
-
-      <section className="wrap sec" aria-labelledby="engagement">
-        <div className="eyebrow rv">Engagement</div>
-        <h2 id="engagement" className="h2 rv d1">
-          How we work together
-        </h2>
-        <div className="prose" style={{ marginTop: 24 }}>
-          <ul>
-            {s.engagement.map((e) => (
-              <li key={e}>{e}</li>
-            ))}
-          </ul>
-          <p>{AREA_NOTE}</p>
-        </div>
-      </section>
-
       <Related
-        id="proof"
-        eyebrow="Proof"
-        title="Proof from shipped work"
-        items={s.proof.map((p) => {
-          const c = caseStudyBySlug(p.slug)!;
-          return { href: `/case-studies/${c.slug}`, kicker: c.kicker, title: c.name, text: p.fact, cta: `Read the ${c.name} case study` };
+        id="related-work"
+        eyebrow="Related work"
+        title={s.workTitle}
+        items={s.work.map((w) => {
+          const c = caseStudyCard(w.slug)!;
+          return { href: `/case-studies/${c.slug}`, kicker: c.kicker, title: c.name, text: w.fact, cta: `Read the ${c.name} case study` };
         })}
       />
-      <div className="wrap">
-        <p className="mono" style={{ margin: "28px 0 0", fontSize: 13, color: "#9A9DA6", maxWidth: 760 }}>
-          {UPWORK_FACTS}
-        </p>
-      </div>
+      {s.workLink && (
+        <div className="wrap">
+          <p className="mono relwork rv" style={{ margin: "28px 0 0", fontSize: 13, color: "#9A9DA6" }}>
+            Related work:{" "}
+            <a className="tl" href={s.workLink.href}>
+              {s.workLink.label}
+            </a>
+          </p>
+        </div>
+      )}
 
-      <Faq items={s.faqs} />
+      <Faq items={s.faqs} title={s.faqTitle} />
 
       <Related
-        id="related"
-        eyebrow="Related"
-        title="Related services and guides"
+        id="related-services"
+        eyebrow="Related services"
+        title={s.relatedTitle}
         items={[
-          ...s.related.map((slug) => {
-            const r = serviceBySlug(slug)!;
-            return { href: `/services/${r.slug}`, kicker: "Service", title: r.h1.replace(/:.*/, ""), text: r.summary, cta: "See the service" };
-          }),
+          ...s.related.map((r) => ({ href: `/services/${r.slug}`, kicker: "Service", title: r.anchor, text: r.text, cta: "Explore this service" })),
           ...s.posts.map((slug) => {
             const p = postBySlug(slug)!;
             return { href: `/blog/${p.slug}`, kicker: "Guide", title: p.title, text: p.description, cta: "Read the guide" };
@@ -158,7 +146,7 @@ export default async function ServicePage({ params }: Props) {
         ]}
       />
 
-      <PageCta location="service-page" title={s.cta} />
+      <PageCta location="service-page" title={s.cta} text={s.ctaText} hire />
     </main>
   );
 }

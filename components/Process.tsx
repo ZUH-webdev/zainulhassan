@@ -1,4 +1,4 @@
-const steps = [
+const defaultSteps = [
   {
     title: "Discovery call",
     body: "A short call about what you are building, who it is for and what already exists. Afterwards I send a written scope and estimate.",
@@ -53,15 +53,24 @@ const steps = [
   },
 ];
 
+export type ProcessStep = { title: string; body: string };
+
+/**
+ * Four-step animated timeline. Pages with their own process (e.g. each service page) pass
+ * four `steps`; each keeps the icon of the same position, so the layout and animation are unchanged.
+ */
 export default function Process({
   id = "process",
   eyebrow = "03 / Process",
   title = "Clear steps, no surprises",
+  steps: custom,
 }: {
   id?: string;
   eyebrow?: string;
   title?: string;
+  steps?: ProcessStep[];
 }) {
+  const steps = custom ? custom.map((s, i) => ({ ...s, icon: defaultSteps[i % defaultSteps.length].icon })) : defaultSteps;
   return (
     <section id={id} className="wrap" style={{ paddingTop: 96, paddingBottom: 40 }}>
       <div className="eyebrow rv">{eyebrow}</div>

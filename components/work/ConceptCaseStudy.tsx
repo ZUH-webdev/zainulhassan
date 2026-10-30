@@ -1,30 +1,12 @@
-import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
 import CtaButtons from "@/components/CtaButtons";
-import JsonLd from "@/components/JsonLd";
-import PageCta from "@/components/PageCta";
 import PageHeader from "@/components/PageHeader";
-import Related from "@/components/Related";
-import { work, workBySlug } from "@/content/work";
-import { breadcrumbNode, graph, ids, webPageNode } from "@/lib/schema";
-import { absoluteUrl, buildMetadata } from "@/lib/seo";
+import type { CaseStudy } from "@/content/work/types";
+import type { Crumb } from "@/lib/schema";
 import { external } from "@/lib/site";
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return work.map((w) => ({ slug: w.slug }));
-}
-
-type Props = { params: Promise<{ slug: string }> };
-
-export async function generateMetadata({ params }: Props) {
-  const w = workBySlug((await params).slug);
-  if (!w) return {};
-  return buildMetadata({ title: w.metaTitle, description: w.metaDescription, path: `/work/${w.slug}` });
-}
-
 /** Renders a titled section, or nothing when the content is empty. */
-function Section({ id, title, show, children }: { id: string; title: string; show: boolean; children: React.ReactNode }) {
+function Section({ id, title, show, children }: { id: string; title: string; show: boolean; children: ReactNode }) {
   if (!show) return null;
   return (
     <section id={id} aria-labelledby={`${id}-h`}>
@@ -36,40 +18,16 @@ function Section({ id, title, show, children }: { id: string; title: string; sho
   );
 }
 
-export default async function WorkPage({ params }: Props) {
-  const w = workBySlug((await params).slug);
-  if (!w) notFound();
-  const path = `/work/${w.slug}`;
-  const crumbs = [
-    { name: "Home", path: "/" },
-    { name: "Case studies", path: "/case-studies" },
-    { name: w.title, path },
-  ];
+/** Layout for concept projects (e.g. Pulse, Sentinel). Empty strings and arrays hide their section. */
+export default function ConceptCaseStudy({ study: w, crumbs }: { study: CaseStudy; crumbs: Crumb[] }) {
   const facts = [
     { label: "Type", value: w.type },
     { label: "Role", value: w.role },
     { label: "Timeline", value: w.timeline },
   ].filter((f) => f.value);
-  const others = work.filter((o) => o.slug !== w.slug);
 
   return (
-    <main>
-      <JsonLd
-        data={graph(
-          { ...webPageNode(path, w.title, w.metaDescription), breadcrumb: { "@id": `${absoluteUrl(path)}#breadcrumb` } },
-          {
-            "@type": "CreativeWork",
-            "@id": `${absoluteUrl(path)}#work`,
-            name: w.title,
-            description: w.pitch,
-            creator: { "@id": ids.person },
-            mainEntityOfPage: { "@id": `${absoluteUrl(path)}#webpage` },
-            keywords: w.stack.join(", "),
-          },
-          breadcrumbNode(crumbs),
-        )}
-      />
-
+    <>
       <PageHeader crumbs={crumbs} eyebrow={w.badge} title={w.title} lead={w.pitch}>
         {facts.length > 0 && (
           <dl className="mono" style={{ display: "flex", flexWrap: "wrap", gap: "12px 32px", margin: "24px 0 0", fontSize: 13 }}>
@@ -153,17 +111,6 @@ export default async function WorkPage({ params }: Props) {
           </Section>
         </div>
       </article>
-
-      {others.length > 0 && (
-        <Related
-          id="more-work"
-          eyebrow="More work"
-          title="Other concept projects"
-          items={others.map((o) => ({ href: `/work/${o.slug}`, kicker: o.badge, title: o.title, text: o.pitch, cta: "Read the case study" }))}
-        />
-      )}
-
-      <PageCta location="case-study" />
-    </main>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 import type { ClientCaseStudy } from "./types";
 
 /*
- * Copy for /work/flutron. Fields left as "" or [] are waiting on confirmed details
+ * Copy for /case-studies/flutron. Fields left as "" or [] are waiting on confirmed details
  * and are hidden on the page until filled in (see the FILL notes beside them).
  */
 export const flutron: ClientCaseStudy = {
@@ -78,7 +78,7 @@ export const flutron: ClientCaseStudy = {
   decisions: [], // FILL: three short "why I chose X" notes
   results: [], // FILL: e.g. enquiries in the first month, page speed scores, ranking or traffic wins. Never invent figures.
   cta: "Need a site that turns visitors into bookings?",
-  next: { href: "/case-studies/leadsmind", title: "LeadsMind: CRM, LMS and marketing platform" },
+  next: null, // previous/next links come from CaseStudyPager
   datePublished: "2026-10-29",
   dateModified: "2026-10-30",
 };

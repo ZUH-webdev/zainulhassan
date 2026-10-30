@@ -2,14 +2,16 @@ import type { Post } from "./types";
 
 export const post: Post = {
   slug: "saas-mvp-cost",
+  shortTitle: "SaaS MVP cost",
   title: "How Much Does It Cost to Build a SaaS MVP?",
   metaTitle: "How Much Does a SaaS MVP Cost to Build?",
   description:
     "What a SaaS MVP really costs: the six drivers that set the price, the running costs founders forget, and how to cut scope without cutting the foundations.",
   keyword: "saas mvp development cost",
   datePublished: "2026-10-17",
-  dateModified: "2026-10-18",
+  dateModified: "2026-10-30",
   service: "saas-mvp-development",
+  caseStudy: "velocity",
   related: ["what-is-mvp-in-software-development", "supabase-vs-firebase", "stripe-vs-paystack"],
   intro:
     "The cost of a SaaS MVP is set by scope, not by a market rate: how many user roles and core workflows it has, how many integrations sit behind them, whether it needs AI or payments on day one, and how polished the design must be. Fix the scope first and an honest estimate follows. Below are the drivers I use to quote MVPs, and the running costs founders often forget.",
@@ -67,6 +69,52 @@ export const post: Post = {
         { h3: "6. Design polish" },
         {
           p: "Building with Tailwind and a component library such as shadcn/ui gives a clean, consistent interface quickly. A fully custom visual identity is worth it for some markets, but it is a separate line item.",
+        },
+      ],
+    },
+    {
+      id: "two-mvps",
+      title: "Two MVPs, side by side",
+      blocks: [
+        {
+          p: "The drivers are easier to see in an example. The two products below are illustrative, not real quotes, and both would honestly be called an MVP. Only one of them is small.",
+        },
+        {
+          table: {
+            head: ["", "MVP A: appointment reminders", "MVP B: agency client portal"],
+            rows: [
+              ["Who signs up", "A single business owner", "An agency, its staff and each of its clients"],
+              ["Roles", "One", "Agency admin, staff member, client"],
+              ["Core workflows", "Add an appointment, send a reminder", "Projects, file sharing, approvals, invoicing"],
+              ["Data isolation", "Per user", "Per agency, and per client inside each agency"],
+              ["Integrations", "Email or SMS", "Email, payments, file storage, calendar"],
+              ["Billing", "One monthly plan", "Plans per agency with seat limits"],
+            ],
+          },
+        },
+        {
+          p: "MVP B is not one larger version of MVP A. Each extra role adds screens and rules, each integration adds its own failure cases, and two levels of data isolation mean every query has to respect both. That is why a quote for \"an MVP\" means nothing until the rows of a table like this are filled in.",
+        },
+      ],
+    },
+    {
+      id: "overspend",
+      title: "Where founders overspend on version one",
+      blocks: [
+        {
+          p: "Most budget that goes missing in an MVP is spent on things the first customers never asked for. These are the patterns I see most often:",
+        },
+        {
+          ul: [
+            "**An admin panel before there are customers.** Early on, a few direct database queries or a simple internal page are enough. A full back office can wait until support work actually hurts.",
+            "**A mobile app and a web app at once.** Two front ends double the interface work. A responsive web app usually proves the idea first.",
+            "**Automating rare tasks.** If something happens once a week, doing it by hand for the first months is cheaper than building and testing the automation.",
+            "**A custom design system.** A component library gives you a consistent, accessible interface; a bespoke one is a separate project.",
+            "**Infrastructure for traffic you do not have yet.** Managed services handle early load comfortably, so splitting the product into separate services rarely pays off before launch.",
+          ],
+        },
+        {
+          p: "When I co-founded [Velocity](/case-studies/velocity), the rule was simple: every feature had to help recover a missed call or book an appointment, and anything else waited. That rule kept the first version small enough to ship and easy to explain, and it is the same test I apply to client scopes.",
         },
       ],
     },
@@ -130,6 +178,18 @@ export const post: Post = {
         },
         {
           p: "If you have an idea and want an honest estimate, see my [SaaS MVP development service](/services/saas-mvp-development) or get in touch below.",
+        },
+      ],
+    },
+    {
+      id: "conclusion",
+      title: "The short version",
+      blocks: [
+        {
+          p: "An MVP costs what its scope costs. Count the roles, the workflows, the integrations and the AI features, decide how much design polish the first customers really need, and add the monthly running costs to the picture. Then cut everything that does not help the first customer get value and pay.",
+        },
+        {
+          p: "What you should not cut is the foundation: the data model, tenant isolation and billing. Those decide whether version two builds on version one or replaces it. If payments are part of your first version, my comparison of [Stripe and Paystack for SaaS in Africa](/blog/stripe-vs-paystack) will help you pick a provider before you ask for quotes.",
         },
       ],
     },

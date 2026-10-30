@@ -2,14 +2,16 @@ import type { Post } from "./types";
 
 export const post: Post = {
   slug: "how-to-hire-an-ai-developer",
+  shortTitle: "Hiring an AI developer",
   title: "How to Hire an AI Developer: What to Look For and What to Avoid",
   metaTitle: "How to Hire an AI Developer: What to Check",
   description:
-    "How to hire an AI developer who ships: the skills that matter beyond prompts, questions to ask, red flags to avoid, and how to start with a small milestone.",
+    "How to hire an AI developer who ships: the skills that matter beyond prompts, questions to ask, red flags to avoid, and how to start with one milestone.",
   keyword: "how to hire an ai developer",
   datePublished: "2026-10-17",
   dateModified: "2026-10-18",
   service: "ai-developer",
+  caseStudy: "velocity",
   related: ["rag-chatbot-openai-pgvector", "saas-mvp-cost", "what-is-mvp-in-software-development"],
   intro:
     "To hire an AI developer who ships, look for someone who has put AI features into products real users pay for, not only demos. The model call is the easy part. The skills that matter are data access and permissions, retrieval over your own content, cost control, evaluation and a reliable interface around the AI. Start with a small paid milestone to prove it.",

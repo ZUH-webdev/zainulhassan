@@ -166,11 +166,10 @@ const SentinelViz = () => (
   </div>
 );
 
-/** Card for a /work case study: kicker from badge and type, bullets from the first features. */
+/** Card for a concept case study: kicker from badge and type, bullets from the first features. */
 const workCard = (w: CaseStudy, reveal: Project["reveal"], viz: ReactNode, tags: string[]): Project => ({
   reveal,
   slug: w.slug,
-  href: `/work/${w.slug}`,
   kicker: `${w.badge} · ${w.type}`.toUpperCase(),
   title: w.title,
   body: w.pitch,
@@ -182,14 +181,14 @@ const workCard = (w: CaseStudy, reveal: Project["reveal"], viz: ReactNode, tags:
 type Project = {
   reveal: "rvl" | "rvr";
   slug: string;
-  /** Case study URL; defaults to /case-studies/<slug>. */
-  href?: string;
   kicker: string;
   title: string;
   body: string;
   tags: string[];
   viz: ReactNode;
   bullets: string[];
+  /** Descriptive name for the case study link; defaults to "<title> case study". */
+  anchor?: string;
 };
 
 const projects: Project[] = [
@@ -198,7 +197,8 @@ const projects: Project[] = [
     slug: leadsmind.slug,
     kicker: `${leadsmind.badge} · ${leadsmind.type}`.toUpperCase(),
     title: "LeadsMind",
-    body: leadsmind.pitch,
+    anchor: "LeadsMind CRM and LMS case study",
+    body: "An all-in-one CRM, LMS and marketing-automation platform for African businesses, with LENA, a built-in AI assistant, replacing a stack of separate tools with one workspace.",
     tags: ["Next.js", "Supabase", "Paystack", "pgvector"],
     viz: <LeadsMindViz />,
     bullets: [
@@ -222,7 +222,6 @@ const projects: Project[] = [
   {
     reveal: "rvr",
     slug: flutron.slug,
-    href: `/work/${flutron.slug}`,
     kicker: flutron.kicker,
     title: flutron.client,
     body: flutron.cardBody,
@@ -261,7 +260,7 @@ export default function Work() {
                 {p.kicker}
               </div>
               <h3 className="disp wtitle">
-                <a className="tlink" href={p.href ?? `/case-studies/${p.slug}`}>
+                <a className="tlink" href={`/case-studies/${p.slug}`}>
                   {p.title}
                 </a>
               </h3>
@@ -275,12 +274,11 @@ export default function Work() {
               </div>
               <a
                 className="ghost-btn wcta mono"
-                href={p.href ?? `/case-studies/${p.slug}`}
-                aria-label={`Read the ${p.title} case study`}
+                href={`/case-studies/${p.slug}`}
                 data-track="cta_click"
                 data-track-location="home-work"
               >
-                Read case study →
+                Read case study<span className="sr-only">: {p.anchor ?? `${p.title} case study`}</span> →
               </a>
             </div>
             <div className="wcol wviz">

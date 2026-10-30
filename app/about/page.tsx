@@ -80,7 +80,7 @@ export default function AboutPage() {
             </h2>
             <p>
               My work is full SaaS products, not isolated tickets. Recent projects include{" "}
-              <Link href="/case-studies/leadsmind">LeadsMind</Link>, an all-in-one CRM, LMS and marketing platform for African
+              <Link href="/case-studies/leadsmind">LeadsMind, an all-in-one CRM, LMS and marketing platform</Link> for African
               businesses where I audited and hardened 157 API routes, built an AI suite and migrated billing from Stripe to
               Paystack; <Link href="/case-studies/world-teachers-academy">World Teachers Academy</Link>, a teacher certification
               site and job portal with nightly Adzuna and Reed ingestion; and{" "}

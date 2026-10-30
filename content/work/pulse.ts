@@ -35,6 +35,8 @@ export const pulse: CaseStudy = {
     { challenge: "Themes that kept changing as new feedback arrived.", solution: "Assign new items to existing themes first and only create a new theme when similarity falls below a threshold." },
     { challenge: "Keeping AI costs predictable.", solution: "Batch requests, cache results by content hash, and enforce monthly usage limits per plan." },
   ],
+  services: ["ai-developer", "saas-mvp-development"],
+  dateModified: "2026-10-30",
   roadmap: [
     "Integrations with helpdesk and review platforms",
     "Weekly digest emails with the top rising themes",
