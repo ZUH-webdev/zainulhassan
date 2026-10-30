@@ -47,6 +47,33 @@ export type CaseStudy = {
   gallery?: { src: string; alt: string }[];
   cta?: string;
   next?: { href: string; title: string } | null;
+  /** Answer-first "What is <product>?" paragraph; inline [links](href) allowed. */
+  whatIs?: string;
+  /** "Who built it" line under whatIs; inline links allowed. */
+  builtBy?: string;
+  /** The product's own site. Shown in a disclosure that this page is an independent case study, and used as the SoftwareApplication url. */
+  officialSite?: { label: string; href: string };
+  /** Closing paragraph for a section, keyed by section id (e.g. "ai", "security"); inline links allowed. */
+  notes?: Partial<Record<string, string>>;
+  /**
+   * An AI assistant built into the product, shown as its own section after the module grid.
+   * Empty strings hide their part: a feature's `detail` is appended to its `text` only when set.
+   */
+  assistant?: {
+    id: string;
+    title: string;
+    intro: string;
+    features: { title: string; text: string; detail: string }[];
+    launcher: string;
+    /** How it was built. */
+    built: string;
+    /** Closing paragraph with links; inline [links](href) allowed. */
+    note: string;
+    /** Screenshot under /public; skipped until the file exists. */
+    image: { src: string; alt: string };
+  };
+  /** Visible FAQ plus FAQPage JSON-LD; answers only from facts on the page. */
+  faqs?: { q: string; a: string }[];
   datePublished?: string;
   dateModified?: string;
 };

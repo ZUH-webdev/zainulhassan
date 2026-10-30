@@ -31,6 +31,10 @@ export default function Nav() {
               <Link className="navdd-all" href="/services">
                 All services →
               </Link>
+              <span className="navdd-h mono" aria-hidden="true">
+                Related work
+              </span>
+              <Link href="/case-studies/leadsmind">LeadsMind CRM and LMS case study</Link>
             </div>
           </div>
           {links.map((l) => (

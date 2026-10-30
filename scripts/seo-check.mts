@@ -18,6 +18,7 @@ const SERVICE_WORDS = [700, 1100];
 /** Titles allowed outside 50-60 chars, with the reason. */
 const TITLE_EXCEPTIONS: Record<string, string> = {
   "/": "Home title is specified verbatim in the SEO brief (66 chars).",
+  "/case-studies/leadsmind": "Title specified verbatim by the site owner (49 chars).",
 };
 
 /** Non-page routes that internal links may point to. */
@@ -106,6 +107,8 @@ for (const [route, html] of [...pages.entries()].sort()) {
     for (const el of main?.querySelectorAll("h1, h2, h3, p, li") ?? []) {
       // A case study card titled with the project name is a reference, not shared copy.
       if (el.tagName === "H3" && el.closest('a[href^="/case-studies/"]')) continue;
+      // So is a one-line "Related work:" link to a case study.
+      if (el.classList.contains("relwork")) continue;
       const t = el.text.replace(/\s+/g, " ").trim();
       // Headings always count; other blocks once they are sentence-length (skips chrome like breadcrumbs).
       if (/^H[123]$/.test(el.tagName) || t.split(" ").length >= 8) {

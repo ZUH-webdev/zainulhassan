@@ -138,7 +138,7 @@ export const post: Post = {
       title: "Get your Supabase project audited",
       blocks: [
         {
-          p: "If you built quickly and are not sure what your anon key can reach, an audit gives you a ranked list of gaps and tested fixes. See my [Supabase developer and RLS audit service](/services/supabase-developer), or read how I approached it in the [LeadsMind case study](/case-studies/leadsmind).",
+          p: "If you built quickly and are not sure what your anon key can reach, an audit gives you a ranked list of gaps and tested fixes. See my [Supabase developer and RLS audit service](/services/supabase-developer), or read how I approached it in the [LeadsMind CRM and LMS case study](/case-studies/leadsmind).",
         },
       ],
     },

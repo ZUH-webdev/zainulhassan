@@ -177,7 +177,7 @@ export const post: Post = {
           ],
         },
         {
-          p: "Read more in the [LeadsMind case study](/case-studies/leadsmind).",
+          p: "Read how the platform was built and secured in the [LeadsMind CRM and LMS case study](/case-studies/leadsmind).",
         },
       ],
     },

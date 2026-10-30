@@ -36,6 +36,8 @@ export type Service = {
   workTitle: string;
   /** The 1 or 2 most relevant case studies, with the fact that makes them relevant. */
   work: { slug: string; fact: string }[];
+  /** Extra related-work link shown as one line under the case study cards (e.g. a section of a case study). */
+  workLink?: { label: string; href: string };
   faqTitle: string;
   /** Exactly five, unique to this service. */
   faqs: Faq[];
@@ -133,6 +135,7 @@ export const services: Service[] = [
       { slug: "leadsmind", fact: "Built the LeadsMind AI suite: revenue forecasting, ad and landing-page copy, and course Q&A with RAG." },
       { slug: "velocity", fact: "Co-founded Velocity, an AI product that follows up missed calls and moves callers towards a booked appointment." },
     ],
+    workLink: { label: "LENA, the AI assistant I built for LeadsMind", href: "/case-studies/leadsmind#lena" },
     faqTitle: "Questions about hiring an AI developer",
     faqs: [
       {
@@ -261,6 +264,7 @@ export const services: Service[] = [
       { slug: "leadsmind", fact: "Built course Q&A with RAG on pgvector, plus AI lesson summaries, inside the LeadsMind LMS." },
       { slug: "velocity", fact: "Co-founded Velocity, where an AI follows up with callers after a missed call and works towards a booking." },
     ],
+    workLink: { label: "LENA, the AI assistant I built for LeadsMind", href: "/case-studies/leadsmind#lena" },
     faqTitle: "AI chatbot development questions",
     faqs: [
       {

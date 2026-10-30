@@ -1,8 +1,10 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import Image from "next/image";
+import Faq from "@/components/Faq";
 import HireButton from "@/components/hire/HireButton";
 import PageHeader from "@/components/PageHeader";
+import { Inline } from "@/components/Rich";
 import CaseStudyCta from "@/components/work/CaseStudyCta";
 import { Section } from "@/components/work/ClientCaseStudy";
 import Gallery from "@/components/work/Gallery";
@@ -85,10 +87,46 @@ export default function FlagshipCaseStudy({ study: s, crumbs }: { study: CaseStu
   const shotFor = (src: string) => gallery.find((g) => g.src === src);
   const security = s.security ?? [];
   const results = s.results ?? [];
+  const name = s.title.replace(/:.*/, "");
+  const faqs = s.faqs ?? [];
+  const assistant = s.assistant;
+  const assistantShot = assistant && onDisk(assistant.image.src) ? assistant.image : undefined;
+  /** Closing paragraph for a section, when the content provides one. */
+  const note = (id: string) =>
+    s.notes?.[id] ? (
+      <p className="cs-p rv" style={{ marginTop: 24 }}>
+        <Inline text={s.notes[id]!} />
+      </p>
+    ) : null;
+  /** On-page table of contents: only sections that render. */
+  const toc = [
+    { id: "what-is", title: `What is ${name}?`, show: !!s.whatIs },
+    { id: "problem", title: "The problem", show: !!s.problem },
+    { id: "platform", title: "Platform at a glance", show: modules.length > 0 },
+    { id: assistant?.id ?? "assistant", title: assistant?.title ?? "", show: !!assistant },
+    { id: "ai", title: "AI across the platform", show: s.features.length > 0 },
+    { id: "security", title: "Security and quality", show: security.length > 0 },
+    { id: "hard-problems", title: "Hard problems solved", show: s.challenges.length > 0 },
+    { id: "how-i-worked", title: "How I worked", show: !!s.howIWorked },
+    { id: "architecture", title: "Architecture", show: !!s.architecture },
+    { id: "feedback", title: "Client feedback", show: !!s.review || !!s.clientQuote },
+    { id: "screenshots", title: "Screenshots", show: gallery.length > 0 },
+    { id: "results", title: "Results", show: results.length > 0 },
+    { id: "faq-title", title: `${name} FAQ`, show: faqs.length > 0 },
+  ].filter((t) => t.show);
 
   return (
     <>
       <PageHeader crumbs={crumbs} eyebrow={s.badge} title={s.title} lead={s.pitch}>
+        {s.officialSite && (
+          <p className="mono" style={{ margin: "20px 0 0", fontSize: 13, color: "#9A9DA6", maxWidth: 760 }}>
+            This is an independent developer case study. For the product itself, visit{" "}
+            <a className="tl" href={s.officialSite.href} target="_blank" rel="noopener">
+              {s.officialSite.label}
+            </a>
+            .
+          </p>
+        )}
         {meta.length > 0 && (
           <dl className="cs-meta mono">
             {meta.map((m) => (
@@ -140,6 +178,32 @@ export default function FlagshipCaseStudy({ study: s, crumbs }: { study: CaseStu
       </PageHeader>
 
       <article className="wrap">
+        <Section id="what-is" title={`What is ${name}?`} show={!!s.whatIs}>
+          <p className="cs-p rv">
+            <Inline text={s.whatIs ?? ""} />
+          </p>
+          {s.builtBy && (
+            <p className="cs-p rv">
+              <Inline text={s.builtBy} />
+            </p>
+          )}
+        </Section>
+
+        {toc.length > 2 && (
+          <nav className="toc rv" aria-labelledby="cs-toc-h" style={{ maxWidth: 760, marginTop: 48 }}>
+            <p id="cs-toc-h" className="mono">
+              On this page
+            </p>
+            <ol>
+              {toc.map((t) => (
+                <li key={t.id}>
+                  <a href={`#${t.id}`}>{t.title}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
         <Section id="problem" title="The problem" show={!!s.problem}>
           <p className="cs-p rv">{s.problem}</p>
         </Section>
@@ -191,7 +255,9 @@ export default function FlagshipCaseStudy({ study: s, crumbs }: { study: CaseStu
                     <h3 id={`mod-${m.id}-h`} className="disp">
                       {m.title}
                     </h3>
-                    <p>{m.detail || m.summary}</p>
+                    <p>
+                      <Inline text={m.detail || m.summary} />
+                    </p>
                   </div>
                   {shot && (
                     <div className="lm-detail-img bframe rv d1">
@@ -204,6 +270,46 @@ export default function FlagshipCaseStudy({ study: s, crumbs }: { study: CaseStu
           </div>
         </Section>
 
+        {assistant && (
+          <Section id={assistant.id} title={assistant.title} show>
+            <div className={`lm-detail${assistantShot ? " has-shot" : ""}`}>
+              <div className="rv">
+                <p className="cs-p">{assistant.intro}</p>
+                <p className="cs-p">{assistant.launcher}</p>
+              </div>
+              {assistantShot && (
+                <div className="lm-detail-img bframe rv d1">
+                  <Image src={assistantShot.src} alt={assistantShot.alt} fill sizes="(max-width: 899px) calc(100vw - 40px), 600px" />
+                </div>
+              )}
+            </div>
+            <div className="cards">
+              {assistant.features.map((f, i) => (
+                <div key={f.title} className={`card rv ${delay(i)}`}>
+                  <div className="big-n" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="disp" style={{ fontWeight: 700, fontSize: 24, letterSpacing: "-.02em", margin: "0 0 10px", position: "relative" }}>
+                    {f.title}
+                  </h3>
+                  <p style={{ margin: 0, color: "#9A9DA6", fontSize: 16, position: "relative" }}>{[f.text, f.detail].filter(Boolean).join(" ")}</p>
+                  <div className="sweep"></div>
+                </div>
+              ))}
+            </div>
+            {assistant.built && (
+              <p className="cs-p rv" style={{ marginTop: 32 }}>
+                {assistant.built}
+              </p>
+            )}
+            {assistant.note && (
+              <p className="cs-p rv" style={{ marginTop: 32 }}>
+                <Inline text={assistant.note} />
+              </p>
+            )}
+          </Section>
+        )}
+
         <Section id="ai" title="AI across the platform" show={s.features.length > 0}>
           <ul className="lm-ai">
             {s.features.map((f, i) => (
@@ -213,6 +319,7 @@ export default function FlagshipCaseStudy({ study: s, crumbs }: { study: CaseStu
               </li>
             ))}
           </ul>
+          {note("ai")}
         </Section>
 
         <Section id="security" title="Security and quality" show={security.length > 0}>
@@ -227,6 +334,7 @@ export default function FlagshipCaseStudy({ study: s, crumbs }: { study: CaseStu
               </li>
             ))}
           </ul>
+          {note("security")}
         </Section>
 
         <Section id="hard-problems" title="Hard problems solved" show={s.challenges.length > 0}>
@@ -238,10 +346,12 @@ export default function FlagshipCaseStudy({ study: s, crumbs }: { study: CaseStu
               </li>
             ))}
           </ul>
+          {note("hard-problems")}
         </Section>
 
         <Section id="how-i-worked" title="How I worked" show={!!s.howIWorked}>
           <p className="cs-p rv">{s.howIWorked}</p>
+          {note("how-i-worked")}
         </Section>
 
         <Section id="architecture" title="Architecture" show={!!s.architecture}>
@@ -283,6 +393,8 @@ export default function FlagshipCaseStudy({ study: s, crumbs }: { study: CaseStu
           </ul>
         </Section>
       </article>
+
+      {faqs.length > 0 && <Faq items={faqs} title={`${name} FAQ`} />}
 
       <section className="wrap" style={{ paddingTop: 96, paddingBottom: 96 }} aria-labelledby="cs-cta-h">
         <CaseStudyCta

@@ -9,7 +9,7 @@ export const post: Post = {
     "Build a RAG chatbot that answers from your own content: chunking, OpenAI embeddings, pgvector search in Supabase, permission-aware retrieval and testing.",
   keyword: "rag chatbot",
   datePublished: "2026-10-17",
-  dateModified: "2026-10-18",
+  dateModified: "2026-10-30",
   service: "ai-chatbot-development",
   caseStudy: "leadsmind",
   related: ["how-to-hire-an-ai-developer", "supabase-rls-mistakes", "supabase-vs-firebase"],
@@ -197,6 +197,9 @@ $$;`,
       blocks: [
         {
           p: "I built course Q&A with RAG inside [LeadsMind](/case-studies/leadsmind), so learners get answers grounded in the course material they are enrolled in. If you want a chatbot that answers from your own content, see my [AI chatbot development service](/services/ai-chatbot-development).",
+        },
+        {
+          p: "Related work: [LENA, the AI assistant I built for LeadsMind](/case-studies/leadsmind#lena), which answers questions about the product, helps troubleshoot and connects users to support from inside every workspace.",
         },
       ],
     },

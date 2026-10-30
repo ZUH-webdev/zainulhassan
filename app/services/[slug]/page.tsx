@@ -120,6 +120,16 @@ export default async function ServicePage({ params }: Props) {
           return { href: `/case-studies/${c.slug}`, kicker: c.kicker, title: c.name, text: w.fact, cta: `Read the ${c.name} case study` };
         })}
       />
+      {s.workLink && (
+        <div className="wrap">
+          <p className="mono relwork rv" style={{ margin: "28px 0 0", fontSize: 13, color: "#9A9DA6" }}>
+            Related work:{" "}
+            <a className="tl" href={s.workLink.href}>
+              {s.workLink.label}
+            </a>
+          </p>
+        </div>
+      )}
 
       <Faq items={s.faqs} title={s.faqTitle} />
 

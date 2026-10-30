@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CopyEmail from "@/components/CopyEmail";
 import ContactForm from "@/components/hire/ContactForm";
 import JsonLd from "@/components/JsonLd";
@@ -124,6 +125,11 @@ export default function ContactPage() {
               <li>I build in milestones, each ending with working software and a progress report.</li>
               <li>We launch, and I support you after you go live.</li>
             </ol>
+            <p>
+              To see this process on a larger build, read the{" "}
+              <Link href="/case-studies/leadsmind">LeadsMind CRM and LMS case study</Link>: a multi-tenant platform delivered across
+              12 milestones, with a written report at each one.
+            </p>
           </section>
 
           <section aria-labelledby="where">

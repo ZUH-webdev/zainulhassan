@@ -188,7 +188,7 @@ export const post: Post = {
           ],
         },
         {
-          p: "I build SaaS products on Next.js and Supabase, including LeadsMind and World Teachers Academy. If you are starting a product, see my [Next.js developer service](/services/nextjs-developer); if you already run on Supabase and want the schema or policies reviewed, see my [Supabase developer service](/services/supabase-developer).",
+          p: "I build SaaS products on Next.js and Supabase, including [LeadsMind, an all-in-one CRM and LMS platform](/case-studies/leadsmind), and World Teachers Academy. If you are starting a product, see my [Next.js developer service](/services/nextjs-developer); if you already run on Supabase and want the schema or policies reviewed, see my [Supabase developer service](/services/supabase-developer).",
         },
       ],
     },
