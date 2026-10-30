@@ -20,7 +20,10 @@ export default function Nav() {
         <div className="navlinks">
           <div className="navdd">
             <Link className="lnk" href="/services">
-              Services<span className="navdd-c" aria-hidden="true">▾</span>
+              Services
+              <svg className="navdd-c" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                <path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </Link>
             <div className="navdd-menu">
               {services.map((s) => (
